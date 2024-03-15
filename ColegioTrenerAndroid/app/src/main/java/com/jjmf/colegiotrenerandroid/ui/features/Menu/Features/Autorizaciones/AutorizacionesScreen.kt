@@ -1,11 +1,5 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Autorizaciones
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.snap
-import androidx.compose.animation.expandIn
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,8 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -29,8 +21,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Switch
@@ -80,13 +70,25 @@ fun AutorizacionesScreen(
                     fontSize = 14.sp
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                RadioButton(selected = true, onClick = {})
+                RadioButton(
+                    selected = viewModel.estado == Estado.Activo,
+                    onClick = {
+                        viewModel.estado = Estado.Activo
+                        viewModel.listarAutorizaciones(Estado.Activo)
+                    }
+                )
                 Text(
                     text = "Activos",
                     fontSize = 14.sp
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                RadioButton(selected = false, onClick = {})
+                RadioButton(
+                    selected = viewModel.estado == Estado.Vencido,
+                    onClick = {
+                        viewModel.estado = Estado.Vencido
+                        viewModel.listarAutorizaciones(Estado.Vencido)
+                    }
+                )
                 Text(
                     text = "Vencidos",
                     fontSize = 14.sp
@@ -160,7 +162,7 @@ fun AutorizacionesScreen(
                     .padding(top = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                viewModel.listHijos.forEach {
+                viewModel.listEstados.forEach {
                     CardPago(title = it.nombre.toString()) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -194,7 +196,7 @@ fun AutorizacionesScreen(
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
-                            Text(text = it.param1.toString(), fontSize = 12.sp)
+                            Text(text = it.codgra.toString(), fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.weight(1f))
 
@@ -205,7 +207,7 @@ fun AutorizacionesScreen(
                                 fontWeight = FontWeight.SemiBold
                             )
 
-                            Switch(checked = true, onCheckedChange = {})
+                            Switch(checked = it.autorizo, onCheckedChange = {})
 
                         }
                     }
@@ -244,4 +246,9 @@ fun AutorizacionesScreen(
 
     }
 
+}
+
+enum class Estado (val code:String){
+    Activo("A"),
+    Vencido("V")
 }

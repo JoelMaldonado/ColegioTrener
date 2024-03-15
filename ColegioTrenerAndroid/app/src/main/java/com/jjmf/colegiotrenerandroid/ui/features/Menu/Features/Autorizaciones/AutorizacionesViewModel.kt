@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.domain.model.Autorizacion
+import com.jjmf.colegiotrenerandroid.domain.model.EstadoAutorizacion
 import com.jjmf.colegiotrenerandroid.domain.model.Hijo
 import com.jjmf.colegiotrenerandroid.domain.repository.AutorizacionRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.PersonaRepository
@@ -17,26 +18,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AutorizacionesViewModel @Inject constructor(
-    private val repository: AutorizacionRepository,
-    private val repoPersona: PersonaRepository
+    private val repository: AutorizacionRepository
 ) : ViewModel() {
 
+    var estado by mutableStateOf(Estado.Activo)
     var list by mutableStateOf<List<Autorizacion>>(emptyList())
-    var listHijos by mutableStateOf<List<Hijo>>(emptyList())
+    var listEstados by mutableStateOf<List<EstadoAutorizacion>>(emptyList())
     var isLoading by mutableStateOf(false)
     var error by mutableStateOf<String?>(null)
 
     init {
-        listarAutorizaciones()
-        listarHijos()
+        listarAutorizaciones(estado)
+        listarEstados()
     }
 
-    fun listarHijos(){
+    fun listarEstados(){
         viewModelScope.launch {
             try {
-                val res = repoPersona.getHijos()
+                val res = repository.estado()
                 when(res){
-                    is Result.Correcto -> listHijos = res.datos ?: emptyList()
+                    is Result.Correcto -> listEstados = res.datos ?: emptyList()
                     is Result.Error -> error = res.mensaje
                 }
             }catch (e:Exception){
@@ -45,11 +46,10 @@ class AutorizacionesViewModel @Inject constructor(
         }
     }
 
-    fun listarAutorizaciones() {
+    fun listarAutorizaciones(estado: Estado) {
         viewModelScope.launch {
             try {
-                val res = repository.listarAutorizaciones()
-                when (res) {
+                when (val res = repository.listarAutorizaciones(estado)) {
                     is Result.Correcto -> list = res.datos ?: emptyList()
                     is Result.Error -> res.mensaje
                 }
