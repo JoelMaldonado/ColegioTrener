@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ColegioTrenerAndroid</string>
+
+    <!--Administrativos-->
+
+    <!--Datos-->
+    <string name="padres">Parents</string>
+    <string name="apoderado">Attorney</string>
+    <string name="hijos">Children</string>
+    <string name="clubes">Clubs</string>
+    <string name="padre">Father</string>
+    <string name="madre">Mother</string>
+</resources>
