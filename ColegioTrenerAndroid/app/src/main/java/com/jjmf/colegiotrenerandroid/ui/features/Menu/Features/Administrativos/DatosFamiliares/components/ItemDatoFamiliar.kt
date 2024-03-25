@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -20,11 +21,10 @@ import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 @Composable
 fun ItemDatoFamiliar(
     modifier: Modifier,
-    @DrawableRes img:Int,
-    texto:String,
+    @DrawableRes img: Int,
+    texto: String,
     click: () -> Unit,
     isSelected: Boolean,
-    scale: ContentScale = ContentScale.FillHeight
 ) {
     Column(
         modifier = modifier
@@ -36,8 +36,10 @@ fun ItemDatoFamiliar(
         Image(
             painter = painterResource(id = img),
             contentDescription = null,
-            modifier = Modifier.height(70.dp),
-            contentScale = scale
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(70.dp),
+            contentScale = ContentScale.FillHeight
         )
         Text(text = texto)
         AnimatedVisibility(isSelected) {

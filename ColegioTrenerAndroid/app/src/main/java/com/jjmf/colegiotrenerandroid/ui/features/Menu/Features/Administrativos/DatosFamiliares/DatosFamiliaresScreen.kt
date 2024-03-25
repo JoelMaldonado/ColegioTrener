@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,7 +26,7 @@ import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.D
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.DatosFamiliares.screens.PadresDatosAdmin.PadresDatosAdminScreen
 import com.jjmf.colegiotrenerandroid.ui.navigation.Rutas
 import com.jjmf.colegiotrenerandroid.ui.navigation.navigateTo
-import com.jjmf.colegiotrenerandroid.ui.theme.ColorFondo
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.util.enums.TipoFamiliar
 
 @Composable
@@ -40,7 +42,9 @@ fun DatosFamiliaresScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(ColorFondo)
+            .background(ColorP1.copy(0.8f))
+            .clip(RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp))
+            .background(Color.White)
             .padding(16.dp)
     ) {
 
@@ -78,8 +82,7 @@ fun DatosFamiliaresScreen(
                     viewModel.tab = TipoFamiliar.Hijo
                     navDatosAdmin.navigateTo(Rutas.Administrativos.Datos.Hijos)
                 },
-                isSelected = viewModel.tab == TipoFamiliar.Hijo,
-                scale = ContentScale.FillWidth
+                isSelected = viewModel.tab == TipoFamiliar.Hijo
             )
 
             ItemDatoFamiliar(
@@ -90,8 +93,7 @@ fun DatosFamiliaresScreen(
                     viewModel.tab = TipoFamiliar.Club
                     navDatosAdmin.navigateTo(Rutas.Administrativos.Datos.Clubes)
                 },
-                isSelected = viewModel.tab == TipoFamiliar.Club,
-                scale = ContentScale.FillWidth
+                isSelected = viewModel.tab == TipoFamiliar.Club
             )
 
         }

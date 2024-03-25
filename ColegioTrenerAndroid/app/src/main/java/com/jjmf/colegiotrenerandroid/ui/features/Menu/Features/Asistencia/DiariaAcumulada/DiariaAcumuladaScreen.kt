@@ -1,7 +1,5 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.DiariaAcumulada
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,15 +34,18 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.jjmf.colegiotrenerandroid.domain.model.Inasistencia
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
-import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Incumplimientos.WeekRow
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorGreen
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorPurple
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorRed
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorYellow
+import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalAdjusters
 
 @Composable
 fun DiariaAcumuladaScreen(
@@ -210,6 +211,63 @@ fun DiariaAcumuladaScreen(
         }
     }
 
+}
+
+@Composable
+fun WeekRow(
+    week: Int,
+    currentMonth: LocalDate,
+    list: List<Inasistencia>
+) {
+    val firstDayOfMonth = currentMonth.with(TemporalAdjusters.firstDayOfMonth())
+    val startDate = firstDayOfMonth.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).plusDays((week * 9).toLong())
+    val formatter = DateTimeFormatter.ofPattern("dd")
+    val daysInWeek = (0..6).map { startDate.plusDays(it.toLong()) }
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        daysInWeek.forEach { day ->
+            if (day.month == firstDayOfMonth.month && day >= firstDayOfMonth) {
+
+                val find = list.find { it.localDate == day }
+
+                val color = when (find?.leyenda) {
+                    "J" -> Color.Yellow
+                    "X" -> Color.Red
+                    else -> Color.Transparent
+                }
+
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = formatter.format(day),
+                        color = if (day.month == firstDayOfMonth.month) Color.Black else Color.Gray,
+                        modifier = Modifier
+                            .padding(4.dp)
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .size(8.dp)
+                            .clip(CircleShape)
+                            .background(color)
+                    )
+                }
+            } else {
+                Text(
+                    text = "",
+                    color = if (day.month == firstDayOfMonth.month) Color.Black else Color.Gray,
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .weight(1f)
+                )
+            }
+        }
+    }
 }
 
 @Composable
