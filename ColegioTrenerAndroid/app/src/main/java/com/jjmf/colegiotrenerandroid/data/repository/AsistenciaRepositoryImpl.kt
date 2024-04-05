@@ -1,7 +1,5 @@
 package com.jjmf.colegiotrenerandroid.data.repository
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.data.dto.AsistenciaDto
 import com.jjmf.colegiotrenerandroid.data.dto.InasistenciaDto
@@ -36,7 +34,6 @@ class AsistenciaRepositoryImpl @Inject constructor(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun listarInasistenciasPorAlumno(
         year: String,
         month: String

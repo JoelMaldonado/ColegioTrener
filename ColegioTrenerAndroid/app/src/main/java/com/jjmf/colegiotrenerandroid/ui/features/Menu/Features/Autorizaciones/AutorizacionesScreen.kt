@@ -97,7 +97,7 @@ fun AutorizacionesScreen(
 
             Text(
                 modifier = Modifier.padding(top = 12.dp),
-                text = "Autorizacion",
+                text = "Autorización",
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp
             )

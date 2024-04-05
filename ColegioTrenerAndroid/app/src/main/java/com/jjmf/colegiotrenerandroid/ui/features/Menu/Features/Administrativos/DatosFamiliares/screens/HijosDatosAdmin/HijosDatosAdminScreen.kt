@@ -19,6 +19,7 @@ import androidx.compose.material.icons.sharp.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -27,13 +28,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.DatosFamiliares.components.dialogs.DialogAddHijo
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
+import com.jjmf.colegiotrenerandroid.util.alertDelete
 import com.jjmf.colegiotrenerandroid.util.format
 
 @Composable
@@ -42,13 +47,14 @@ fun HijosDatosAdminScreen(
     viewModel: HijosDatosAdminViewModel = hiltViewModel()
 ) {
 
+    val context = LocalContext.current
     if (viewModel.alertAddHijo) {
         DialogAddHijo(
             close = {
                 viewModel.alertAddHijo = false
             },
             add = {
-                viewModel.addHijo(it)
+                viewModel.editHijo(it)
             }
         )
     }
@@ -137,14 +143,30 @@ fun HijosDatosAdminScreen(
                                     imageVector = Icons.Default.CalendarMonth,
                                     contentDescription = null
                                 )
-                                Text(text = "Fec. Nacimiento: ${it.fechaNac.format()}", fontSize = 14.sp)
+                                Text(
+                                    text = "Fec. Nacimiento: ${it.fechaNac.format()}",
+                                    fontSize = 14.sp
+                                )
                             }
                         }
-                        Icon(
-                            imageVector = Icons.Sharp.Delete,
-                            contentDescription = null,
-                            tint = ColorS1
-                        )
+                        IconButton(
+                            onClick = {
+                                context.alertDelete {
+                                    val req = DataHijoRequest(
+                                        accion = "Eliminar",
+                                        nombre = it.nombre.toString(),
+                                        fechaNac = it.fechaNac.format()
+                                    )
+                                    viewModel.editHijo(req)
+                                }
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Sharp.Delete,
+                                contentDescription = null,
+                                tint = ColorS1
+                            )
+                        }
 
                     }
 

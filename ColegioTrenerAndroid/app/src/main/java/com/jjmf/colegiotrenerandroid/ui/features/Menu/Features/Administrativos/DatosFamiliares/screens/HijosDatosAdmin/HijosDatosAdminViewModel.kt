@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.domain.repository.PersonaRepository
-import com.jjmf.colegiotrenerandroid.data.services.request.AddHijoRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
 import com.jjmf.colegiotrenerandroid.domain.model.DataHijo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -40,16 +41,14 @@ class HijosDatosAdminViewModel @Inject constructor(
         }
     }
 
-    fun addHijo(data: AddHijoRequest) {
-        viewModelScope.launch(Dispatchers.IO) {
+
+    fun editHijo(data: DataHijoRequest) {
+        viewModelScope.launch {
             try {
                 isLoading = true
-                when (val res = repository.addHijo(data)) {
-                    is Result.Correcto -> {
-
-                    }
-
-                    is Result.Error -> error = res.mensaje
+                error = when (val res = repository.editHijo(data)) {
+                    is Result.Correcto -> "Guardado"
+                    is Result.Error -> res.mensaje
                 }
             } catch (e: Exception) {
                 error = e.message

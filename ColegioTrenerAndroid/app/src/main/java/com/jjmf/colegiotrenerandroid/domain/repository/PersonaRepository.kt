@@ -1,8 +1,8 @@
 package com.jjmf.colegiotrenerandroid.domain.repository
 
 import com.jjmf.colegiotrenerandroid.core.Result
-import com.jjmf.colegiotrenerandroid.data.services.request.AddClubRequest
-import com.jjmf.colegiotrenerandroid.data.services.request.AddHijoRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
 import com.jjmf.colegiotrenerandroid.domain.model.DataClub
 import com.jjmf.colegiotrenerandroid.domain.model.DataHijo
 import com.jjmf.colegiotrenerandroid.domain.model.DataPersona
@@ -18,7 +18,7 @@ interface PersonaRepository {
 
     suspend fun getClubes(): Result<List<DataClub>>
 
-    suspend fun addHijo(data: AddHijoRequest): Result<String>
+    suspend fun editHijo(data: DataHijoRequest): Result<String>
 
-    suspend fun addClub(data: AddClubRequest): Result<String>
+    suspend fun editClub(data: DataClubRequest): Result<String>
 }

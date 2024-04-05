@@ -1,5 +1,7 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.DatosFamiliares.screens.ClubesDatosAdmin
 
+import android.content.Context
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,6 +22,7 @@ import androidx.compose.material.icons.sharp.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -28,14 +31,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import cn.pedant.SweetAlert.SweetAlertDialog
+import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.DatosFamiliares.components.dialogs.DialogAddClub
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
+import com.jjmf.colegiotrenerandroid.util.alertDelete
 
 @Composable
 fun ClubesDatosAdminScreen(
@@ -43,6 +50,7 @@ fun ClubesDatosAdminScreen(
     viewModel: ClubesDatosAdminViewModel = hiltViewModel()
 ) {
 
+    val context = LocalContext.current
 
     if (viewModel.alertAddClub) {
         DialogAddClub(
@@ -50,7 +58,7 @@ fun ClubesDatosAdminScreen(
                 viewModel.alertAddClub = false
             },
             add = {
-                viewModel.addClub(it)
+                viewModel.editClub(it)
             },
             list = viewModel.listClubs
         )
@@ -114,7 +122,6 @@ fun ClubesDatosAdminScreen(
                         containerColor = ColorT1.copy(0.5f)
                     )
                 ) {
-
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -147,11 +154,25 @@ fun ClubesDatosAdminScreen(
                             Text(text = "Club: ${it.club}")
                             Text(text = "Nro Carné: ${it.nrocar}")
                         }
-                        Icon(
-                            imageVector = Icons.Sharp.Delete,
-                            contentDescription = null,
-                            tint = ColorS1
-                        )
+                        IconButton(
+                            onClick = {
+                                context.alertDelete {
+                                    val req = DataClubRequest(
+                                        accion = "Eliminar",
+                                        codClub = it.codclub.toString(),
+                                        codParentesco = it.codvinculo.toString(),
+                                        nroCarnet = it.nrocar.toString()
+                                    )
+                                    viewModel.editClub(req)
+                                }
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Sharp.Delete,
+                                contentDescription = null,
+                                tint = ColorS1
+                            )
+                        }
 
                     }
 

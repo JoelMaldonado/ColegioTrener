@@ -3,9 +3,9 @@ package com.jjmf.colegiotrenerandroid.data.services.request
 import com.google.gson.annotations.SerializedName
 
 
-data class AddClubRequest(
+data class DataClubRequest(
     val accion:String,
-    val ctamae:String,
+    val ctamae:String? = null,
     val codClub:String,
     val codParentesco: String,
     val nroCarnet:String

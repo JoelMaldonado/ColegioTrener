@@ -45,7 +45,7 @@ fun DatosFamiliaresScreen(
             .background(ColorP1.copy(0.8f))
             .clip(RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp))
             .background(Color.White)
-            .padding(16.dp)
+            .padding(8.dp)
     ) {
 
         Row(

@@ -1,6 +1,8 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
@@ -25,6 +28,7 @@ import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.P
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.Screens.PagosVencidosScreen
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorFondo
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 import com.jjmf.colegiotrenerandroid.util.show
 
 @Composable
@@ -39,6 +43,7 @@ fun PagosScreen(
         context.show(it)
         viewModel.error = null
     }
+
     val tab = remember { mutableStateOf(TabPagos.Pendientes) }
 
     Column(
@@ -57,23 +62,23 @@ fun PagosScreen(
             }
         )
 
-
         Row(
-            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier.fillMaxWidth()
         ) {
             TabPagos.entries.forEach {
-                Button(
-                    onClick = {
-                        tab.value = it
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (it.code == tab.value.code) ColorP1 else Color.Gray
-                    )
-                ) {
-                    Text(text = it.name)
-                }
+                Text(
+                    modifier = Modifier
+                        .weight(1f)
+                        .border(0.5.dp, color = Color.Black)
+                        .background(if (it == tab.value) ColorS1 else Color.White)
+                        .clickable {
+                            tab.value = it
+                        }
+                        .padding(vertical = 4.dp),
+                    text = it.name,
+                    textAlign = TextAlign.Center,
+                    color = if (it == tab.value) Color.White else Color.Black
+                )
             }
         }
 

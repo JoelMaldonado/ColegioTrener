@@ -1,15 +1,12 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.DatosFamiliares.components.dialogs
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AllInclusive
@@ -18,7 +15,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -35,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.jjmf.colegiotrenerandroid.data.services.request.AddClubRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
 import com.jjmf.colegiotrenerandroid.domain.model.Club
 import com.jjmf.colegiotrenerandroid.ui.components.BoxForm
 import com.jjmf.colegiotrenerandroid.ui.components.BoxFormSelect
@@ -48,7 +44,7 @@ import com.jjmf.colegiotrenerandroid.util.show
 @Composable
 fun DialogAddClub(
     close: () -> Unit,
-    add: (AddClubRequest) -> Unit,
+    add: (DataClubRequest) -> Unit,
     list: List<Club>
 ) {
 
@@ -185,9 +181,8 @@ fun DialogAddClub(
 
                             close()
 
-                            val body = AddClubRequest(
+                            val body = DataClubRequest(
                                 accion = "Crear",
-                                ctamae = "00003141",
                                 codClub = club.value?.codigo.toString(),
                                 codParentesco = if (vinculo.value == "Padre") "001" else "002",
                                 nroCarnet = numCarnet.value

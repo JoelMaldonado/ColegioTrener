@@ -13,6 +13,7 @@ import com.jjmf.colegiotrenerandroid.domain.model.Pago
 import com.jjmf.colegiotrenerandroid.util.format
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class PagosViewModel @Inject constructor(
 ) : ViewModel() {
 
     var ctacli by mutableStateOf<String?>(null)
-    var year by mutableStateOf(Date())
+    var year by mutableStateOf(LocalDate.now())
 
     var listPagosPendientes by mutableStateOf<List<Pago>>(emptyList())
     var isLoadingPendientes by mutableStateOf(false)
@@ -96,18 +97,12 @@ class PagosViewModel @Inject constructor(
     }
 
     fun yearBefore() {
-        val calendar = Calendar.getInstance()
-        calendar.time = year
-        calendar.add(Calendar.YEAR, -1)
-        year = calendar.time
+        year = year.minusYears(1)
         getPagosRealizados(ctacli.toString())
     }
 
     fun yearAfter() {
-        val calendar = Calendar.getInstance()
-        calendar.time = year
-        calendar.add(Calendar.YEAR, 1)
-        year = calendar.time
+        year = year.plusYears(1)
         getPagosRealizados(ctacli.toString())
     }
 

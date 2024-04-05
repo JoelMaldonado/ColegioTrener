@@ -3,9 +3,9 @@ package com.jjmf.colegiotrenerandroid.data.services.request
 import com.google.gson.annotations.SerializedName
 
 
-data class AddHijoRequest(
+data class DataHijoRequest(
     val accion:String,
-    val ctamae:String,
+    val ctamae:String? = null,
     val nombre:String,
     val fechaNac:String
 )

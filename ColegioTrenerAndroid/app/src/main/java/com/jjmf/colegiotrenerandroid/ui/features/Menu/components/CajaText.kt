@@ -42,8 +42,8 @@ fun CajaText(
             focusedBorderColor = ColorT1,
             focusedLabelColor = ColorT1,
             unfocusedSuffixColor = Color.Black,
-            disabledContainerColor = Color(0xFFECECEC),
-            disabledBorderColor = Color.Transparent
+            disabledContainerColor = Color.White,
+            disabledBorderColor = ColorT1
         ),
         trailingIcon = {
             if (!isEnabled) {
@@ -51,6 +51,8 @@ fun CajaText(
             }
         },
         textStyle = TextStyle(fontSize = 14.sp),
-        singleLine = true
+        singleLine = true,
+        enabled = isEnabled,
+        maxLines = 1
     )
 }

@@ -1,10 +1,14 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.Screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,17 +28,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.PagosViewModel
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPagoRealizado
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.ItemPago
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorFondo
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 import com.jjmf.colegiotrenerandroid.util.format
+import java.text.NumberFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 @Composable
 fun PagosRealizadosScreen(
@@ -48,89 +59,69 @@ fun PagosRealizadosScreen(
     ) {
 
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Row(
+                modifier = Modifier
+                    .fillMaxWidth(0.5f)
+                    .height(30.dp)
+                    .background(Brush.horizontalGradient(listOf(ColorFondo, ColorS1, ColorFondo))),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(
+                    14.dp,
+                    alignment = Alignment.CenterHorizontally
+                )
             ) {
-
-                IconButton(
-                    onClick = {
+                Text(
+                    modifier = Modifier.clickable {
                         viewModel.yearBefore()
-                    }
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
-                        contentDescription = null,
-                        tint = ColorP1
-                    )
-                }
-
+                    },
+                    text = viewModel.year.minusYears(1).format("yyyy"),
+                    color = Color.White,
+                    fontWeight = FontWeight.Normal
+                )
                 Text(
                     text = viewModel.year.format("yyyy"),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = ColorP1
+                    color = Color.White,
+                    fontWeight = FontWeight.ExtraBold
                 )
-
-                IconButton(
-                    onClick = {
+                Text(
+                    modifier = Modifier.clickable {
                         viewModel.yearAfter()
-                    }
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
-                        contentDescription = null,
-                        tint = ColorP1
-                    )
-                }
+                    },
+                    text = viewModel.year.plusYears(1).format("yyyy"),
+                    color = Color.White,
+                    fontWeight = FontWeight.Normal
+                )
             }
 
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(viewModel.listPagosRealizados) {
-                    CardPago(
+
+                    val format = NumberFormat.getCurrencyInstance(Locale("es", "pe"))
+                    val importe = format.format(it.importepagado)
+                    val mora = format.format(it.mora)
+
+                    CardPagoRealizado(
                         title = "${it.concepto}",
-                        label = "Nro. pago: 01"
-                    ) {
-                        ItemPago(
-                            label = "Doc:",
-                            text = "D/I ${it.numdoc}"
-                        )
-                        ItemPago(
-                            label = "Grado/Lugar Pago:",
-                            text = "${it.tipdoc}"
-                        )
-                        ItemPago(
-                            label = "Fec. Movimiento:",
-                            text = it.fecpag.format()
-                        )
-                        HorizontalDivider()
-                        ItemPago(
-                            ic = Icons.Default.MonetizationOn,
-                            label = "Importe:",
-                            text = "S/${it.importepagado}"
-                        )
-                        ItemPago(ic = Icons.Default.AccessTime, label = "Mora:", text = "S/${it.mora}")
-                        ItemPago(
-                            ic = Icons.Default.CalendarMonth,
-                            label = "Fec. Penalidad:",
-                            text = it.fecven.format()
-                        )
-                    }
+                        label = "Nro. pago: 01",
+                        numDoc = it.numdoc.toString(),
+                        medioPago = it.mediopago.toString(),
+                        fecPago = it.fecpag.format(),
+                        importe = importe,
+                        mora = mora,
+                        fecVen = it.fecven.format()
+                    )
                 }
             }
 
         }
 
-        if (viewModel.isLoadingRealizados){
+        if (viewModel.isLoadingRealizados) {
             CircularProgressIndicator()
         }
     }

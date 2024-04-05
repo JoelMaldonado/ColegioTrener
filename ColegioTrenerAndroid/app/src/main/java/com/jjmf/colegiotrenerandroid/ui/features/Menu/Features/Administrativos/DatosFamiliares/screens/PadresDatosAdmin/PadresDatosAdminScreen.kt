@@ -161,15 +161,15 @@ fun PadresDatosAdminScreen(
                 ) {
                     CajaText(
                         modifier = Modifier.weight(1f),
-                        value = viewModel.nombre,
-                        newValue = { viewModel.nombre = it },
+                        value = viewModel.tipoDoc,
+                        newValue = { viewModel.tipoDoc = it },
                         label = "Tipo de doc. de identidad",
                         isEnabled = false
                     )
                     CajaText(
                         modifier = Modifier.weight(1f),
-                        value = viewModel.nombre,
-                        newValue = { viewModel.nombre = it },
+                        value = viewModel.numDoc,
+                        newValue = { viewModel.numDoc = it },
                         label = "Número de doc. de identidad",
                         isEnabled = false
                     )
@@ -184,7 +184,7 @@ fun PadresDatosAdminScreen(
                         modifier = Modifier.weight(1f),
                         value = viewModel.fechaNac?.format("dd/MM/yyyy").toString(),
                         newValue = { },
-                        label = "Fecha de Nacimiento"
+                        label = "Fecha de nacimiento"
                     )
                     CajaText(
                         modifier = Modifier.weight(1f),
@@ -216,7 +216,7 @@ fun PadresDatosAdminScreen(
                         modifier = Modifier.weight(1f),
                         value = viewModel.telf,
                         newValue = { viewModel.telf = it },
-                        label = "Telefono"
+                        label = "Teléfono"
                     )
                 }
 
@@ -236,7 +236,7 @@ fun PadresDatosAdminScreen(
                         modifier = Modifier.weight(1f),
                         value = viewModel.cargo,
                         newValue = { viewModel.cargo = it },
-                        label = "Cargo/Area"
+                        label = "Cargo/Área"
                     )
                     CajaText(
                         modifier = Modifier.weight(1f),

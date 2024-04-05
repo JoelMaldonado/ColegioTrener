@@ -39,11 +39,14 @@ import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 
 @Composable
 fun SelectHijo(
-    click: (ctli: String)->Unit,
+    click: (ctli: String) -> Unit,
     viewModel: SelectHijoViewModel = hiltViewModel(),
 ) {
 
     val isVisible = remember { mutableStateOf(false) }
+    viewModel.first = {
+        click(viewModel.hijoSelected?.ctacli.toString())
+    }
 
     Column(
         modifier = Modifier.fillMaxWidth()
@@ -64,7 +67,7 @@ fun SelectHijo(
                 )
 
                 Image(
-                    modifier = Modifier.size(70.dp),
+                    modifier = Modifier.size(60.dp),
                     painter = painterResource(id = R.drawable.img_apoderado),
                     contentDescription = null,
                     contentScale = ContentScale.FillWidth
@@ -172,6 +175,13 @@ fun SelectHijo(
                                     fontSize = 12.sp
                                 )
                             }
+                        }
+
+                        IconButton(
+                            onClick = {},
+                            enabled = false
+                        ) {
+
                         }
                     }
                 }

@@ -35,19 +35,19 @@ fun ItemPago(
                 contentDescription = null,
                 tint = Color.Gray,
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(14.dp)
             )
         }
         Text(
             text = label,
-            fontSize = 14.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
             color = Color.Gray
         )
         Text(
             text = text,
             textAlign = TextAlign.End,
-            fontSize = 14.sp,
+            fontSize = 12.sp,
             color = Color.DarkGray,
             fontWeight = FontWeight.Bold
         )

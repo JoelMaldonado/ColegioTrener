@@ -43,10 +43,11 @@ fun InicioScreen(
             modifier = Modifier.fillMaxWidth()
         ){
             TextInicio(text = "Administrativos")
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround
+                horizontalArrangement = Arrangement.SpaceBetween
             ){
                 ItemInicio(
                     text = "Datos",
@@ -99,7 +100,7 @@ fun InicioScreen(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 ItemInicio(
                     text = "Pendientes",
@@ -116,6 +117,9 @@ fun InicioScreen(
                         navMenu.navigate(Rutas.Tareas.Incumplimientos.route)
                     }
                 )
+
+                Spacer(modifier = Modifier.width(0.dp))
+                
             }
         }
 

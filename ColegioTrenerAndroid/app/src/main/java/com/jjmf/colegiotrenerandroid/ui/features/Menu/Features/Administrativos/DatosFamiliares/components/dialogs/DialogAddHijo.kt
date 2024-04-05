@@ -30,7 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.jjmf.colegiotrenerandroid.data.services.request.AddHijoRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
 import com.jjmf.colegiotrenerandroid.ui.components.BoxForm
 import com.jjmf.colegiotrenerandroid.ui.components.BoxFormField
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorFondo
@@ -44,7 +44,7 @@ import java.util.Locale
 @Composable
 fun DialogAddHijo(
     close: () -> Unit,
-    add: (AddHijoRequest)->Unit
+    add: (DataHijoRequest)->Unit
 ) {
 
     val context = LocalContext.current
@@ -117,9 +117,8 @@ fun DialogAddHijo(
 
                             close()
 
-                            val body = AddHijoRequest(
+                            val body = DataHijoRequest(
                                 accion = "Crear",
-                                ctamae = "00003141",
                                 nombre = nombre.value,
                                 fechaNac = fecha.value.text
                             )

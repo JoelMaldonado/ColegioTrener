@@ -1,8 +1,8 @@
 package com.jjmf.colegiotrenerandroid.data.services
 
-import com.jjmf.colegiotrenerandroid.data.services.request.AddClubRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
 import com.jjmf.colegiotrenerandroid.data.services.request.AddClubResponse
-import com.jjmf.colegiotrenerandroid.data.services.request.AddHijoRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
 import com.jjmf.colegiotrenerandroid.data.services.request.AddHijoResponse
 import com.jjmf.colegiotrenerandroid.data.services.request.AuthRequest
 import com.jjmf.colegiotrenerandroid.data.services.request.AuthResponse
@@ -33,10 +33,10 @@ interface ApiService {
         @Path("ctli") ctli: String
     ): Response<String>
 
-    @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getHijosFamilia/{ctli}")
+    @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getHijosFamilia/{ctmae}")
     suspend fun getDataHijos(
         @Header("Authorization") token: String,
-        @Path("ctli") ctli: String
+        @Path("ctmae") ctmae: String
     ): Response<String>
 
     @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getHijosActivosapp/{ctli}")
@@ -53,13 +53,13 @@ interface ApiService {
 
     @POST("PublicacionFox/TrenerWCFOX.svc/Trener/crudHijoFam")
     suspend fun insertHijo(
-        @Body request: AddHijoRequest,
+        @Body request: DataHijoRequest,
         @Header("Authorization") token: String
     ): Response<AddHijoResponse>
 
     @POST("PublicacionFox/TrenerWCFOX.svc/Trener/crudClubFam")
     suspend fun insertClub(
-        @Body request: AddClubRequest,
+        @Body request: DataClubRequest,
         @Header("Authorization") token: String
     ): Response<AddClubResponse>
 

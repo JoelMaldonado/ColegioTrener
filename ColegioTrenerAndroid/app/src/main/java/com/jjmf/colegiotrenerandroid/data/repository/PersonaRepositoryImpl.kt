@@ -7,8 +7,8 @@ import com.jjmf.colegiotrenerandroid.data.dto.DataHijoDto
 import com.jjmf.colegiotrenerandroid.data.dto.DataPersonaDto
 import com.jjmf.colegiotrenerandroid.data.dto.HijoDto
 import com.jjmf.colegiotrenerandroid.data.services.ApiService
-import com.jjmf.colegiotrenerandroid.data.services.request.AddClubRequest
-import com.jjmf.colegiotrenerandroid.data.services.request.AddHijoRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
+import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
 import com.jjmf.colegiotrenerandroid.domain.model.DataClub
 import com.jjmf.colegiotrenerandroid.domain.model.DataHijo
 import com.jjmf.colegiotrenerandroid.domain.model.DataPersona
@@ -40,7 +40,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun getDataHijos(): Result<List<DataHijo>> {
         return try {
-            val call = api.getDataHijos(token = token(), ctli = prefs.getUsuario())
+            val call = api.getDataHijos(token = token(), ctmae = prefs.getUsuario())
             if (call.isSuccessful) {
                 val list = convertJson<Array<DataHijoDto>>(call.body())
                 return Result.Correcto(list.map { it.toDomain() })
@@ -80,11 +80,11 @@ class PersonaRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun addHijo(data: AddHijoRequest): Result<String> {
+    override suspend fun editHijo(data: DataHijoRequest): Result<String> {
         return try {
-            val call = api.insertHijo(data, token())
+            val call = api.insertHijo(data.copy(ctamae = prefs.getUsuario()), token())
             if (call.isSuccessful) {
-                Result.Correcto("Se inserto")
+                Result.Correcto("Guardado")
             } else {
                 Result.Error(call.message())
             }
@@ -93,11 +93,11 @@ class PersonaRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun addClub(data: AddClubRequest): Result<String> {
+    override suspend fun editClub(data: DataClubRequest): Result<String> {
         return try {
-            val call = api.insertClub(data, token())
+            val call = api.insertClub(data.copy(ctamae = prefs.getUsuario()), token())
             if (call.isSuccessful) {
-                Result.Correcto("Insertado")
+                Result.Correcto("Guardado")
             } else {
                 Result.Error(call.message())
             }
