@@ -10,6 +10,7 @@ data class HijoDto(
     @SerializedName("nombre") val nombre: String?,
     @SerializedName("alias") val alias: String?,
     @SerializedName("dirfot") val dirfot: String?,
+    @SerializedName("dirfotapp") val dirfotapp: String?,
     @SerializedName("param1") val param1: String?,
     @SerializedName("distrito") val distrito: String?,
     @SerializedName("anoaca") val anoaca: String?
@@ -22,6 +23,7 @@ data class HijoDto(
             nombre = nombre?.trim(),
             alias = alias?.trim(),
             dirfot = dirfot?.trim(),
+            dirfotapp = dirfotapp?.trim(),
             param1 = param1?.trim(),
             distrito = distrito?.trim(),
             anoaca = anoaca?.trim()

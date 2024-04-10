@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Inscripciones.components.ItemInscripcion
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
@@ -24,6 +25,18 @@ fun InscripcionesScreen(
     viewModel.error?.let {
         context.show(it)
         viewModel.error = null
+    }
+
+    if (viewModel.alert){
+        SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE).apply {
+            titleText = "Warning!"
+            contentText = "No se encuentra activo la inscripcion de talleres"
+            setConfirmButton("OK"){
+                viewModel.alert = false
+            }
+            setCancelable(false)
+            show()
+        }
     }
 
     Column(

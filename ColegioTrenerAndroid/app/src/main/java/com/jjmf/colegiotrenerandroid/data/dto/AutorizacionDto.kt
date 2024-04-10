@@ -6,13 +6,13 @@ import com.jjmf.colegiotrenerandroid.domain.model.Autorizacion
 data class AutorizacionDto(
     @SerializedName("idautorizacion") val idautorizacion: String?,
     @SerializedName("autorizacion") val autorizacion: String?,
-    @SerializedName("fechaven") val fechaven: String?
+    @SerializedName("linkPdf") val linkPdf: String?
 ) {
     fun toDomain(): Autorizacion {
         return Autorizacion(
             idautorizacion = idautorizacion?.trim(),
             autorizacion = autorizacion?.trim(),
-            fechaven = fechaven?.trim()
+            linkPdf = linkPdf?.trim()
         )
     }
 }

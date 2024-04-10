@@ -1,6 +1,7 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.CitaInforme
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -28,7 +29,21 @@ class CitaInformeViewModel @Inject constructor(
     var isLoading by mutableStateOf(false)
 
     init {
+        getTrimestreActual()
         listarCitas()
+    }
+
+    private fun getTrimestreActual() {
+        viewModelScope.launch {
+            try {
+                when(val res = repository.getTrimestreActual()){
+                    is Result.Correcto -> trimestre = Trimestre.entries.find { it.num == res.datos } ?: Trimestre.Uno
+                    is Result.Error -> error = res.mensaje
+                }
+            }catch (e:Exception){
+                error = e.message
+            }
+        }
     }
 
     fun listarCitas() {

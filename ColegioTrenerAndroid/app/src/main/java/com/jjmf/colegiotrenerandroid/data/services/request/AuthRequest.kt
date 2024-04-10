@@ -9,8 +9,10 @@ data class AuthRequest(
 )
 
 data class AuthResponse(
-    @SerializedName("NOMBRE_USUARIO") val nombre:String?,
-    @SerializedName("CONTRASENIA") val clave:String?,
-    @SerializedName("mensajeResultado") val resultado:String?,
-    @SerializedName("mensajeCodigo") val codigo:Int?
+    @SerializedName("NOMBRE_USUARIO") val nombre: String?,
+    @SerializedName("CONTRASENIA") val clave: String?,
+    @SerializedName("mensajeResultado") val resultado: String?,
+    @SerializedName("linkLoginIntranet") val linkLoginIntranet: String?,
+    @SerializedName("mensajeCodigo") val codigo: Int?,
+    @SerializedName("familia") val familia: String?
 )

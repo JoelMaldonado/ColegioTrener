@@ -13,4 +13,7 @@ interface CitaInformeService {
         @Path("trimestre") trimestre:String,
         @Header("Authorization") token: String
     ) : Response<String>
+
+    @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getTrimestreActual")
+    suspend fun getTrimestreActual(@Header("AUthorization") token:String) : Response<String>
 }

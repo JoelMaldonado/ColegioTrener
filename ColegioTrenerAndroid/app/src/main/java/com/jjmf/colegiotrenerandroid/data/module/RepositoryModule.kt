@@ -12,10 +12,12 @@ import com.jjmf.colegiotrenerandroid.data.repository.ClubRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.InscripcionesRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.PagosRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.PersonaRepositoryImpl
+import com.jjmf.colegiotrenerandroid.data.repository.TareaRepositoryImpl
 import com.jjmf.colegiotrenerandroid.domain.repository.AsistenciaRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.AutorizacionRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.CitaInformeRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.InscripcionesRepository
+import com.jjmf.colegiotrenerandroid.domain.repository.TareaRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -48,5 +50,8 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun autorizacionRepo(impl: AutorizacionRepositoryImpl): AutorizacionRepository
+
+    @Binds
+    abstract fun tarea(impl: TareaRepositoryImpl): TareaRepository
 
 }

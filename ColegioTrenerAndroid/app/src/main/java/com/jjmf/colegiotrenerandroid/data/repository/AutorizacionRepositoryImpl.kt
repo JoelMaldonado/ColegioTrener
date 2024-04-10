@@ -1,5 +1,6 @@
 package com.jjmf.colegiotrenerandroid.data.repository
 
+import com.jjmf.colegiotrenerandroid.app.Preferencias
 import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.data.dto.AutorizacionDto
 import com.jjmf.colegiotrenerandroid.data.dto.EstadoAutorizacionDto
@@ -14,14 +15,15 @@ import javax.inject.Inject
 
 class AutorizacionRepositoryImpl @Inject constructor(
     private val api: AutorizacionService,
-    private val token: TokenUseCase
+    private val token: TokenUseCase,
+    private val prefs: Preferencias
 ) : AutorizacionRepository {
     override suspend fun listarAutorizaciones(
         estado: Estado
     ): Result<List<Autorizacion>> {
         return try {
             val call = api.listarAutorizaciones(
-                ctamae = "00002070",
+                ctamae = prefs.getUsuario().toString(),
                 estado = estado.code,
                 token = token()
             )
@@ -36,11 +38,11 @@ class AutorizacionRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun estado(): Result<List<EstadoAutorizacion>> {
+    override suspend fun estado(idPermiso:String): Result<List<EstadoAutorizacion>> {
         return try {
             val call = api.estado(
-                ctamae = "00002070",
-                idPermiso = "0000000132",
+                ctamae = prefs.getUsuario().toString(),
+                idPermiso = idPermiso,
                 token = token()
             )
             if (call.isSuccessful) {

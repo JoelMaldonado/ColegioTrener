@@ -20,6 +20,7 @@ import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.CitaInforme.CitaI
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Incumplimientos.TareasIncumplimientosScreen
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Pendientes.TareasPendientesScreen
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.routes.administrativosRoutes
+import com.jjmf.colegiotrenerandroid.ui.features.Notificaciones.NotificacionesScreen
 import com.jjmf.colegiotrenerandroid.ui.navigation.Rutas
 
 @Composable
@@ -41,7 +42,15 @@ fun MenuScreen(
         modifier = Modifier.fillMaxSize(),
     ) {
         TopBar(
-            title = viewModel.title
+            title = viewModel.title,
+            familia = viewModel.familia ?: "Sin Definir",
+            toNotificaciones = {
+                navMenu.navigate(Rutas.Notificaciones.route)
+            },
+            back = {
+                navMenu.popBackStack()
+            },
+            bool = viewModel.title == "Inicio"
         )
 
         NavHost(
@@ -55,6 +64,11 @@ fun MenuScreen(
             ) {
                 viewModel.title = "Inicio"
                 InicioScreen(navMenu)
+            }
+
+            composable(Rutas.Notificaciones.route){
+                viewModel.title = "Notificaciones"
+                NotificacionesScreen()
             }
 
             administrativosRoutes(

@@ -20,6 +20,8 @@
 		5D5A3D252B6975C600F88156 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A3D242B6975C600F88156 /* LoginView.swift */; };
 		5D5A3D282B6981B500F88156 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A3D272B6981B500F88156 /* MenuView.swift */; };
 		5D5A3D2A2B6981C000F88156 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A3D292B6981C000F88156 /* LoginViewModel.swift */; };
+		5D7AC6BE2BC61C3000400B08 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7AC6BD2BC61C3000400B08 /* MijickCalendarView */; };
+		5D7AC6C12BC61CED00400B08 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7AC6C02BC61CED00400B08 /* SplashView.swift */; };
 		5D89D4D62B6D4A9F00DC586C /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 5D89D4D52B6D4A9F00DC586C /* SVProgressHUD */; };
 		5D8F66D22B96961E003A19D4 /* ItemClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F66D12B96961E003A19D4 /* ItemClub.swift */; };
 		5D8F66D52B9698FE003A19D4 /* ItemDatoHijo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F66D42B9698FE003A19D4 /* ItemDatoHijo.swift */; };
@@ -66,6 +68,7 @@
 		5D5A3D242B6975C600F88156 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5D5A3D272B6981B500F88156 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		5D5A3D292B6981C000F88156 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5D7AC6C02BC61CED00400B08 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		5D8F66D12B96961E003A19D4 /* ItemClub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemClub.swift; sourceTree = "<group>"; };
 		5D8F66D42B9698FE003A19D4 /* ItemDatoHijo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDatoHijo.swift; sourceTree = "<group>"; };
 		5DE1E1AB2B6AE9710064B3C8 /* DatosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosView.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D89D4D62B6D4A9F00DC586C /* SVProgressHUD in Frameworks */,
+				5D7AC6BE2BC61C3000400B08 /* MijickCalendarView in Frameworks */,
 				5D42195A2B6D41EC0025BCD9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +213,7 @@
 		5D5A3D222B6975B600F88156 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				5D7AC6BF2BC61CD900400B08 /* Splash */,
 				5D4219142B6C02F60025BCD9 /* Notificaciones */,
 				5D5A3D262B6981AC00F88156 /* Menu */,
 				5D5A3D232B6975BC00F88156 /* Login */,
@@ -236,6 +241,14 @@
 				5D5A3D272B6981B500F88156 /* MenuView.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		5D7AC6BF2BC61CD900400B08 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				5D7AC6C02BC61CED00400B08 /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		5D8F66D02B96960B003A19D4 /* Components */ = {
@@ -456,6 +469,7 @@
 			packageProductDependencies = (
 				5D4219592B6D41EC0025BCD9 /* Alamofire */,
 				5D89D4D52B6D4A9F00DC586C /* SVProgressHUD */,
+				5D7AC6BD2BC61C3000400B08 /* MijickCalendarView */,
 			);
 			productName = ColegioTrenerSwift;
 			productReference = 5D5A3D0F2B69759600F88156 /* ColegioTrenerSwift.app */;
@@ -488,6 +502,7 @@
 			packageReferences = (
 				5D4219582B6D41EC0025BCD9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5D89D4D42B6D4A9F00DC586C /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
+				5D7AC6BC2BC61C3000400B08 /* XCRemoteSwiftPackageReference "CalendarView" */,
 			);
 			productRefGroup = 5D5A3D102B69759600F88156 /* Products */;
 			projectDirPath = "";
@@ -523,6 +538,7 @@
 				5D3980C82B96638B00634A97 /* CajaText.swift in Sources */,
 				5D5A3D252B6975C600F88156 /* LoginView.swift in Sources */,
 				5DE1E1D12B6B23620064B3C8 /* PendientesView.swift in Sources */,
+				5D7AC6C12BC61CED00400B08 /* SplashView.swift in Sources */,
 				5DE1E1EE2B6B298D0064B3C8 /* PagosPendientesView.swift in Sources */,
 				5DE1E1EC2B6B29840064B3C8 /* PagosVencidosView.swift in Sources */,
 				5DE1E1C72B6B22B60064B3C8 /* AutorizacionesViewModel.swift in Sources */,
@@ -783,6 +799,14 @@
 				minimumVersion = 5.8.1;
 			};
 		};
+		5D7AC6BC2BC61C3000400B08 /* XCRemoteSwiftPackageReference "CalendarView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Mijick/CalendarView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		5D89D4D42B6D4A9F00DC586C /* XCRemoteSwiftPackageReference "SVProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SVProgressHUD/SVProgressHUD.git";
@@ -798,6 +822,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D4219582B6D41EC0025BCD9 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		5D7AC6BD2BC61C3000400B08 /* MijickCalendarView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D7AC6BC2BC61C3000400B08 /* XCRemoteSwiftPackageReference "CalendarView" */;
+			productName = MijickCalendarView;
 		};
 		5D89D4D52B6D4A9F00DC586C /* SVProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;

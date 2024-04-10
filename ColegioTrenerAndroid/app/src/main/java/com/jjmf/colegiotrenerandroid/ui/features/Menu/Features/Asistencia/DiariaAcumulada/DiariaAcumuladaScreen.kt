@@ -3,51 +3,59 @@ package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.Diari
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.jjmf.colegiotrenerandroid.ui.components.Calendario
-import com.jjmf.colegiotrenerandroid.ui.components.CircleText
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
-import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
-import com.jjmf.colegiotrenerandroid.ui.theme.ColorGreen
-import com.jjmf.colegiotrenerandroid.ui.theme.ColorPurple
-import com.jjmf.colegiotrenerandroid.ui.theme.ColorRed
-import com.jjmf.colegiotrenerandroid.ui.theme.ColorYellow
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.components.CalendarioAsistencia
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.components.CardInasistencia
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.components.LeyendaAsistencia
+import com.kizitonwose.calendar.compose.rememberCalendarState
+import java.time.YearMonth
 
 @Composable
 fun DiariaAcumuladaScreen(
     viewModel: DiariaAcumuladaViewModel = hiltViewModel()
 ) {
 
-    val textStyle = TextStyle(
-        textAlign = TextAlign.Center,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.Medium
+
+    val currentMonth = remember { YearMonth.now() }
+    val startMonth = remember { currentMonth.minusMonths(24) }
+    val endMonth = remember { currentMonth.plusMonths(0) }
+
+    val cal = rememberCalendarState(
+        startMonth = startMonth,
+        endMonth = endMonth,
+        firstVisibleMonth = currentMonth
     )
+
 
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .background(Color.White)
     ) {
 
-        SelectHijo(click = {})
+        SelectHijo(
+            click = {
+                viewModel.ctacli = it
+                viewModel.getList(
+                    year = cal.firstVisibleMonth.yearMonth.year.toString(),
+                    month = cal.firstVisibleMonth.yearMonth.monthValue.toString(),
+                    ctacli = it
+                )
+                viewModel.getTotalMes(viewModel.currentMonth.value, it)
+            }
+        )
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -55,74 +63,19 @@ fun DiariaAcumuladaScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-            Calendario(
-                fecha = viewModel.currentMonth,
-                list = viewModel.list.map { Pair(it.leyenda.toString(), it.localDate) },
-                click = {
-                    viewModel.getList(viewModel.currentMonth.value)
-                    viewModel.getTotalMes(viewModel.currentMonth.value)
-                },
-
+            CalendarioAsistencia(
+                cal = cal
             )
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                CircleText(text = "Tardanza", color = ColorYellow)
-                CircleText(text = "I. Justificada", color = ColorGreen)
-                CircleText(text = "I. Injustificada", color = ColorRed)
-                CircleText(text = "Asesoría", color = ColorPurple)
-            }
+            LeyendaAsistencia()
 
-            viewModel.asistencia?.let { asistencia ->
-
-                CardPago(title = "Total Acumulado", label = "${asistencia.trimestre}") {
-                    Column(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(30.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "Inasistencia ${asistencia.asistio}",
-                                modifier = Modifier.weight(1f),
-                                style = textStyle
-                            )
-                            VerticalDivider()
-                            Text(
-                                text = "Tardanza ${asistencia.tardanza}",
-                                modifier = Modifier.weight(1f),
-                                style = textStyle
-                            )
-                        }
-                        HorizontalDivider()
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(30.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "I. Justificada ${asistencia.justificada}",
-                                modifier = Modifier.weight(1f),
-                                style = textStyle
-                            )
-                            VerticalDivider()
-                            Text(
-                                text = "I. Injustificada ${asistencia.injustificada}",
-                                modifier = Modifier.weight(1f),
-                                style = textStyle
-                            )
-                        }
-                    }
-                }
+            viewModel.asistencia?.let {
+                CardInasistencia(
+                    asistencia = it
+                )
             }
         }
     }
 
 }
+

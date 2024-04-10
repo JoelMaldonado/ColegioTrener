@@ -20,6 +20,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        //
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -34,6 +36,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        //
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -103,6 +107,10 @@ dependencies {
     implementation("androidx.security:security-crypto:1.0.0-alpha02")
 
     implementation("com.auth0.android:jwtdecode:2.0.2")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    implementation("com.kizitonwose.calendar:view:2.0.4")
+    implementation("com.kizitonwose.calendar:compose:2.0.4")
 
 }
 

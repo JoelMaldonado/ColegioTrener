@@ -6,11 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jjmf.colegiotrenerandroid.core.Result
-import com.jjmf.colegiotrenerandroid.domain.model.DataHijo
-import com.jjmf.colegiotrenerandroid.domain.model.Hijo
 import com.jjmf.colegiotrenerandroid.domain.model.Inscripcion
 import com.jjmf.colegiotrenerandroid.domain.repository.InscripcionesRepository
-import com.jjmf.colegiotrenerandroid.domain.repository.PersonaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,13 +21,18 @@ class InscripcionesViewModel @Inject constructor(
     var isLoading by mutableStateOf(false)
     var error by mutableStateOf<String?>(null)
 
+    var alert by mutableStateOf(false)
 
     fun getListInscripciones(idHijo: String) {
         viewModelScope.launch {
             try {
                 isLoading = true
                 when (val res = repository.getListInscripciones(idHijo)) {
-                    is Result.Correcto -> listInscripcion = res.datos ?: emptyList()
+                    is Result.Correcto -> {
+                        listInscripcion = res.datos ?: emptyList()
+                        alert = res.datos?.firstOrNull()?.inscripcionbloqueo == "0"
+                    }
+
                     is Result.Error -> error = res.mensaje
                 }
             } catch (e: Exception) {

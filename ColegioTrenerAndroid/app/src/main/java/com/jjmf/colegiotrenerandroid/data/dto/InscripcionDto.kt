@@ -9,7 +9,8 @@ data class InscripcionDto(
     @SerializedName("inscripcion") val inscripcion: String?,
     @SerializedName("codinscripcion") val codinscripcion: String?,
     @SerializedName("precio") val precio: Double?,
-    @SerializedName("estadoinscripcion") val estadoinscripcion: String?
+    @SerializedName("estadoinscripcion") val estadoinscripcion: String?,
+    @SerializedName("inscripcionbloqueo") val inscripcionbloqueo: String?
 ) {
     fun toDomain(): Inscripcion {
         return Inscripcion(
@@ -18,7 +19,8 @@ data class InscripcionDto(
             inscripcion = inscripcion?.trim(),
             codinscripcion = codinscripcion?.trim(),
             precio = precio ?: 0.0,
-            estadoinscripcion = estadoinscripcion?.trim()
+            estadoinscripcion = estadoinscripcion?.trim(),
+            inscripcionbloqueo = inscripcionbloqueo?.trim()
         )
     }
 }

@@ -37,6 +37,7 @@ class PadresDatosAdminViewModel @Inject constructor(
     var cargo by mutableStateOf("")
     var telfEmpresa by mutableStateOf("")
     var correo by mutableStateOf("")
+    var isCorreoEnabled by mutableStateOf(true)
 
     var padre by mutableStateOf<DataPersona?>(null)
     var madre by mutableStateOf<DataPersona?>(null)
@@ -80,6 +81,7 @@ class PadresDatosAdminViewModel @Inject constructor(
         cargo = persona?.cargo ?: ""
         telfEmpresa = persona?.telefempresa ?: ""
         correo = persona?.e_mailp ?: ""
+        isCorreoEnabled = persona?.emailbloqueo == "1"
     }
 
 }

@@ -5,16 +5,20 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.Badge
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -24,6 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -31,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import com.jjmf.colegiotrenerandroid.R
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
@@ -52,63 +58,96 @@ fun SelectHijo(
         modifier = Modifier.fillMaxWidth()
     ) {
         AnimatedVisibility(visible = !isVisible.value) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(ColorT1),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-
-                VerticalDivider(
-                    modifier = Modifier.height(80.dp),
-                    color = ColorS1,
-                    thickness = 8.dp
-                )
-
-                Image(
-                    modifier = Modifier.size(60.dp),
-                    painter = painterResource(id = R.drawable.img_apoderado),
-                    contentDescription = null,
-                    contentScale = ContentScale.FillWidth
-                )
-
-                Column(
-                    modifier = Modifier.weight(1f)
+            if (viewModel.isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = viewModel.hijoSelected?.nombre ?: "Sin Seleccionar",
-                        color = Color.White,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Row(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Badge,
-                            contentDescription = null,
-                            tint = ColorP1
-                        )
-                        Text(text = "Codigo: 00002528", color = Color.White, fontSize = 12.sp)
-                        Spacer(modifier = Modifier.weight(1f))
-                        Text(text = "Año: 2023", color = Color.White, fontSize = 12.sp)
-                    }
+                    CircularProgressIndicator()
                 }
 
-                IconButton(
-                    onClick = {
-                        isVisible.value = !isVisible.value
-                    }
+            }else {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(ColorT1),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    val ic = if (isVisible.value) Icons.Default.ArrowDropUp
-                    else Icons.Default.ArrowDropDown
 
-                    Icon(
-                        imageVector = ic,
-                        contentDescription = null,
-                        tint = Color.White
+                    VerticalDivider(
+                        modifier = Modifier.height(80.dp),
+                        color = ColorS1,
+                        thickness = 8.dp
                     )
+
+
+                    if (viewModel.hijoSelected?.dirfotapp != null) {
+
+                        AsyncImage(
+                            modifier = Modifier
+                                .size(70.dp)
+                                .clip(RoundedCornerShape(12.dp)),
+                            model = viewModel.hijoSelected?.dirfotapp,
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop
+                        )
+                    } else {
+                        Image(
+                            modifier = Modifier.size(70.dp),
+                            painter = painterResource(id = R.drawable.img_apoderado),
+                            contentDescription = null,
+                            contentScale = ContentScale.FillWidth
+                        )
+                    }
+
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = viewModel.hijoSelected?.nombre ?: "Sin Seleccionar",
+                            color = Color.White,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Badge,
+                                contentDescription = null,
+                                tint = ColorP1
+                            )
+                            Text(
+                                text = "Codigo: ${viewModel.hijoSelected?.ctacli}",
+                                color = Color.White,
+                                fontSize = 12.sp
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = "Año: ${viewModel.hijoSelected?.anoaca}",
+                                color = Color.White,
+                                fontSize = 12.sp
+                            )
+                        }
+                    }
+
+                    IconButton(
+                        onClick = {
+                            isVisible.value = !isVisible.value
+                        }
+                    ) {
+                        val ic = if (isVisible.value) Icons.Default.ArrowDropUp
+                        else Icons.Default.ArrowDropDown
+
+                        Icon(
+                            imageVector = ic,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
                 }
             }
         }
@@ -139,12 +178,22 @@ fun SelectHijo(
                             )
                         }
 
-                        Image(
-                            modifier = Modifier.size(70.dp),
-                            painter = painterResource(id = R.drawable.img_apoderado),
-                            contentDescription = null,
-                            contentScale = ContentScale.FillWidth
-                        )
+                        if (it.dirfotapp != null) {
+
+                            AsyncImage(
+                                modifier = Modifier.size(70.dp),
+                                model = it.dirfotapp,
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop
+                            )
+                        } else {
+                            Image(
+                                modifier = Modifier.size(70.dp),
+                                painter = painterResource(id = R.drawable.img_apoderado),
+                                contentDescription = null,
+                                contentScale = ContentScale.FillWidth
+                            )
+                        }
 
                         Column(
                             modifier = Modifier.weight(1f)

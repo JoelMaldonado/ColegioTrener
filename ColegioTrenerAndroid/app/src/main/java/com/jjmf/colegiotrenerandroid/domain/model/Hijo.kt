@@ -7,6 +7,7 @@ data class Hijo(
     val nombre: String?,
     val alias: String?,
     val dirfot: String?,
+    val dirfotapp: String?,
     val param1: String?,
     val distrito: String?,
     val anoaca: String?

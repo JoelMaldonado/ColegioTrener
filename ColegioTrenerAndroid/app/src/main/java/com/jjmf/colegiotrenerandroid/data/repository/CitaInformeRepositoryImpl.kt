@@ -1,5 +1,6 @@
 package com.jjmf.colegiotrenerandroid.data.repository
 
+import com.google.gson.annotations.SerializedName
 import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.data.dto.AsistenciaDto
 import com.jjmf.colegiotrenerandroid.data.dto.CitaInformeDto
@@ -15,7 +16,10 @@ class CitaInformeRepositoryImpl @Inject constructor(
     private val api: CitaInformeService,
     private val token: TokenUseCase
 ) : CitaInformeRepository {
-    override suspend fun listarCitas(year:String, trimestre: Trimestre): Result<List<CitaInforme>> {
+    override suspend fun listarCitas(
+        year: String,
+        trimestre: Trimestre
+    ): Result<List<CitaInforme>> {
         return try {
             val call = api.listarCitasInforme(
                 ctamae = "00002070",
@@ -35,4 +39,21 @@ class CitaInformeRepositoryImpl @Inject constructor(
 
     }
 
+    override suspend fun getTrimestreActual(): Result<String> {
+        return try {
+            val call = api.getTrimestreActual(token = token())
+            if (call.isSuccessful) {
+                val body = convertJson<Array<TrimestreDto>>(call.body()).firstOrNull()?.trimestre
+                Result.Correcto(body)
+            }
+            else Result.Error(call.message())
+        } catch (e: Exception) {
+            Result.Error(e.message)
+        }
+    }
+
 }
+
+data class TrimestreDto(
+    @SerializedName("trimestre") val trimestre:String?
+)

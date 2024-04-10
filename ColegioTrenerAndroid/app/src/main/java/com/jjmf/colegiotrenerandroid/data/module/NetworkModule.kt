@@ -6,6 +6,7 @@ import com.jjmf.colegiotrenerandroid.data.services.AutorizacionService
 import com.jjmf.colegiotrenerandroid.data.services.CitaInformeService
 import com.jjmf.colegiotrenerandroid.data.services.InscripcionesService
 import com.jjmf.colegiotrenerandroid.data.services.PagoService
+import com.jjmf.colegiotrenerandroid.data.services.TareaService
 import com.jjmf.colegiotrenerandroid.util.Constantes
 import dagger.Module
 import dagger.Provides
@@ -78,5 +79,10 @@ object NetworkModule {
     @Provides
     fun provideAutorizacionService(retrofit: Retrofit): AutorizacionService {
         return retrofit.create(AutorizacionService::class.java)
+    }
+    @Singleton
+    @Provides
+    fun provideTareaService(retrofit: Retrofit): TareaService {
+        return retrofit.create(TareaService::class.java)
     }
 }

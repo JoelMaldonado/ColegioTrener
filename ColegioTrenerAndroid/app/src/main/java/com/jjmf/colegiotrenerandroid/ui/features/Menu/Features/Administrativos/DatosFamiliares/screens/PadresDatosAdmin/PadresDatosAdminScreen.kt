@@ -19,6 +19,7 @@ import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.LocationCity
 import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Mail
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
@@ -31,6 +32,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -250,7 +252,8 @@ fun PadresDatosAdminScreen(
                     modifier = Modifier.fillMaxWidth(),
                     value = viewModel.correo,
                     newValue = { viewModel.correo = it },
-                    label = "Email *Si es mas de un correo, separarlo por un punto y coma ';'"
+                    label = "Email *Si es mas de un correo, separarlo por un punto y coma ';'",
+                    isEnabled = viewModel.isCorreoEnabled
                 )
 
                 Button(onClick = {}) {

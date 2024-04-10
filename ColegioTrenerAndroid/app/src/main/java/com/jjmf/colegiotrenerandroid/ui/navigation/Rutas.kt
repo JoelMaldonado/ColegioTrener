@@ -6,6 +6,8 @@ sealed class Rutas(val route: String) {
     data object Login : Rutas("login")
     data object Menu : Rutas("menu")
     data object Inicio : Rutas("inicio")
+
+    data object Notificaciones: Rutas("notificaciones")
     data object Administrativos {
         data object Datos : Rutas("administrativos/datos"){
             data object Padres: Rutas("${Datos.route}/padres")

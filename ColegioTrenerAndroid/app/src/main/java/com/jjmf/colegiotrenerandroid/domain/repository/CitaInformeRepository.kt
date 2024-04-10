@@ -6,4 +6,6 @@ import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.CitaInforme.Trime
 
 interface CitaInformeRepository {
     suspend fun listarCitas(year: String, trimestre: Trimestre): Result<List<CitaInforme>>
+
+    suspend fun getTrimestreActual(): Result<String>
 }

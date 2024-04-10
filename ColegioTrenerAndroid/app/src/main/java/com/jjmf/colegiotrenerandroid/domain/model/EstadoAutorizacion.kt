@@ -6,5 +6,5 @@ data class EstadoAutorizacion(
     val nombre: String?,
     val ctamae: String?,
     val codgra: String?,
-    val autorizo: Boolean,
+    var autorizo: Boolean,
 )

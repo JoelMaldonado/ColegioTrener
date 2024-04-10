@@ -15,12 +15,12 @@ class AsistenciaRepositoryImpl @Inject constructor(
     private val api: AsistenciaService,
     private val token: TokenUseCase
 ) : AsistenciaRepository {
-    override suspend fun totalMes(year: String, month: String): Result<Asistencia> {
+    override suspend fun totalMes(year: String, month: String, ctacli: String): Result<Asistencia> {
         return try {
             val call = api.listarAsistenciasPorMes(
                 year = year,
                 month = month,
-                ctacli = "00002528",
+                ctacli = ctacli,
                 token = token()
             )
             if (call.isSuccessful) {
@@ -36,13 +36,14 @@ class AsistenciaRepositoryImpl @Inject constructor(
 
     override suspend fun listarInasistenciasPorAlumno(
         year: String,
-        month: String
+        month: String,
+        ctacli: String
     ): Result<List<Inasistencia>> {
         return try {
             val call = api.listarInasistenciasPorAlumno(
                 year = year,
                 month = month,
-                ctacli = "00002528",
+                ctacli = ctacli,
                 token = token()
             )
             if (call.isSuccessful) {

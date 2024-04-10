@@ -19,5 +19,6 @@ data class DataPersona(
     var empresa: String?,
     var cargo: String?,
     var telefempresa: String?,
-    var e_mailp: String?
+    var e_mailp: String?,
+    var emailbloqueo: String?
 )

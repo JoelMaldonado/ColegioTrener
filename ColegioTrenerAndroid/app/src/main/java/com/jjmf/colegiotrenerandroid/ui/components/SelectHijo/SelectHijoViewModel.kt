@@ -21,6 +21,7 @@ class SelectHijoViewModel @Inject constructor(
     var hijoSelected by mutableStateOf<Hijo?>(null)
     var listHijos by mutableStateOf<List<Hijo>>(emptyList())
     var error by mutableStateOf<String?>(null)
+    var isLoading by mutableStateOf(false)
     var first: () -> Unit = {}
 
     init {
@@ -30,6 +31,7 @@ class SelectHijoViewModel @Inject constructor(
     private fun getListHijos() {
         viewModelScope.launch {
             try {
+                isLoading = true
                 when (val res = repository.getHijos()) {
                     is Result.Correcto -> {
                         listHijos = res.datos ?: emptyList()
@@ -41,6 +43,8 @@ class SelectHijoViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 error = e.message
+            } finally {
+                isLoading = false
             }
         }
     }

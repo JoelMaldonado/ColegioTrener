@@ -9,5 +9,5 @@ interface AutorizacionRepository {
     suspend fun listarAutorizaciones(
         estado: Estado
     ) : Result<List<Autorizacion>>
-    suspend fun estado(): Result<List<EstadoAutorizacion>>
+    suspend fun estado(idPermiso:String): Result<List<EstadoAutorizacion>>
 }

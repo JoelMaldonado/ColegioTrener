@@ -21,7 +21,8 @@ data class DataPersonaDto(
     var empresa: String? = null,
     var cargo: String? = null,
     var telefempresa: String? = null,
-    var e_mailp: String? = null
+    var e_mailp: String? = null,
+    var emailbloqueo: String? = null
 ) {
     fun toDomain(): DataPersona {
 
@@ -48,7 +49,8 @@ data class DataPersonaDto(
             empresa = this.empresa?.trim(),
             cargo = this.cargo?.trim(),
             telefempresa = this.telefempresa?.trim(),
-            e_mailp = this.e_mailp?.trim()
+            e_mailp = this.e_mailp?.trim(),
+            emailbloqueo = emailbloqueo?.trim()
         )
     }
 }

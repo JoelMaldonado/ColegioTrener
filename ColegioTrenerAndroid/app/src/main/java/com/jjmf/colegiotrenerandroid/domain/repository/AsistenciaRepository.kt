@@ -5,6 +5,6 @@ import com.jjmf.colegiotrenerandroid.domain.model.Asistencia
 import com.jjmf.colegiotrenerandroid.domain.model.Inasistencia
 
 interface AsistenciaRepository {
-    suspend fun totalMes(year:String, month:String) : Result<Asistencia>
-    suspend fun listarInasistenciasPorAlumno(year:String, month:String): Result<List<Inasistencia>>
+    suspend fun totalMes(year:String, month:String, ctacli: String) : Result<Asistencia>
+    suspend fun listarInasistenciasPorAlumno(year:String, month:String, ctacli: String): Result<List<Inasistencia>>
 }

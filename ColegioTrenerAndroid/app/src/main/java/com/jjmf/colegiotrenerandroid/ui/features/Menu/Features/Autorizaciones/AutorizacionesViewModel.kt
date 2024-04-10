@@ -24,39 +24,48 @@ class AutorizacionesViewModel @Inject constructor(
     var estado by mutableStateOf(Estado.Activo)
     var list by mutableStateOf<List<Autorizacion>>(emptyList())
     var listEstados by mutableStateOf<List<EstadoAutorizacion>>(emptyList())
-    var isLoading by mutableStateOf(false)
+    var isLoadingEstados by mutableStateOf(false)
+    var autorizacion by mutableStateOf<Autorizacion?>(null)
     var error by mutableStateOf<String?>(null)
 
     init {
         listarAutorizaciones(estado)
-        listarEstados()
     }
 
-    fun listarEstados(){
-        viewModelScope.launch {
-            try {
-                val res = repository.estado()
-                when(res){
-                    is Result.Correcto -> listEstados = res.datos ?: emptyList()
-                    is Result.Error -> error = res.mensaje
-                }
-            }catch (e:Exception){
-                error = e.message
-            }
-        }
-    }
 
     fun listarAutorizaciones(estado: Estado) {
         viewModelScope.launch {
             try {
                 when (val res = repository.listarAutorizaciones(estado)) {
-                    is Result.Correcto -> list = res.datos ?: emptyList()
+                    is Result.Correcto -> {
+                        list = res.datos ?: emptyList()
+                        autorizacion = res.datos?.firstOrNull()
+                        listarEstados(autorizacion?.idautorizacion.toString())
+                    }
+
                     is Result.Error -> res.mensaje
                 }
             } catch (e: Exception) {
                 error = e.message
+            }
+        }
+    }
+
+    fun listarEstados(idPermiso: String) {
+        viewModelScope.launch {
+            try {
+                isLoadingEstados = true
+                val res = repository.estado(
+                    idPermiso = idPermiso
+                )
+                when (res) {
+                    is Result.Correcto -> listEstados = res.datos ?: emptyList()
+                    is Result.Error -> error = res.mensaje
+                }
+            } catch (e: Exception) {
+                error = e.message
             } finally {
-                isLoading = false
+                isLoadingEstados = false
             }
         }
     }

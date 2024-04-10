@@ -1,52 +1,69 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Incumplimientos
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jjmf.colegiotrenerandroid.core.Result
+import com.jjmf.colegiotrenerandroid.domain.model.Incumplimiento
+import com.jjmf.colegiotrenerandroid.domain.repository.CitaInformeRepository
+import com.jjmf.colegiotrenerandroid.domain.repository.TareaRepository
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.CitaInforme.Trimestre
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.time.YearMonth
 import javax.inject.Inject
 
 @HiltViewModel
 class TareasIncumplimientosViewModel @Inject constructor(
-
+    private val repository: CitaInformeRepository,
+    private val repo: TareaRepository
 ) : ViewModel() {
-    /*
-    private val dataSource by lazy { CalendarDataSource() }
 
-    private val _uiState = MutableStateFlow(CalendarUiState.Init)
-    val uiState: StateFlow<CalendarUiState> = _uiState.asStateFlow()
+    var trimestre by mutableStateOf(Trimestre.Uno)
+    var list by mutableStateOf<List<Incumplimiento>>(emptyList())
+    var error by mutableStateOf<String?>(null)
+    var isLoadingList by mutableStateOf(false)
+
     init {
+        getTrimestreActual()
+    }
+
+
+    private fun getTrimestreActual() {
         viewModelScope.launch {
-            _uiState.update { currentState ->
-                currentState.copy(
-                    dates = dataSource.getDates(currentState.yearMonth)
-                )
+            try {
+                when (val res = repository.getTrimestreActual()) {
+                    is Result.Correcto -> trimestre =
+                        Trimestre.entries.find { it.num == res.datos } ?: Trimestre.Uno
+
+                    is Result.Error -> error = res.mensaje
+                }
+            } catch (e: Exception) {
+                error = e.message
             }
         }
     }
 
-    fun toNextMonth(nextMonth: YearMonth) {
+    fun listarIncumplimientos(ctactli: String) {
         viewModelScope.launch {
-            _uiState.update { currentState ->
-                currentState.copy(
-                    yearMonth = nextMonth,
-                    dates = dataSource.getDates(nextMonth)
+            try {
+                isLoadingList = true
+                val res = repo.listarIncumplimientos(
+                    ctactli = ctactli
                 )
+                when (res) {
+                    is Result.Correcto -> {
+                        list = res.datos ?: emptyList()
+                    }
+
+                    is Result.Error -> error = res.mensaje
+                }
+            } catch (e: Exception) {
+                error = e.message
+            } finally {
+                isLoadingList = false
             }
         }
     }
-
-    fun toPreviousMonth(prevMonth: YearMonth) {
-        viewModelScope.launch {
-            _uiState.update { currentState ->
-                currentState.copy(
-                    yearMonth = prevMonth,
-                    dates = dataSource.getDates(prevMonth)
-                )
-            }
-        }
-    }*/
 }

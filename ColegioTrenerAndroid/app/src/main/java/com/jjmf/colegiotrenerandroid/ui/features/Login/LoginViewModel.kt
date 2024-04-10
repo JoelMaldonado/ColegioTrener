@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
     var error by mutableStateOf<String?>(null)
 
     fun login() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 isLoading = true
                 when (val resLogin = repository.login(usuario, clave)) {

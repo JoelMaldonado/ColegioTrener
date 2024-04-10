@@ -16,8 +16,8 @@ interface AutorizacionService {
 
     @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getAlumnosyAutorizacion/{idPermiso},{ctamae}")
     suspend fun estado(
-        @Path("idPermiso") idPermiso: String = "0000000132",
-        @Path("ctamae") ctamae: String = "00002070",
+        @Path("idPermiso") idPermiso: String,
+        @Path("ctamae") ctamae: String,
         @Header("Authorization") token: String
     ): Response<String>
 

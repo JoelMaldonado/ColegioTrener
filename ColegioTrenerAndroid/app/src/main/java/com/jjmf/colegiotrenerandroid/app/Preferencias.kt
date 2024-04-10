@@ -20,7 +20,20 @@ class Preferencias @Inject constructor(
         sp.edit().putString(KEY_USUARIO, data).apply()
     }
 
-    fun getUsuario(): String {
-        return sp.getString(KEY_USUARIO, null) ?: throw Exception("No se pudo obtener el usuario")
+    fun getUsuario() = sp.getString(KEY_USUARIO, null)
+
+    fun saveLink(link: String?) {
+        sp.edit().putString("KEY_LINK", link).apply()
+    }
+
+    fun getLink() : String? {
+        return sp.getString("KEY_LINK", null)
+    }
+    fun saveFamilia(data: String?) {
+        sp.edit().putString("KEY_FAMILIA", data).apply()
+    }
+
+    fun getFamilia() : String? {
+        return sp.getString("KEY_FAMILIA", null)
     }
 }

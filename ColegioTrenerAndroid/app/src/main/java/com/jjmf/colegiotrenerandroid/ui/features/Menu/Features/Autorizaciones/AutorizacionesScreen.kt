@@ -1,5 +1,10 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Autorizaciones
 
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -10,8 +15,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -19,6 +26,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DoorFront
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.RadioButton
@@ -32,12 +40,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.jjmf.colegiotrenerandroid.domain.model.EstadoAutorizacion
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Autorizaciones.components.CardAutorizacionEstado
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Autorizaciones.components.SwitchAutorizacion
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 
 @Composable
@@ -45,13 +58,13 @@ fun AutorizacionesScreen(
     viewModel: AutorizacionesViewModel = hiltViewModel()
 ) {
 
-    val select = remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(16.dp)
+            .padding(8.dp)
     ) {
 
         Column(
@@ -113,14 +126,15 @@ fun AutorizacionesScreen(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        if (select.value == it.autorizacion) {
+                        if (viewModel.autorizacion == it) {
                             Box(
                                 modifier = Modifier
                                     .size(20.dp)
                                     .clip(CircleShape)
                                     .background(ColorP1)
                                     .clickable {
-                                        select.value = it.autorizacion.toString()
+                                        viewModel.autorizacion = it
+                                        viewModel.listarEstados(it.idautorizacion.toString())
                                     }
                             )
                         } else {
@@ -129,7 +143,8 @@ fun AutorizacionesScreen(
                                     .size(20.dp)
                                     .border(2.dp, ColorP1, CircleShape)
                                     .clickable {
-                                        select.value = it.autorizacion.toString()
+                                        viewModel.autorizacion = it
+                                        viewModel.listarEstados(it.idautorizacion.toString())
                                     }
                             )
                         }
@@ -143,7 +158,10 @@ fun AutorizacionesScreen(
                             lineHeight = 14.sp
                         )
                         IconButton(
-                            onClick = {}
+                            onClick = {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.linkPdf))
+                                context.startActivity(intent)
+                            }
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Visibility,
@@ -160,59 +178,26 @@ fun AutorizacionesScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                viewModel.listEstados.forEach {
-                    CardPago(title = it.nombre.toString()) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Icon(
-                                modifier = Modifier.size(16.dp),
-                                imageVector = Icons.Default.Person,
-                                contentDescription = null,
-                                tint = ColorP1
-                            )
-                            Text(
-                                text = "Codigo: ",
-                                color = ColorP1,
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                            Text(text = it.ctacli.toString(), fontSize = 12.sp)
-
-                            Spacer(modifier = Modifier.weight(1f))
-
-                            Icon(
-                                modifier = Modifier.size(16.dp),
-                                imageVector = Icons.Default.DoorFront,
-                                contentDescription = null,
-                                tint = ColorP1
-                            )
-                            Text(
-                                text = "Clase: ",
-                                color = ColorP1,
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                            Text(text = it.codgra.toString(), fontSize = 12.sp)
-
-                            Spacer(modifier = Modifier.weight(1f))
-
-                            Text(
-                                text = "Autorizo?",
-                                fontSize = 12.sp,
-                                color = ColorP1,
-                                fontWeight = FontWeight.SemiBold
-                            )
-
-                            Switch(checked = it.autorizo, onCheckedChange = {})
-
+                if (!viewModel.isLoadingEstados) {
+                    if (viewModel.listEstados.isNotEmpty()) {
+                        viewModel.listEstados.forEach { estado ->
+                            CardAutorizacionEstado(estado = estado)
                         }
+                    } else {
+                        Text(
+                            modifier = Modifier.padding(top = 30.dp),
+                            text = "Sin datos",
+                            color = Color.Gray
+                        )
                     }
+                } else {
+                    CircularProgressIndicator(
+                        modifier = Modifier.padding(top = 30.dp)
+                    )
                 }
-
             }
 
         }
@@ -248,7 +233,8 @@ fun AutorizacionesScreen(
 
 }
 
-enum class Estado (val code:String){
+
+enum class Estado(val code: String) {
     Activo("A"),
     Vencido("V")
 }

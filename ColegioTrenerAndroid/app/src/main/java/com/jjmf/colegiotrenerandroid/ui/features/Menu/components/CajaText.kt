@@ -33,7 +33,7 @@ fun CajaText(
         value = value,
         onValueChange = newValue,
         label = {
-            Text(text = label, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+            Text(text = label, fontSize = 12.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
         },
         shape = RoundedCornerShape(16.dp),
         colors = OutlinedTextFieldDefaults.colors(
@@ -45,8 +45,9 @@ fun CajaText(
             disabledContainerColor = Color.White,
             disabledBorderColor = ColorT1
         ),
-        trailingIcon = {
-            if (!isEnabled) {
+        trailingIcon = if (isEnabled) null
+        else {
+            {
                 Icon(imageVector = Icons.Outlined.Lock, contentDescription = null)
             }
         },

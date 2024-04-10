@@ -6,5 +6,6 @@ data class Inscripcion(
     val inscripcion: String?,
     val codinscripcion: String?,
     val precio: Double,
-    val estadoinscripcion: String?
+    val estadoinscripcion: String?,
+    val inscripcionbloqueo: String?
 )
