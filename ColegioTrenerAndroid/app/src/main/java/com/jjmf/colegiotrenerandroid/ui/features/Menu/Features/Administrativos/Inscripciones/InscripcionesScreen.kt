@@ -27,12 +27,13 @@ fun InscripcionesScreen(
         viewModel.error = null
     }
 
-    if (viewModel.alert){
+    if (viewModel.alert) {
         SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE).apply {
             titleText = "Warning!"
             contentText = "No se encuentra activo la inscripcion de talleres"
-            setConfirmButton("OK"){
+            setConfirmButton("OK") {
                 viewModel.alert = false
+                dismissWithAnimation()
             }
             setCancelable(false)
             show()
@@ -57,15 +58,18 @@ fun InscripcionesScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            viewModel.listInscripcion.groupBy { it.tipoinscripcion }.entries.forEach {
-                CardPago(
-                    title = it.key.toString()
-                ) {
-                    it.value.forEach {
-                        ItemInscripcion(it)
+            viewModel.listInscripcion
+                .groupBy { it.tipoinscripcion }
+                .entries
+                .forEach {
+                    CardPago(
+                        title = it.key.toString()
+                    ) {
+                        it.value.forEach {
+                            ItemInscripcion(it)
+                        }
                     }
                 }
-            }
         }
 
 

@@ -1,8 +1,12 @@
 package com.jjmf.colegiotrenerandroid.data.services
 
+import com.jjmf.colegiotrenerandroid.data.dto.request.GrabarAutorizacionRequest
+import com.jjmf.colegiotrenerandroid.data.dto.request.GrabarAutorizacionResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface AutorizacionService {
@@ -20,6 +24,12 @@ interface AutorizacionService {
         @Path("ctamae") ctamae: String,
         @Header("Authorization") token: String
     ): Response<String>
+
+    @POST("PublicacionFox/TrenerWCFOX.svc/Trener/AutorizarAlumno")
+    suspend fun grabar(
+        @Body request: GrabarAutorizacionRequest,
+        @Header("Authorization") token: String
+    ): Response<GrabarAutorizacionResponse>
 
 
 }

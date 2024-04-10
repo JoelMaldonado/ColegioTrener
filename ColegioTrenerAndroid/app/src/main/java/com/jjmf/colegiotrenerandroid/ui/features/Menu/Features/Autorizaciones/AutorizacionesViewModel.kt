@@ -70,6 +70,27 @@ class AutorizacionesViewModel @Inject constructor(
         }
     }
 
+    fun grabar(idPermiso: String, ctacli: String, autorizo: String) {
+        viewModelScope.launch {
+            try {
+                val res = repository.grabar(
+                    idPermiso = idPermiso,
+                    ctacli = ctacli,
+                    autorizo = autorizo
+                )
+                when (res) {
+                    is Result.Correcto -> {
+
+                    }
+
+                    is Result.Error -> error = res.mensaje
+                }
+            } catch (e: Exception) {
+                error = e.message
+            }
+        }
+    }
+
     fun setError(delay: Boolean) {
         viewModelScope.launch {
             if (delay) {

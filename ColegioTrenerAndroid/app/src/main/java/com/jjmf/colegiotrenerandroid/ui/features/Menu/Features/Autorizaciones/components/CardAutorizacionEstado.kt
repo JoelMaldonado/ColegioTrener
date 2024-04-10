@@ -21,7 +21,10 @@ import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 
 
 @Composable
-fun CardAutorizacionEstado(estado: EstadoAutorizacion) {
+fun CardAutorizacionEstado(
+    estado: EstadoAutorizacion,
+    click: (Boolean)->Unit
+) {
 
     CardPago(title = estado.nombre.toString()) {
         Row(
@@ -69,9 +72,7 @@ fun CardAutorizacionEstado(estado: EstadoAutorizacion) {
 
             SwitchAutorizacion(
                 bool = estado.autorizo,
-                click = {
-
-                }
+                click = click
             )
 
         }

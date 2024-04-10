@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,14 +29,16 @@ fun SwitchAutorizacion(
     click: (Boolean) -> Unit
 ) {
 
+    val d = remember { mutableStateOf(bool) }
+
     val off = animateDpAsState(
-        targetValue = if (bool) 0.dp else 30.dp,
+        targetValue = if (d.value) 0.dp else 30.dp,
         tween(100),
         label = ""
     )
     val color =
         animateColorAsState(
-            targetValue = if (bool) ColorS1 else ColorP1,
+            targetValue = if (d.value) ColorS1 else ColorP1,
             tween(100),
             label = ""
         )
@@ -52,10 +56,11 @@ fun SwitchAutorizacion(
                 .background(color.value)
                 .clickable {
                     click(!bool)
+                    d.value = !d.value
                 },
             contentAlignment = Alignment.Center
         ) {
-            val text = if (bool) "No" else "Si"
+            val text = if (d.value) "No" else "Si"
             Text(
                 text = text,
                 color = Color.White,

@@ -17,8 +17,8 @@ class LoginViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    var usuario by mutableStateOf("00003141")
-    var clave by mutableStateOf("4424")
+    var usuario by mutableStateOf("00002070")
+    var clave by mutableStateOf("3267")
     var recuerdame by mutableStateOf(false)
     var toMenu by mutableStateOf(false)
     var isLoading by mutableStateOf(false)

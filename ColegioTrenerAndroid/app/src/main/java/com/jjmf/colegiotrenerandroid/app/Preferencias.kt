@@ -20,7 +20,7 @@ class Preferencias @Inject constructor(
         sp.edit().putString(KEY_USUARIO, data).apply()
     }
 
-    fun getUsuario() = sp.getString(KEY_USUARIO, null)
+    fun getUsuario() = sp.getString(KEY_USUARIO, null) ?: throw Exception("Sin ID")
 
     fun saveLink(link: String?) {
         sp.edit().putString("KEY_LINK", link).apply()
