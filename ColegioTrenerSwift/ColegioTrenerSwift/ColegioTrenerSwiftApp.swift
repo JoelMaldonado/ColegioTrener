@@ -21,9 +21,7 @@ struct ColegioTrenerSwiftApp: App {
                                      .padding(.horizontal)
                                      .datePickerStyle(.graphical)
                     // In loadView or viewDidLoad
-                    
                 }
-                
                 SplashView(isActive: $isSplashActive)
             }
             .onAppear {
