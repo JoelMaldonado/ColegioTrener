@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.jjmf.colegiotrenerandroid.ui.navigation.NavegacionPrincipal
 import com.jjmf.colegiotrenerandroid.ui.theme.ColegioTrenerAndroidTheme
 import com.jjmf.colegiotrenerandroid.util.MainScreen
+import com.jjmf.colegiotrenerandroid.util.Prueba
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.core.CalendarDay
@@ -36,7 +37,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             ColegioTrenerAndroidTheme {
                 NavegacionPrincipal()
-                //MainScreen()
             }
         }
     }

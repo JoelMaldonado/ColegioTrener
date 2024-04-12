@@ -51,8 +51,8 @@ fun LoginScreen(
 ) {
     val context = LocalContext.current
 
-    if (viewModel.toMenu){
-        LaunchedEffect(key1 = Unit){
+    if (viewModel.toMenu) {
+        LaunchedEffect(key1 = Unit) {
             viewModel.toMenu = false
             toMenu()
         }
@@ -128,7 +128,9 @@ fun LoginScreen(
 
                     CajaLogin(
                         value = viewModel.usuario,
-                        newValue = { viewModel.usuario = it },
+                        newValue = {
+                            viewModel.usuario = it
+                        },
                         label = "Usuario",
                         icon = Icons.Default.Person
                     )

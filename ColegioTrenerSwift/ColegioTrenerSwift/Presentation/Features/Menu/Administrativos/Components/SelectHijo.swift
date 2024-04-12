@@ -79,7 +79,7 @@ struct SelectHijoItem : View {
                     .frame(width: 5)
                     .cornerRadius(10)
             }
-            Image(.niño)
+            Image(.niño)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 50)
