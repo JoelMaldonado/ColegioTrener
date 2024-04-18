@@ -11,8 +11,8 @@ struct DatosView: View {
     @State private var isSelected = 1
     var body: some View {
         VStack(spacing: 0){
-            TopView(title: "Datos Generales")
-            VStack{
+            TopView(title: "Datos")
+            VStack {
                 HStack(spacing: 8){
                     Button {
                         isSelected = 1

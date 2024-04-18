@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -50,9 +51,11 @@ fun TopBar(
     title: String,
     familia: String,
     toNotificaciones:()->Unit,
+    toPerfil:()->Unit,
     back: () -> Unit,
     bool: Boolean
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -84,18 +87,12 @@ fun TopBar(
                         fontWeight = FontWeight.Bold,
                         lineHeight = 16.sp
                     )
-                    BadgedBox(
-                        badge = {
-                            Badge {
-                                Text(text = "2")
-                            }
-                        },
-                    ) {
+                    IconButton(onClick = toNotificaciones) {
                         Icon(
                             modifier = Modifier
                                 .clip(CircleShape)
                                 .clickable {
-                                           toNotificaciones()
+                                    toNotificaciones()
                                 },
                             imageVector = Icons.Default.Notifications,
                             contentDescription = null,
@@ -110,7 +107,9 @@ fun TopBar(
                     Column(
                         modifier = Modifier
                             .clip(RoundedCornerShape(12.dp))
-                            .clickable {toNotificaciones() },
+                            .clickable {
+                                       toPerfil()
+                            },
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Icon(

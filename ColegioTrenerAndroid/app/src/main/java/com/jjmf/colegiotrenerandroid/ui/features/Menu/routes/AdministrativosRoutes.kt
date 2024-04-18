@@ -35,7 +35,9 @@ fun NavGraphBuilder.administrativosRoutes(
             route = Rutas.Administrativos.Inscripciones.route
         ) {
             viewModel.title = "Inscripciones"
-            InscripcionesScreen()
+            InscripcionesScreen(
+                back = back
+            )
         }
     }
 }

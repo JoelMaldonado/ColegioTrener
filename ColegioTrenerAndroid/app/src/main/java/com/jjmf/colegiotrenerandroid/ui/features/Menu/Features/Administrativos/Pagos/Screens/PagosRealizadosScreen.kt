@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jjmf.colegiotrenerandroid.ui.common.toSoles
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.PagosViewModel
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
@@ -101,19 +102,14 @@ fun PagosRealizadosScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(viewModel.listPagosRealizados) {
-
-                    val format = NumberFormat.getCurrencyInstance(Locale("es", "pe"))
-                    val importe = format.format(it.importepagado)
-                    val mora = format.format(it.mora)
-
                     CardPagoRealizado(
                         title = "${it.concepto}",
                         label = "Nro. pago: 01",
                         numDoc = it.numdoc.toString(),
                         medioPago = it.mediopago.toString(),
                         fecPago = it.fecpag.format(),
-                        importe = importe,
-                        mora = mora,
+                        importe = it.importepagado.toSoles(),
+                        mora = it.mora.toSoles(),
                         fecVen = it.fecven.format()
                     )
                 }

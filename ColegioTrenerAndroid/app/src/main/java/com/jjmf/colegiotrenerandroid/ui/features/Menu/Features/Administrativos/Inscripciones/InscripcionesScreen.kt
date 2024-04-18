@@ -17,6 +17,7 @@ import com.jjmf.colegiotrenerandroid.util.show
 
 @Composable
 fun InscripcionesScreen(
+    back:()->Unit,
     viewModel: InscripcionesViewModel = hiltViewModel()
 ) {
 
@@ -33,6 +34,7 @@ fun InscripcionesScreen(
             contentText = "No se encuentra activo la inscripcion de talleres"
             setConfirmButton("OK") {
                 viewModel.alert = false
+                back()
                 dismissWithAnimation()
             }
             setCancelable(false)

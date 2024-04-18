@@ -21,10 +21,12 @@ import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Incumplimi
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Pendientes.TareasPendientesScreen
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.routes.administrativosRoutes
 import com.jjmf.colegiotrenerandroid.ui.features.Notificaciones.NotificacionesScreen
+import com.jjmf.colegiotrenerandroid.ui.features.Perfil.PerfilScreen
 import com.jjmf.colegiotrenerandroid.ui.navigation.Rutas
 
 @Composable
 fun MenuScreen(
+    logout:()->Unit,
     viewModel: MenuViewModel = hiltViewModel()
 ) {
 
@@ -46,6 +48,9 @@ fun MenuScreen(
             familia = viewModel.familia ?: "Sin Definir",
             toNotificaciones = {
                 navMenu.navigate(Rutas.Notificaciones.route)
+            },
+            toPerfil = {
+                       navMenu.navigate(Rutas.Perfil.route)
             },
             back = {
                 navMenu.popBackStack()
@@ -69,6 +74,13 @@ fun MenuScreen(
             composable(Rutas.Notificaciones.route){
                 viewModel.title = "Notificaciones"
                 NotificacionesScreen()
+            }
+
+            composable(Rutas.Perfil.route){
+                viewModel.title = "Cambios datos generales"
+                PerfilScreen(
+                    logout = logout
+                )
             }
 
             administrativosRoutes(

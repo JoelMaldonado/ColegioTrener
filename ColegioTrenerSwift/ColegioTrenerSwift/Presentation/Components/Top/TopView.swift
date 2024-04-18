@@ -7,12 +7,16 @@
 
 import SwiftUI
 
+#Preview {
+    TopView(title: "Inicio")
+}
+
 struct TopView: View {
     @Environment(\.dismiss) private var dismiss
     var title : String
     var body: some View {
-            VStack{
-                HStack{
+            VStack {
+                HStack {
                     Button {
                         dismiss()
                     } label: {
@@ -46,7 +50,6 @@ struct TopView: View {
                             .font(.title3)
                     }
                 }
-                .padding()
                 .foregroundStyle(.white)
                 
                 LinearGradient(

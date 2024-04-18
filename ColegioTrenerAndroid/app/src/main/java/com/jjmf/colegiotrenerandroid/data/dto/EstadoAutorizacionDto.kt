@@ -18,7 +18,7 @@ data class EstadoAutorizacionDto(
             nombre = nombre?.trim(),
             ctamae = ctamae?.trim(),
             codgra = codgra?.trim(),
-            autorizo = autorizo == 1.0
+            autorizo = autorizo == 0.0
         )
     }
 }

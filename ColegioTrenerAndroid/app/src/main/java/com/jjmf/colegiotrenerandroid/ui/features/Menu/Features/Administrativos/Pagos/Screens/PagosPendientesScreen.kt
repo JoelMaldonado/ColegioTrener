@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.jjmf.colegiotrenerandroid.ui.common.toSoles
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.PagosViewModel
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.ItemPago
@@ -37,7 +38,7 @@ fun PagosPendientesScreen(
                 CardPago(
                     title = it.concepto.toString().trim()
                 ) {
-                    ItemPago(label = "Deuda:", text = "S/ ${it.saldo}")
+                    ItemPago(label = "Deuda:", text = it.saldo.toSoles())
                     ItemPago(label = "Fec. Ven:", text = it.fecven.format())
                 }
             }

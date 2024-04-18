@@ -16,9 +16,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 
@@ -28,6 +30,8 @@ fun SwitchAutorizacion(
     bool: Boolean,
     click: (Boolean) -> Unit
 ) {
+
+    val context = LocalContext.current
 
     val d = remember { mutableStateOf(bool) }
 
@@ -55,8 +59,20 @@ fun SwitchAutorizacion(
                 .offset(off.value)
                 .background(color.value)
                 .clickable {
-                    click(!bool)
-                    d.value = !d.value
+                    if (d.value) {
+                        click(true)
+                        d.value = !d.value
+                    } else {
+                        SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE).apply {
+                            titleText = "Ya se autorizo"
+                            contentText = "No se puede cambiar"
+                            confirmButtonBackgroundColor = ColorP1.hashCode()
+                            setConfirmButton("ok") {
+                                dismissWithAnimation()
+                            }
+                            show()
+                        }
+                    }
                 },
             contentAlignment = Alignment.Center
         ) {

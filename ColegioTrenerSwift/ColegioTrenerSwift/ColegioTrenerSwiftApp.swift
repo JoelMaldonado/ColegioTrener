@@ -17,10 +17,7 @@ struct ColegioTrenerSwiftApp: App {
         WindowGroup {
             ZStack {
                 NavigationStack {
-                    DatePicker("Select Date", selection: $selectedDate)
-                                     .padding(.horizontal)
-                                     .datePickerStyle(.graphical)
-                    // In loadView or viewDidLoad
+                    LoginView()
                 }
                 SplashView(isActive: $isSplashActive)
             }
@@ -33,10 +30,6 @@ struct ColegioTrenerSwiftApp: App {
             }
         }
     }
-}
-
-#Preview {
-    CalendarView()
 }
 
 struct CalendarView : View {

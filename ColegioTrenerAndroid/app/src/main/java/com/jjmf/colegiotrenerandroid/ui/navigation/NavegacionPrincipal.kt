@@ -24,7 +24,15 @@ fun NavegacionPrincipal() {
         }
 
         composable(Rutas.Menu.route) {
-            MenuScreen()
+            MenuScreen(
+                logout = {
+                    navController.navigate(Rutas.Login.route){
+                        popUpTo(navController.graph.id){
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
 
     }
