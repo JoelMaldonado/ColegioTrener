@@ -103,9 +103,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
 
-    //Encryptar Shared Preferences
-    implementation("androidx.security:security-crypto:1.0.0")
-
     implementation("com.auth0.android:jwtdecode:2.0.2")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")

@@ -18,7 +18,6 @@ fun NavGraphBuilder.administrativosRoutes(
             route = Rutas.Administrativos.Datos.route
         ) {
             viewModel.title = "Datos"
-
             DatosFamiliaresScreen(
                 back = back
             )
