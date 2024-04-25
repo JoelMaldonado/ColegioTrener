@@ -15,8 +15,15 @@ struct PagosView: View {
     
     var body: some View {
         VStack(spacing: 0){
-            TopView(title: "Pagos")
-            SelectHijo()
+            
+            SelectHijo(
+                hijoSelected: $viewModel.hijoSelected,
+                listHijos: viewModel.listHijos,
+                click: {
+                    
+                }
+            )
+            
             VStack {
                 Picker("", selection: $select) {
                     Text("Pendientes")

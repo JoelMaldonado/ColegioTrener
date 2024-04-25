@@ -10,3 +10,11 @@ import Foundation
 class Constants {
     static let baseURL = "https://intranet.trener.edu.pe:8093"
 }
+
+class Keys {
+    static let loginUser = "loginUser"
+    static let loginClave = "loginClave"
+    static let loginRecuerdame = "loginRecuerdame"
+    static let loginFamilia = "loginFamilia"
+    static let loginIntranet = "loginIntranet"
+}

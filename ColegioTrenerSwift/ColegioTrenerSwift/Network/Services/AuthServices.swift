@@ -8,7 +8,9 @@
 import SwiftUI
 import Alamofire
 
-extension NetworkService {
+class AuthServices {
+    
+    static let shared = AuthServices()
     
     func getToken(
         completion: @escaping (Result<String, Error>) -> Void
@@ -28,6 +30,7 @@ extension NetworkService {
                         completion(.failure(NSError(domain: "Error al obtener token", code: 200)))
                         return
                     }
+                    UserDefaults.standard.setValue(token, forKey: "token")
                     completion(.success(token))
                 }
             case .failure(let error):
@@ -74,5 +77,7 @@ struct LoginResponse: Codable {
     var CONTRASENIA: String?
     var mensajeResultado: String?
     var mensajeCodigo: Int?
+    var familia: String?
+    var linkLoginIntranet: String?
 }
 

@@ -13,27 +13,25 @@ struct LoginView: View {
     
     var body: some View {
         ZStack{
-            Color(.colorFondo)
-                .ignoresSafeArea(.all)
-            VStack(spacing: 20){
+            VStack {
+                Image(.fondoLogin)
+                    .ignoresSafeArea(.all)
                 Spacer()
+            }
+            VStack(spacing: 20) {
                 
+                Spacer()
+                Spacer()
                 
                 Image(.logo2)
                     .resizable()
                     .scaledToFit()
+                    .frame(width: 280)
+                    .padding()
+                    .background(.white.opacity(0.6), in: .rect(cornerRadius: 20))
                 
-                NavigationLink {
-                    MenuView()
-                } label: {
-                    
-                    Text("Login")
-                        .foregroundStyle(.colorP1)
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .padding(.top, 50)
-                    
-                }
+                Spacer()
+                Spacer()
                 
                 CajaLogin(
                     valor: $viewModel.usuario,
@@ -50,7 +48,6 @@ struct LoginView: View {
                 
                 HStack{
                     Button {
-                        
                         viewModel.recuerdame.toggle()
                     } label: {
                         let icon = viewModel.recuerdame ? "checkmark.square.fill" : "square"
@@ -58,9 +55,9 @@ struct LoginView: View {
                             .resizable()
                             .frame(width: 20, height: 20)
                     }
-                    .padding(.leading, 40)
+                    .padding(.leading, 10)
                     
-                    Text("Recuerdame")
+                    Text("Recordar datos")
                         .bold()
                     Spacer()
                 }
@@ -75,20 +72,20 @@ struct LoginView: View {
                         .bold()
                         .font(.title3)
                         .frame(width: 200, height: 50)
-                        .background(.colorS1)
+                        .background(.colorP1)
                         .clipShape(.buttonBorder)
                 }
-                .padding(.top)
-                
                 Spacer()
                 
-                Text("v1.0")
-                    .font(.caption)
-                    .foregroundStyle(.gray)
             }
             .padding()
         }
-        
+        .alert(isPresented: $viewModel.isError) {
+            Alert(
+                title: Text("Warning"),
+                message: Text(viewModel.error ?? "Sin Definir")
+            )
+        }
         .navigationDestination(
             isPresented: $viewModel.toMenu,
             destination: {
@@ -96,53 +93,6 @@ struct LoginView: View {
                     .navigationBarBackButtonHidden()
             }
         )
-    }
-}
-
-struct CajaLogin: View {
-    @Binding var valor: String
-    var icon: String
-    var label: String
-    var isPass: Bool = false
-    
-    var body: some View {
-        HStack(spacing: 12){
-            Image(systemName: icon)
-                .resizable()
-                .frame(width: 40, height: 40)
-                .foregroundStyle(.colorP1)
-            if !isPass {
-                TextField(
-                    text: $valor,
-                    label: {
-                        Text(label)
-                            .bold()
-                            .foregroundStyle(.gray)
-                    }
-                )
-                .padding(10)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(.colorP1, lineWidth: 1.5)
-                )
-            } else {
-                SecureField(
-                    text: $valor,
-                    label: {
-                        Text(label)
-                            .bold()
-                            .foregroundStyle(.gray)
-                    }
-                )
-                .padding(10)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(.colorP1, lineWidth: 1.5)
-                )
-            }
-        }
     }
 }
 

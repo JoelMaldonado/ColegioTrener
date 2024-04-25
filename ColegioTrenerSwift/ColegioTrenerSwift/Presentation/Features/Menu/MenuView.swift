@@ -8,182 +8,85 @@
 import SwiftUI
 
 struct MenuView: View {
+    @State var tab : MenuTab = .Home
     var body: some View {
         VStack(spacing: 0){
-            TopView(title: "Inicio")
-            ZStack{
+            TopView(menuTab: $tab)
+            ZStack {
                 Image(.salon)
                     .resizable()
-                    .scaledToFill()
-                Color(.gray)
-                    .opacity(0.7)
-                ScrollView{
-                    VStack{
-                        ItemMenuView(label: "Administrativos")
-                        HStack{
-                            NavigationLink {
-                                DatosView()
-                                    .navigationBarBackButtonHidden()
-                            } label: {
-                                VStack{
-                                    Image(.icDatos)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50)
-                                    Text("Datos")
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                            
-                            NavigationLink {
-                                PagosView()
-                                    .navigationBarBackButtonHidden()
-                            } label: {
-                                VStack{
-                                    Image(.icPagos)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50)
-                                    Text("Pagos")
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                            
-                            NavigationLink {
-                                InscripcionesView()
-                                    .navigationBarBackButtonHidden()
-                            } label: {
-                                VStack{
-                                    Image(.icInscripcion)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50)
-                                    Text("Incripciones")
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        }
-                        
-                        Spacer()
-                            .frame(height: 12)
-                        
-                        ItemMenuView(label: "Asistencia")
-                        NavigationLink {
-                            DiariaAcumuladaView()
-                                .navigationBarBackButtonHidden()
-                        } label: {
-                            HStack{
-                                Image(.icCalendario)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 50)
-                                Text("Diaria y acumulada")
-                                Spacer()
-                            }
-                            .padding(.leading)
-                        }
-                        
-                        Spacer()
-                            .frame(height: 12)
-                        
-                        ItemMenuView(label: "Tareas")
-                        HStack{
-                            NavigationLink {
-                                PendientesView()
-                                    .navigationBarBackButtonHidden()
-                            } label: {
-                                VStack{
-                                    Image(.icTareas)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50)
-                                    Text("Pendientes")
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                            
-                            NavigationLink {
-                                IncumplimientosView()
-                                    .navigationBarBackButtonHidden()
-                            } label: {
-                                VStack{
-                                    Image(.icRevisar)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50)
-                                    Text("Incumplimientos")
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        }
-                        
-                        Spacer()
-                            .frame(height: 12)
-                        
-                        ItemMenuView(label: "Resultados academicos")
-                        NavigationLink {
-                            CitaInformeView()
-                                .navigationBarBackButtonHidden()
-                        } label: {
-                            HStack{
-                                Image(.icCita)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 50)
-                                Text("Cita informe")
-                                Spacer()
-                            }
-                            .padding(.leading)
-                        }
-                        
-                        Spacer()
-                            .frame(height: 12)
-                        
-                        ItemMenuView(label: "Autorizaciones")
-                        
-                        NavigationLink {
-                            AutorizacionesView()
-                                .navigationBarBackButtonHidden()
-                        } label: {
-                            HStack{
-                                Image(.icPermiso)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 50)
-                                Text("Autorizaciones")
-                                Spacer()
-                            }
-                            .padding(.leading)
-                        }
-                        
-                        HStack{
-                            Spacer()
-                            
-                            Button {
-                                if let url = URL(string: "https://www.google.com") {
-                                    UIApplication.shared.open(url)
-                                }
-                            } label: {
-                                HStack{
-                                    Image(systemName: "globe")
-                                    Text("Intranet")
-                                }
-                                .foregroundStyle(.colorS1)
-                                .frame(width: 200, height: 40)
-                                .background(.white)
-                                .clipShape(.capsule)
-                            }
-                            Spacer()
-                        }
-                        .padding(.top)
+                    .ignoresSafeArea()
+                ZStack {
+                    switch tab {
+                    case .Home:
+                        MenuHome(tab: $tab)
+                    case .Datos:
+                        DatosView()
+                    case .Pagos:
+                        PagosView()
+                    case .Inscripciones:
+                        InscripcionesView()
+                    case .DiariaAcumulada:
+                        DiariaAcumuladaView()
+                    case .Pendientes:
+                        PendientesView()
+                    case .Incumplimientos:
+                        IncumplimientosView()
+                    case .CitaInforme:
+                        CitaInformeView()
+                    case .Autorizaciones:
+                        AutorizacionesView()
+                    case .Notificaciones:
+                        NotificacionesView()
+                    case .Perfil:
+                        PerfilView()
                     }
-                    .foregroundStyle(.white)
-                    .bold()
-                    .font(.title3)
-                    .padding()
                 }
+                .background(.gray.opacity(0.6))
             }
-            
+        }
+        
+    }
+    
+}
+
+enum MenuTab {
+    case Home
+    case Datos
+    case Pagos
+    case Inscripciones
+    case DiariaAcumulada
+    case Pendientes
+    case Incumplimientos
+    case CitaInforme
+    case Autorizaciones
+    case Notificaciones
+    case Perfil
+    
+    func name()-> String {
+        switch self {
+        case .Home:
+            return "Inicio"
+        case .Datos:
+            return "Datos"
+        case .Pagos:
+            return "Pagos"
+        case .Inscripciones:
+            return "Inscripciones"
+        case .DiariaAcumulada:
+            return "Diaria Acumulada"
+        case .Pendientes:
+            return "Pendientes"
+        case .Incumplimientos:
+            return "Incumplimientos"
+        case .CitaInforme:
+            return "Cita Informe"
+        case .Autorizaciones:
+            return "Autorizaciones"
+        case .Notificaciones:
+            return "Notificaciones"
+        case .Perfil:
+            return "Cambios datos generales"
         }
     }
 }

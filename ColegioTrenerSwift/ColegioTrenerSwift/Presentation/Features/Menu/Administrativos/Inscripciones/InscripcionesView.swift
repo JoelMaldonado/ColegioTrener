@@ -13,8 +13,14 @@ struct InscripcionesView: View {
     
     var body: some View {
         VStack(spacing: 0){
-            TopView(title: "Inscripciones")
-            SelectHijo()
+            
+            SelectHijo(
+                hijoSelected: $viewModel.hijoSelected,
+                listHijos: viewModel.listHijos,
+                click: {
+                    
+                }
+            )
             Spacer()
         }
     }

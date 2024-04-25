@@ -13,7 +13,6 @@ struct PendientesView: View {
     
     var body: some View {
         VStack(spacing: 0){
-            TopView(title: "Pendientes")
         }
     }
 }

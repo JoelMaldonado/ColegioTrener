@@ -11,8 +11,14 @@ struct NotificacionesView: View {
     @StateObject private var viewModel = NotificacionesViewModel()
     var body: some View {
         VStack(spacing: 0){
-            TopView(title: "Notificaciones")
-            SelectHijo()
+            
+            SelectHijo(
+                hijoSelected: $viewModel.hijoSelected,
+                listHijos: viewModel.listHijos,
+                click: {
+                    
+                }
+            )
             
             VStack{}
                 .frame(maxHeight: .infinity)

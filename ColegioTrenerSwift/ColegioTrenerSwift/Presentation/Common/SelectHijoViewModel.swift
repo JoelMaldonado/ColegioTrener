@@ -1,13 +1,14 @@
 //
-//  InscripcionesViewModel.swift
+//  SelectHijoViewModel.swift
 //  ColegioTrenerSwift
 //
-//  Created by Joel on 31/01/24.
+//  Created by Joel Maldonado on 24/04/24.
 //
 
-import Foundation
+import SwiftUI
 
-class InscripcionesViewModel : ObservableObject {
+class SelectHijoViewModel: ObservableObject {
+    
     @Published var hijoSelected: HijoTrener?
     @Published var listHijos: [HijoTrener] = []
     @Published var isError = false
