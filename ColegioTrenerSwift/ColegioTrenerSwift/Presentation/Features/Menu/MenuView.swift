@@ -25,7 +25,11 @@ struct MenuView: View {
                     case .Pagos:
                         PagosView()
                     case .Inscripciones:
-                        InscripcionesView()
+                        InscripcionesView(
+                            back: {
+                                self.tab = .Home
+                            }
+                        )
                     case .DiariaAcumulada:
                         DiariaAcumuladaView()
                     case .Pendientes:

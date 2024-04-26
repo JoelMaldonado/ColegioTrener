@@ -35,3 +35,15 @@ extension String {
         return dateFormatter.date(from: self)
     }
 }
+
+extension Double {
+    
+    func toSoles() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "PEN"
+        formatter.locale = Locale(identifier: "es_PE")
+        return formatter.string(from: NSNumber(value: self)) ?? ""
+    }
+    
+}

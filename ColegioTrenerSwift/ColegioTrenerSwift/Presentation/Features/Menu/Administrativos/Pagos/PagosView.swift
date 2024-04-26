@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PagosView: View {
     
-    @StateObject private var viewModel = PagosViewModel()
+    @StateObject var viewModel = PagosViewModel()
     
     @State private var select : TipoPagos = .Pendientes
     
@@ -20,7 +20,7 @@ struct PagosView: View {
                 hijoSelected: $viewModel.hijoSelected,
                 listHijos: viewModel.listHijos,
                 click: {
-                    
+                    viewModel.getPagos()
                 }
             )
             
@@ -34,21 +34,22 @@ struct PagosView: View {
                         .tag(TipoPagos.Realizados)
                 }
                 .pickerStyle(.segmented)
-                VStack{
+                
+                VStack {
                     switch select {
                     case .Pendientes:
-                        PagosPendientesView()
+                        PagosPendientes()
                     case .Vencidas:
-                        PagosVencidosView()
+                        PagosVencidos()
                     case .Realizados:
-                        PagosRealizadosView()
+                        PagosRealizados()
                     }
                 }
-                .frame(maxHeight: .infinity)
             }
-            .padding()
+            .padding(8)
             .frame(maxHeight: .infinity)
         }
+        .background(.white)
     }
 }
 

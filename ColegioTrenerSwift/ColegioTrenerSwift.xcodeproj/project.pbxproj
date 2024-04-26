@@ -62,10 +62,32 @@
 		5DE1E1DF2B6B24320064B3C8 /* PagosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1DE2B6B24320064B3C8 /* PagosView.swift */; };
 		5DE1E1E12B6B243D0064B3C8 /* PagosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1E02B6B243D0064B3C8 /* PagosViewModel.swift */; };
 		5DE1E1E52B6B26A40064B3C8 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1E42B6B26A40064B3C8 /* TopView.swift */; };
-		5DE1E1EA2B6B297C0064B3C8 /* PagosRealizadosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1E92B6B297C0064B3C8 /* PagosRealizadosView.swift */; };
-		5DE1E1EC2B6B29840064B3C8 /* PagosVencidosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1EB2B6B29840064B3C8 /* PagosVencidosView.swift */; };
-		5DE1E1EE2B6B298D0064B3C8 /* PagosPendientesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1ED2B6B298D0064B3C8 /* PagosPendientesView.swift */; };
+		5DE1E1EA2B6B297C0064B3C8 /* PagosRealizados.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1E92B6B297C0064B3C8 /* PagosRealizados.swift */; };
+		5DE1E1EC2B6B29840064B3C8 /* PagosVencidos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1EB2B6B29840064B3C8 /* PagosVencidos.swift */; };
+		5DE1E1EE2B6B298D0064B3C8 /* PagosPendientes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1ED2B6B298D0064B3C8 /* PagosPendientes.swift */; };
 		5DE1E1F12B6B35060064B3C8 /* SelectHijo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1F02B6B35060064B3C8 /* SelectHijo.swift */; };
+		5DF14BEE2BDAF6E700106946 /* CardInscripcion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BED2BDAF6E700106946 /* CardInscripcion.swift */; };
+		5DF14BF02BDAF73000106946 /* ItemCardInscripcion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BEF2BDAF73000106946 /* ItemCardInscripcion.swift */; };
+		5DF14BF22BDAF7C800106946 /* InscripcionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BF12BDAF7C800106946 /* InscripcionService.swift */; };
+		5DF14BF42BDAF9C700106946 /* Inscripcion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BF32BDAF9C700106946 /* Inscripcion.swift */; };
+		5DF14BF62BDB01C900106946 /* PagoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BF52BDB01C900106946 /* PagoService.swift */; };
+		5DF14BF92BDB024200106946 /* PagoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BF82BDB024200106946 /* PagoDto.swift */; };
+		5DF14BFB2BDB02FE00106946 /* InscripcionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BFA2BDB02FE00106946 /* InscripcionDto.swift */; };
+		5DF14BFE2BDB0A8400106946 /* SinInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BFD2BDB0A8400106946 /* SinInfo.swift */; };
+		5DF14C002BDB0E7400106946 /* Pago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14BFF2BDB0E7400106946 /* Pago.swift */; };
+		5DF14C022BDB14B100106946 /* CardPago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C012BDB14B100106946 /* CardPago.swift */; };
+		5DF14C042BDB199500106946 /* CardPagoRealizado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C032BDB199500106946 /* CardPagoRealizado.swift */; };
+		5DF14C062BDB19DF00106946 /* SelectYearRealizado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C052BDB19DF00106946 /* SelectYearRealizado.swift */; };
+		5DF14C082BDB669200106946 /* CajaTexto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C072BDB669200106946 /* CajaTexto.swift */; };
+		5DF14C0B2BDB7B9100106946 /* SelectTipoFamiliar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C0A2BDB7B9100106946 /* SelectTipoFamiliar.swift */; };
+		5DF14C0D2BDB815A00106946 /* CajaSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C0C2BDB815A00106946 /* CajaSelect.swift */; };
+		5DF14C0F2BDB8E8B00106946 /* DatosApoderadoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C0E2BDB8E8B00106946 /* DatosApoderadoDto.swift */; };
+		5DF14C112BDB8EAD00106946 /* HijoTrenerDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C102BDB8EAD00106946 /* HijoTrenerDto.swift */; };
+		5DF14C132BDB8EC800106946 /* HijoTrener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C122BDB8EC800106946 /* HijoTrener.swift */; };
+		5DF14C152BDB8ED900106946 /* DatosApoderado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C142BDB8ED900106946 /* DatosApoderado.swift */; };
+		5DF14C172BDB913100106946 /* DatosHijosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C162BDB913100106946 /* DatosHijosViewModel.swift */; };
+		5DF14C192BDB92BC00106946 /* DatosHijoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C182BDB92BC00106946 /* DatosHijoDto.swift */; };
+		5DF14C1B2BDB932900106946 /* DatosHijo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF14C1A2BDB932900106946 /* DatosHijo.swift */; };
 		5DFFD5142BD832C600130F0B /* CajaLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFD5132BD832C600130F0B /* CajaLogin.swift */; };
 		5DFFD5162BD8443900130F0B /* MenuHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFD5152BD8443900130F0B /* MenuHome.swift */; };
 		5DFFD5192BD84E5B00130F0B /* PerfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFD5182BD84E5B00130F0B /* PerfilView.swift */; };
@@ -129,10 +151,32 @@
 		5DE1E1DE2B6B24320064B3C8 /* PagosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosView.swift; sourceTree = "<group>"; };
 		5DE1E1E02B6B243D0064B3C8 /* PagosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosViewModel.swift; sourceTree = "<group>"; };
 		5DE1E1E42B6B26A40064B3C8 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
-		5DE1E1E92B6B297C0064B3C8 /* PagosRealizadosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosRealizadosView.swift; sourceTree = "<group>"; };
-		5DE1E1EB2B6B29840064B3C8 /* PagosVencidosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosVencidosView.swift; sourceTree = "<group>"; };
-		5DE1E1ED2B6B298D0064B3C8 /* PagosPendientesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosPendientesView.swift; sourceTree = "<group>"; };
+		5DE1E1E92B6B297C0064B3C8 /* PagosRealizados.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosRealizados.swift; sourceTree = "<group>"; };
+		5DE1E1EB2B6B29840064B3C8 /* PagosVencidos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosVencidos.swift; sourceTree = "<group>"; };
+		5DE1E1ED2B6B298D0064B3C8 /* PagosPendientes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagosPendientes.swift; sourceTree = "<group>"; };
 		5DE1E1F02B6B35060064B3C8 /* SelectHijo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHijo.swift; sourceTree = "<group>"; };
+		5DF14BED2BDAF6E700106946 /* CardInscripcion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInscripcion.swift; sourceTree = "<group>"; };
+		5DF14BEF2BDAF73000106946 /* ItemCardInscripcion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardInscripcion.swift; sourceTree = "<group>"; };
+		5DF14BF12BDAF7C800106946 /* InscripcionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscripcionService.swift; sourceTree = "<group>"; };
+		5DF14BF32BDAF9C700106946 /* Inscripcion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inscripcion.swift; sourceTree = "<group>"; };
+		5DF14BF52BDB01C900106946 /* PagoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagoService.swift; sourceTree = "<group>"; };
+		5DF14BF82BDB024200106946 /* PagoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagoDto.swift; sourceTree = "<group>"; };
+		5DF14BFA2BDB02FE00106946 /* InscripcionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscripcionDto.swift; sourceTree = "<group>"; };
+		5DF14BFD2BDB0A8400106946 /* SinInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinInfo.swift; sourceTree = "<group>"; };
+		5DF14BFF2BDB0E7400106946 /* Pago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pago.swift; sourceTree = "<group>"; };
+		5DF14C012BDB14B100106946 /* CardPago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPago.swift; sourceTree = "<group>"; };
+		5DF14C032BDB199500106946 /* CardPagoRealizado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPagoRealizado.swift; sourceTree = "<group>"; };
+		5DF14C052BDB19DF00106946 /* SelectYearRealizado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectYearRealizado.swift; sourceTree = "<group>"; };
+		5DF14C072BDB669200106946 /* CajaTexto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CajaTexto.swift; sourceTree = "<group>"; };
+		5DF14C0A2BDB7B9100106946 /* SelectTipoFamiliar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTipoFamiliar.swift; sourceTree = "<group>"; };
+		5DF14C0C2BDB815A00106946 /* CajaSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CajaSelect.swift; sourceTree = "<group>"; };
+		5DF14C0E2BDB8E8B00106946 /* DatosApoderadoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosApoderadoDto.swift; sourceTree = "<group>"; };
+		5DF14C102BDB8EAD00106946 /* HijoTrenerDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HijoTrenerDto.swift; sourceTree = "<group>"; };
+		5DF14C122BDB8EC800106946 /* HijoTrener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HijoTrener.swift; sourceTree = "<group>"; };
+		5DF14C142BDB8ED900106946 /* DatosApoderado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosApoderado.swift; sourceTree = "<group>"; };
+		5DF14C162BDB913100106946 /* DatosHijosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosHijosViewModel.swift; sourceTree = "<group>"; };
+		5DF14C182BDB92BC00106946 /* DatosHijoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosHijoDto.swift; sourceTree = "<group>"; };
+		5DF14C1A2BDB932900106946 /* DatosHijo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosHijo.swift; sourceTree = "<group>"; };
 		5DFFD5132BD832C600130F0B /* CajaLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CajaLogin.swift; sourceTree = "<group>"; };
 		5DFFD5152BD8443900130F0B /* MenuHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHome.swift; sourceTree = "<group>"; };
 		5DFFD5182BD84E5B00130F0B /* PerfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilView.swift; sourceTree = "<group>"; };
@@ -172,6 +216,8 @@
 				5D3320EC2BD9897F008C2588 /* DatosService.swift */,
 				5D42F4CD2BD99DE400281C92 /* TareaService.swift */,
 				5D70416F2BDAD4FE00520A30 /* AsistenciaService.swift */,
+				5DF14BF12BDAF7C800106946 /* InscripcionService.swift */,
+				5DF14BF52BDB01C900106946 /* PagoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -188,6 +234,7 @@
 		5D4219542B6D41BE0025BCD9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5DF14BF72BDB023900106946 /* Dto */,
 				5D3980C42B965F8700634A97 /* Services */,
 			);
 			path = Network;
@@ -351,6 +398,7 @@
 		5DE1E1AA2B6AE9680064B3C8 /* Datos */ = {
 			isa = PBXGroup;
 			children = (
+				5DF14C092BDB7B7B00106946 /* Components */,
 				5DE1E1B02B6AED540064B3C8 /* DatosClubes */,
 				5DE1E1AF2B6AED460064B3C8 /* DatosHijos */,
 				5DE1E1AE2B6AED400064B3C8 /* DatosApoderado */,
@@ -382,6 +430,7 @@
 			children = (
 				5D8F66D32B9698EC003A19D4 /* Components */,
 				5DE1E1B52B6AED860064B3C8 /* DatosHijosView.swift */,
+				5DF14C162BDB913100106946 /* DatosHijosViewModel.swift */,
 			);
 			path = DatosHijos;
 			sourceTree = "<group>";
@@ -399,9 +448,7 @@
 		5DE1E1BD2B6B22240064B3C8 /* Pagos */ = {
 			isa = PBXGroup;
 			children = (
-				5DE1E1E82B6B296A0064B3C8 /* PagosPendientes */,
-				5DE1E1E72B6B295F0064B3C8 /* PagosVencidos */,
-				5DE1E1E62B6B294C0064B3C8 /* PagosRealizados */,
+				5DF14BFC2BDB06E300106946 /* Components */,
 				5DE1E1DE2B6B24320064B3C8 /* PagosView.swift */,
 				5DE1E1E02B6B243D0064B3C8 /* PagosViewModel.swift */,
 			);
@@ -411,6 +458,7 @@
 		5DE1E1BE2B6B222F0064B3C8 /* Inscripciones */ = {
 			isa = PBXGroup;
 			children = (
+				5DF14BEC2BDAF6C300106946 /* Components */,
 				5DE1E1DA2B6B240A0064B3C8 /* InscripcionesView.swift */,
 				5DE1E1DC2B6B24110064B3C8 /* InscripcionesViewModel.swift */,
 			);
@@ -481,37 +529,58 @@
 				5DE1E1F02B6B35060064B3C8 /* SelectHijo.swift */,
 				5D3980C72B96638B00634A97 /* CajaText.swift */,
 				5D42F4DD2BD9C1B600281C92 /* CustomCalendar.swift */,
+				5DF14C072BDB669200106946 /* CajaTexto.swift */,
+				5DF14C0C2BDB815A00106946 /* CajaSelect.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		5DE1E1E62B6B294C0064B3C8 /* PagosRealizados */ = {
-			isa = PBXGroup;
-			children = (
-				5DE1E1E92B6B297C0064B3C8 /* PagosRealizadosView.swift */,
-			);
-			path = PagosRealizados;
-			sourceTree = "<group>";
-		};
-		5DE1E1E72B6B295F0064B3C8 /* PagosVencidos */ = {
-			isa = PBXGroup;
-			children = (
-				5DE1E1EB2B6B29840064B3C8 /* PagosVencidosView.swift */,
-			);
-			path = PagosVencidos;
-			sourceTree = "<group>";
-		};
-		5DE1E1E82B6B296A0064B3C8 /* PagosPendientes */ = {
-			isa = PBXGroup;
-			children = (
-				5DE1E1ED2B6B298D0064B3C8 /* PagosPendientesView.swift */,
-			);
-			path = PagosPendientes;
 			sourceTree = "<group>";
 		};
 		5DE1E1EF2B6B34E60064B3C8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5DF14BEC2BDAF6C300106946 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5DF14BED2BDAF6E700106946 /* CardInscripcion.swift */,
+				5DF14BEF2BDAF73000106946 /* ItemCardInscripcion.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5DF14BF72BDB023900106946 /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				5DF14BF82BDB024200106946 /* PagoDto.swift */,
+				5DF14BFA2BDB02FE00106946 /* InscripcionDto.swift */,
+				5DF14C102BDB8EAD00106946 /* HijoTrenerDto.swift */,
+				5DF14C0E2BDB8E8B00106946 /* DatosApoderadoDto.swift */,
+				5DF14C182BDB92BC00106946 /* DatosHijoDto.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
+		5DF14BFC2BDB06E300106946 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5DE1E1ED2B6B298D0064B3C8 /* PagosPendientes.swift */,
+				5DE1E1EB2B6B29840064B3C8 /* PagosVencidos.swift */,
+				5DE1E1E92B6B297C0064B3C8 /* PagosRealizados.swift */,
+				5DF14BFD2BDB0A8400106946 /* SinInfo.swift */,
+				5DF14C012BDB14B100106946 /* CardPago.swift */,
+				5DF14C032BDB199500106946 /* CardPagoRealizado.swift */,
+				5DF14C052BDB19DF00106946 /* SelectYearRealizado.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5DF14C092BDB7B7B00106946 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5DF14C0A2BDB7B9100106946 /* SelectTipoFamiliar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -547,6 +616,11 @@
 				5D3320E32BD96CBA008C2588 /* Autorizacion.swift */,
 				5D3320E72BD97B3D008C2588 /* EstadoAutorizacion.swift */,
 				5D42F4CF2BD9A0AD00281C92 /* TareaIncumplimiento.swift */,
+				5DF14BF32BDAF9C700106946 /* Inscripcion.swift */,
+				5DF14BFF2BDB0E7400106946 /* Pago.swift */,
+				5DF14C122BDB8EC800106946 /* HijoTrener.swift */,
+				5DF14C142BDB8ED900106946 /* DatosApoderado.swift */,
+				5DF14C1A2BDB932900106946 /* DatosHijo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -631,7 +705,10 @@
 			files = (
 				5DE1E1E52B6B26A40064B3C8 /* TopView.swift in Sources */,
 				5D4219602B6D43490025BCD9 /* Constants.swift in Sources */,
-				5DE1E1EA2B6B297C0064B3C8 /* PagosRealizadosView.swift in Sources */,
+				5DF14C0D2BDB815A00106946 /* CajaSelect.swift in Sources */,
+				5DF14C042BDB199500106946 /* CardPagoRealizado.swift in Sources */,
+				5DE1E1EA2B6B297C0064B3C8 /* PagosRealizados.swift in Sources */,
+				5DF14BF62BDB01C900106946 /* PagoService.swift in Sources */,
 				5D5A3D2A2B6981C000F88156 /* LoginViewModel.swift in Sources */,
 				5D3320E82BD97B3D008C2588 /* EstadoAutorizacion.swift in Sources */,
 				5DE1E1DD2B6B24110064B3C8 /* InscripcionesViewModel.swift in Sources */,
@@ -639,16 +716,20 @@
 				5D3980C82B96638B00634A97 /* CajaText.swift in Sources */,
 				5D5A3D252B6975C600F88156 /* LoginView.swift in Sources */,
 				5DE1E1D12B6B23620064B3C8 /* PendientesView.swift in Sources */,
+				5DF14BF22BDAF7C800106946 /* InscripcionService.swift in Sources */,
+				5DF14BEE2BDAF6E700106946 /* CardInscripcion.swift in Sources */,
 				5D3320DE2BD96837008C2588 /* SelectAutorizacion.swift in Sources */,
 				5D7AC6C12BC61CED00400B08 /* SplashView.swift in Sources */,
+				5DF14C0B2BDB7B9100106946 /* SelectTipoFamiliar.swift in Sources */,
 				5D3320DA2BD96522008C2588 /* SelectEstado.swift in Sources */,
 				5D42F4D52BD9A62000281C92 /* CardIncumplimientoItem.swift in Sources */,
 				5D42F4DE2BD9C1B600281C92 /* CustomCalendar.swift in Sources */,
-				5DE1E1EE2B6B298D0064B3C8 /* PagosPendientesView.swift in Sources */,
+				5DE1E1EE2B6B298D0064B3C8 /* PagosPendientes.swift in Sources */,
 				5D42F4D32BD9A60400281C92 /* CardIncumplimiento.swift in Sources */,
 				5D42F4E32BDAC67900281C92 /* CardDiariaAcumulado.swift in Sources */,
 				5DFFD5142BD832C600130F0B /* CajaLogin.swift in Sources */,
-				5DE1E1EC2B6B29840064B3C8 /* PagosVencidosView.swift in Sources */,
+				5DF14BFE2BDB0A8400106946 /* SinInfo.swift in Sources */,
+				5DE1E1EC2B6B29840064B3C8 /* PagosVencidos.swift in Sources */,
 				5DE1E1C72B6B22B60064B3C8 /* AutorizacionesViewModel.swift in Sources */,
 				5DE1E1B62B6AED860064B3C8 /* DatosHijosView.swift in Sources */,
 				5D8F66D52B9698FE003A19D4 /* ItemDatoHijo.swift in Sources */,
@@ -658,6 +739,7 @@
 				5DE1E1B42B6AED7E0064B3C8 /* DatosApoderadoView.swift in Sources */,
 				5DE1E1C52B6B22A30064B3C8 /* AutorizacionesView.swift in Sources */,
 				5D3320E02BD969CD008C2588 /* AutorizacionService.swift in Sources */,
+				5DF14BF02BDAF73000106946 /* ItemCardInscripcion.swift in Sources */,
 				5DE1E1D72B6B23CF0064B3C8 /* DiariaAcumuladaView.swift in Sources */,
 				5D5A3D282B6981B500F88156 /* MenuView.swift in Sources */,
 				5DFFD5192BD84E5B00130F0B /* PerfilView.swift in Sources */,
@@ -668,27 +750,41 @@
 				5DE1E1B22B6AED640064B3C8 /* DatosPadresView.swift in Sources */,
 				5DE1E1DF2B6B24320064B3C8 /* PagosView.swift in Sources */,
 				5DFFD51B2BD85E5500130F0B /* InformeService.swift in Sources */,
+				5DF14C002BDB0E7400106946 /* Pago.swift in Sources */,
+				5DF14C112BDB8EAD00106946 /* HijoTrenerDto.swift in Sources */,
 				5D3320ED2BD9897F008C2588 /* DatosService.swift in Sources */,
+				5DF14C082BDB669200106946 /* CajaTexto.swift in Sources */,
 				5DE1E1B82B6AED910064B3C8 /* DatosClubesView.swift in Sources */,
 				5D42F4E12BDAC59A00281C92 /* LeyendaDiariaAcumulada.swift in Sources */,
+				5DF14BF42BDAF9C700106946 /* Inscripcion.swift in Sources */,
 				5D3320E22BD96A8C008C2588 /* Functions.swift in Sources */,
+				5DF14C192BDB92BC00106946 /* DatosHijoDto.swift in Sources */,
 				5D3320E42BD96CBA008C2588 /* Autorizacion.swift in Sources */,
+				5DF14BFB2BDB02FE00106946 /* InscripcionDto.swift in Sources */,
 				5DE1E1D52B6B238F0064B3C8 /* PendientesViewModel.swift in Sources */,
 				5DFFD51F2BD86A0E00130F0B /* CitaInforme.swift in Sources */,
 				5DE1E1D32B6B236E0064B3C8 /* IncumplimientosViewModel.swift in Sources */,
 				5D7041702BDAD4FE00520A30 /* AsistenciaService.swift in Sources */,
 				5D3320E62BD96D61008C2588 /* EResult.swift in Sources */,
+				5DF14C1B2BDB932900106946 /* DatosHijo.swift in Sources */,
 				5DE1E1AC2B6AE9710064B3C8 /* DatosView.swift in Sources */,
 				5D42F4D02BD9A0AD00281C92 /* TareaIncumplimiento.swift in Sources */,
+				5DF14BF92BDB024200106946 /* PagoDto.swift in Sources */,
 				5D4219162B6C03070025BCD9 /* NotificacionesView.swift in Sources */,
 				5D5A3D132B69759600F88156 /* ColegioTrenerSwiftApp.swift in Sources */,
 				5D3980C62B965FC800634A97 /* AuthServices.swift in Sources */,
+				5DF14C0F2BDB8E8B00106946 /* DatosApoderadoDto.swift in Sources */,
+				5DF14C062BDB19DF00106946 /* SelectYearRealizado.swift in Sources */,
 				5DE1E1CB2B6B230B0064B3C8 /* CitaInformeViewModel.swift in Sources */,
+				5DF14C132BDB8EC800106946 /* HijoTrener.swift in Sources */,
+				5DF14C172BDB913100106946 /* DatosHijosViewModel.swift in Sources */,
 				5DFFD5162BD8443900130F0B /* MenuHome.swift in Sources */,
 				5DE1E1CF2B6B23590064B3C8 /* IncumplimientosView.swift in Sources */,
+				5DF14C022BDB14B100106946 /* CardPago.swift in Sources */,
 				5D42F4CE2BD99DE400281C92 /* TareaService.swift in Sources */,
 				5DE1E1E12B6B243D0064B3C8 /* PagosViewModel.swift in Sources */,
 				5DE1E1D92B6B23D60064B3C8 /* DiariaAcumuladaViewModel.swift in Sources */,
+				5DF14C152BDB8ED900106946 /* DatosApoderado.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

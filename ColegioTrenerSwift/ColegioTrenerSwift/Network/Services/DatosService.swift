@@ -16,7 +16,6 @@ class DatosService {
         completion: @escaping (EResult<[HijoTrener]>) -> Void
     ) {
         
-        
         guard let ctamae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
         guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
         
@@ -40,49 +39,120 @@ class DatosService {
                     completion(.failure(err))
                 }
             case .failure(let failure):
-                completion(.failure(failure.responseContentType))
+                completion(.failure(failure.localizedDescription))
+            }
+        }
+    }
+    
+    func getDatosPadres(
+        completion: @escaping (EResult<[DatosApoderado]>) -> Void
+    ) {
+        guard let ctamae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": token
+        ]
+        
+        AF.request(
+            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getDatospadres/\(ctamae)",
+            method: .get,
+            headers: headers
+        )
+        .responseDecodable(of: String.self) { res in
+            switch res.result {
+            case .success(let success):
+                let res: EResult<[DatosApoderadoDto]> = success.toData()
+                switch res {
+                case .success(let data):
+                    completion(.success(data.map{ $0.toDomain() }))
+                case .failure(let err):
+                    completion(.failure(err))
+                }
+            case .failure(let failure):
+                completion(.failure(failure.localizedDescription))
+            }
+        }
+    }
+    
+    func getDatosHijos(
+        completion: @escaping (EResult<[DatosHijo]>) -> Void
+    ) {
+        guard let ctamae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": token
+        ]
+        AF.request(
+            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getHijosFamilia/\(ctamae)",
+            method: .get,
+            headers: headers
+        )
+        .responseDecodable(of: String.self) { res in
+            switch res.result {
+            case .success(let success):
+                let res: EResult<[DatosHijoDto]> = success.toData()
+                switch res {
+                case .success(let data):
+                    completion(.success(data.map{ $0.toDomain() }))
+                case .failure(let err):
+                    completion(.failure(err))
+                }
+            case .failure(let failure):
+                completion(.failure(failure.localizedDescription))
+            }
+        }
+    }
+    
+    func insertDatoHijo(
+        nombre: String,
+        fechaNac: String,
+        completion: @escaping (EResult<Bool>) -> Void
+    ) {
+        
+        guard let ctamae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": token
+        ]
+        
+        let request = InsertDatoHijoRequest(
+            accion: "Crear",
+            ctamae: ctamae,
+            nombre: nombre,
+            fechaNac: fechaNac
+        )
+        
+        AF.request(
+            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/crudHijoFam",
+            method: .post,
+            parameters: request,
+            encoder: JSONParameterEncoder.default,
+            headers: headers
+        )
+        .responseDecodable(of: InsertDatoHijoResponse.self) { res in
+            switch res.result {
+            case .success(let _):
+                completion(.success(true))
+            case .failure(let failure):
+                completion(.failure(failure.localizedDescription))
             }
         }
     }
 }
 
-struct HijoTrenerDto: Codable {
-    let ctacli: String?
-    let apepat: String?
-    let apemat: String?
-    let nombre: String?
-    let alias: String?
-    let dirfot: String?
-    let dirfotapp: String?
-    let param1: String?
-    let distrito: String?
-    let anoaca: String?
-    
-    func toDomain() -> HijoTrener {
-        return HijoTrener(
-            ctacli: ctacli?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            apepat: apepat?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            apemat: apemat?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            nombre: nombre?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            alias: alias?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            dirfot: dirfot?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            dirfotapp: dirfotapp?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            param1: param1?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            distrito: distrito?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            anoaca: anoaca?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        )
-    }
+
+struct InsertDatoHijoRequest: Codable {
+    let accion: String
+    let ctamae: String
+    let nombre: String
+    let fechaNac: String
+}
+struct InsertDatoHijoResponse: Codable {
+    let crudHijoFamResult: String?
 }
 
-struct HijoTrener: Hashable {
-    let ctacli: String
-    let apepat: String
-    let apemat: String
-    let nombre: String
-    let alias: String
-    let dirfot: String
-    let dirfotapp: String
-    let param1: String
-    let distrito: String
-    let anoaca: String
-}
+
+

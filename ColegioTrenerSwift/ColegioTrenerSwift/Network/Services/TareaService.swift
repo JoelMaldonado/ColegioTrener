@@ -39,7 +39,7 @@ class TareaService {
                     completion(.failure(err))
                 }
             case .failure(let failure):
-                completion(.failure(failure.responseContentType))
+                completion(.failure(failure.localizedDescription))
             }
         }
     }

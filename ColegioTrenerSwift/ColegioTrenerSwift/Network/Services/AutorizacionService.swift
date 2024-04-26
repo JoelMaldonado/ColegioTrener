@@ -104,7 +104,7 @@ class AutorizacionService {
             case .success( _):
                 completion(.success(true))
             case .failure(let failure):
-                completion(.failure(failure.responseContentType))
+                completion(.failure(failure.localizedDescription))
             }
         }
     }

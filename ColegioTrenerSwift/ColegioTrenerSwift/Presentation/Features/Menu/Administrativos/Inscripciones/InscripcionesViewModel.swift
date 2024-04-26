@@ -5,13 +5,20 @@
 //  Created by Joel on 31/01/24.
 //
 
-import Foundation
+import SwiftUI
+import SVProgressHUD
 
 class InscripcionesViewModel : ObservableObject {
     @Published var hijoSelected: HijoTrener?
     @Published var listHijos: [HijoTrener] = []
+    
+    @Published var listInscripciones: [Inscripcion] = []
+    
+    @Published var alert = false
     @Published var isError = false
     @Published var error: String?
+    
+    
     
     init() {
         self.listarHijos()
@@ -23,9 +30,32 @@ class InscripcionesViewModel : ObservableObject {
             case .success(let data):
                 self.listHijos = data
                 self.hijoSelected = data.first
+                self.listarInscripciones()
             case .failure(let err):
                 self.error = err
                 self.isError = true
+            }
+        }
+    }
+    
+    func listarInscripciones() {
+        if let ctacli = hijoSelected?.ctacli {
+            SVProgressHUD.show()
+            InscripcionService.shared.getListIncripciones(ctacli: ctacli) { res in
+                switch res {
+                case .success(let data):
+                    self.listInscripciones = data
+                    SVProgressHUD.dismiss()
+                    if let first = data.first {
+                        if first.inscripcionbloqueo {
+                            self.alert = true
+                        }
+                    }
+                case .failure(let err):
+                    self.error = err
+                    self.isError = true
+                    SVProgressHUD.dismiss()
+                }
             }
         }
     }

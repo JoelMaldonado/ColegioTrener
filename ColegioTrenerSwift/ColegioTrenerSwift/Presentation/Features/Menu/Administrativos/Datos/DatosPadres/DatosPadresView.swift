@@ -7,125 +7,138 @@
 
 import SwiftUI
 
+enum TipoFamiliar {
+    case padre
+    case madre
+}
+
 struct DatosPadresView: View {
-    @State private var isSelected = false
     @State private var isShowingAlert = false
-    @StateObject private var viewModel = DatosPadresViewModel()
-    var listTipoDoc = ["DNI", "Pasaporte", "CE"]
+    @StateObject var viewModel = DatosPadresViewModel()
     var opciones = ["Opción 1", "Opción 2", "Opción 3"]
     
     
     var body: some View {
-        VStack(spacing: 12){
-            
-            Picker(selection: $isSelected, content: {
-                Text("Padre")
-                    .tag(false)
-                Text("Madre")
-                    .tag(true)
-            }, label: {}
-            )
-            .pickerStyle(.segmented)
-            
-            ScrollView(.vertical){
-                VStack(spacing: 12){
-                    CajaText(
-                        icon: "person",
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 12){
+                
+                SelectTipoFamiliar()
+                
+                HStack {
+                    CajaTexto(
+                        text: $viewModel.nombres,
                         label: "Nombres",
-                        text: $viewModel.nombres
+                        placeholder: "Ingresar nombres",
+                        isActive: false
                     )
                     
-                    CajaText(
-                        icon: "person",
+                    CajaTexto(
+                        text: $viewModel.apodo,
                         label: "Nombre que usa",
-                        text: $viewModel.apodo
+                        placeholder: "Ingresar nombre a usar",
+                        isActive: false
                     )
+                }
+                
+                HStack {
                     
-                    CajaText(
-                        icon: "mail",
+                    CajaSelect(
+                        text: $viewModel.tipoDoc,
+                        list: ["DNI", "Pasaporte", "CE"],
                         label: "Tipo de Documento",
-                        text: $viewModel.tipoDoc
+                        isActive: false
                     )
                     
-                    CajaText(
-                        icon: "person.text.rectangle",
+                    CajaTexto(
+                        text: $viewModel.doc,
                         label: "Número de Documento",
-                        text: $viewModel.doc
+                        placeholder: "Ingresar número de documento",
+                        isActive: false
                     )
                     
-                    CajaText(
-                        icon: "calendar",
+                }
+                HStack {
+                    
+                    CajaTexto(
+                        text: $viewModel.fechaNac,
                         label: "Fecha de Nacimiento",
-                        text: $viewModel.fechaNac
+                        placeholder: "Ingresar fecha de nacimiento"
                     )
                     
-                    CajaText(
-                        icon: "building",
+                    CajaTexto(
+                        text: $viewModel.distrito,
                         label: "Distrito",
-                        text: $viewModel.distrito
+                        placeholder: "Ingresar distrito"
                     )
+                }
+                
+                CajaTexto(
+                    text: $viewModel.direc,
+                    label: "Dirección",
+                    placeholder: "Ingresar dirección"
+                )
+                
+                HStack {
                     
-                    CajaText(
-                        icon: "mappin",
-                        label: "Dirección",
-                        text: $viewModel.direc
-                    )
-                    
-                    CajaText(
-                        icon: "candybarphone",
+                    CajaTexto(
+                        text: $viewModel.cel,
                         label: "Celular",
-                        text: $viewModel.cel
+                        placeholder: "Ingresar celular"
                     )
                     
-                    CajaText(
-                        icon: "phone",
+                    CajaTexto(
+                        text: $viewModel.telf,
                         label: "Teléfono",
-                        text: $viewModel.telf
+                        placeholder: "Ingresar teléfono"
                     )
-                    
-                    CajaText(
-                        icon: "building",
-                        label: "Empresa",
-                        text: $viewModel.empresa
-                    )
-                    
-                    CajaText(
-                        icon: "suitcase",
+                }
+                
+                CajaTexto(
+                    text: $viewModel.empresa,
+                    label: "Empresa",
+                    placeholder: "Ingresar empresa"
+                )
+                HStack {
+                    CajaTexto(
+                        text: $viewModel.cargoArea,
                         label: "Cargo",
-                        text: $viewModel.cargoArea
+                        placeholder: "Ingresar cargo"
                     )
                     
-                    CajaText(
-                        icon: "phone.and.waveform",
+                    CajaTexto(
+                        text: $viewModel.telfEmpresa,
                         label: "Teléfono de Empresa",
-                        text: $viewModel.telfEmpresa
+                        placeholder: "Ingresar teléfono de empresa"
                     )
-                    
-                    CajaText(
-                        icon: "envelope",
-                        label: "Correo",
-                        text: $viewModel.correo
-                    )
-                    
-                    Button {
-                        self.isShowingAlert = true
-                    } label: {
-                        Text("Grabar")
-                            .fontWeight(.heavy)
-                            .foregroundStyle(.white)
-                            .frame(height: 40)
-                            .padding(.horizontal)
-                            .background(.colorS1)
-                            .clipShape(.buttonBorder)
-                    }
+                }
+                
+                CajaTexto(
+                    text: $viewModel.correo,
+                    label: "Email* Si es mas de un correo, separarlo por un punto y coma",
+                    placeholder: "Ingresar correo",
+                    isActive: !viewModel.bloqueoEnabled
+                )
+                
+                Button {
+                    self.isShowingAlert = true
+                } label: {
+                    Text("Grabar")
+                        .fontWeight(.heavy)
+                        .foregroundStyle(.white)
+                        .frame(height: 40)
+                        .padding(.horizontal)
+                        .background(.colorS1)
+                        .clipShape(.buttonBorder)
                 }
             }
+            .padding(12)
         }
+        
         .alert(isPresented: $isShowingAlert) {
             Alert(title: Text("Usuario guardado"), message: Text("El usuario se ha guardado correctamente"), dismissButton: .default(Text("Aceptar")))
         }
-        .padding()
     }
+    
 }
 
 #Preview {
