@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import SwiftUIToast
 
 struct LoginView: View {
     
     @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
-        ZStack{
+        ZStack {
             VStack {
                 Image(.fondoLogin)
                     .ignoresSafeArea(.all)
@@ -46,7 +47,7 @@ struct LoginView: View {
                     isPass: true
                 )
                 
-                HStack{
+                HStack {
                     Button {
                         viewModel.recuerdame.toggle()
                     } label: {
@@ -63,9 +64,8 @@ struct LoginView: View {
                 }
                 .foregroundStyle(.colorP1)
                 
-                Button{
+                Button {
                     viewModel.login()
-                    
                 } label: {
                     Text("Ingresar")
                         .foregroundStyle(.white)
@@ -77,8 +77,12 @@ struct LoginView: View {
                 }
                 Spacer()
                 
+                
             }
             .padding()
+            
+            SUIToastViewContainer(stackOverlap: .stack)
+                .padding(.bottom, 50)
         }
         .alert(isPresented: $viewModel.isError) {
             Alert(

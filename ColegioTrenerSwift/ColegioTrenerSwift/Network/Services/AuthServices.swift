@@ -13,7 +13,7 @@ class AuthServices {
     static let shared = AuthServices()
     
     func getToken(
-        completion: @escaping (Result<String, Error>) -> Void
+        completion: @escaping (EResult<String>) -> Void
     ) {
         let request = LoginRequest.init(usuario: "ApiTrener", contrasenia: "TRm3k@B#TBaWXH8iWX4eL!")
         AF.request(
@@ -27,37 +27,60 @@ class AuthServices {
             case .success(let value):
                 if value.mensajeCodigo == 1 {
                     guard let token = value.mensajeResultado else {
-                        completion(.failure(NSError(domain: "Error al obtener token", code: 200)))
+                        completion(.failure("Error al obtener token"))
                         return
                     }
                     UserDefaults.standard.setValue(token, forKey: "token")
                     completion(.success(token))
                 }
             case .failure(let error):
-                completion(.failure(error))
+                completion(.failure(error.localizedDescription))
             }
         }
     }
     
     func login(
-        request: LoginRequest,
-        token: String,
-        completion: @escaping (DataResponse<LoginResponse, AFError>) -> Void
+        usuario: String,
+        clave: String,
+        completion: @escaping (EResult<LoginResponse>) -> Void
     ) {
-        
-        let headers: HTTPHeaders = [
-            "Authorization": token
-        ]
-        
-        AF.request(
-            "\(Constants.baseURL)/PublicacionSQL/TrenerWCF.svc/Trener/autenticarCredenciales",
-            method: .post,
-            parameters: request,
-            encoder: JSONParameterEncoder.default,
-            headers: headers
-        )
-        .responseDecodable(of: LoginResponse.self, completionHandler: completion)
-        
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                
+                let request = LoginRequest(
+                    usuario: usuario,
+                    contrasenia: clave
+                )
+                
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionSQL/TrenerWCF.svc/Trener/autenticarCredenciales",
+                    method: .post,
+                    parameters: request,
+                    encoder: JSONParameterEncoder.default,
+                    headers: headers
+                )
+                .responseDecodable(of: LoginResponse.self) { res in
+                    switch res.result {
+                    case .success(let value):
+                        if value.mensajeCodigo == 1 {
+                            UserDefaults.standard.set(value.familia, forKey: Keys.loginFamilia)
+                            UserDefaults.standard.set(value.linkLoginIntranet, forKey: Keys.loginIntranet)
+                            completion(.success(value))
+                        } else {
+                            completion(.failure(value.mensajeResultado))
+                        }
+                    case .failure(let failure):
+                        completion(.failure(failure.localizedDescription))
+                    }
+                }
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        }
     }
 }
 

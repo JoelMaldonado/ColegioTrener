@@ -17,32 +17,37 @@ class PagoService {
         estado: String,
         completion: @escaping (EResult<[Pago]>) -> Void
     ) {
-        
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
-        
-        let headers: HTTPHeaders = [
-            "Authorization": token
-        ]
-        
-        let anio = Date.now.format(pattern: "yyyy")
-        
-        AF.request(
-            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getDeudasxAlumno/\(ctacli),\(anio),\(estado)",
-            method: .get,
-            headers: headers
-        )
-        .responseDecodable(of: String.self) { res in
-            switch res.result {
-            case .success(let success):
-                let res: EResult<[PagoDto]> = success.toData()
-                switch res {
-                case .success(let data):
-                    completion(.success(data.map{ $0.toDomain() }))
-                case .failure(let err):
-                    completion(.failure(err))
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
+                
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                
+                let anio = Date.now.format(pattern: "yyyy")
+                
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getDeudasxAlumno/\(ctacli),\(anio),\(estado)",
+                    method: .get,
+                    headers: headers
+                )
+                .responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let success):
+                        let res: EResult<[PagoDto]> = success.toData()
+                        switch res {
+                        case .success(let data):
+                            completion(.success(data.map{ $0.toDomain() }))
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let failure):
+                        completion(.failure(failure.localizedDescription))
+                    }
                 }
-            case .failure(let failure):
-                completion(.failure(failure.localizedDescription))
+            case .failure(let err):
+                completion(.failure(err))
             }
         }
         
@@ -53,33 +58,39 @@ class PagoService {
         anio: String,
         completion: @escaping (EResult<[Pago]>) -> Void
     ) {
-        
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
-        
-        let headers: HTTPHeaders = [
-            "Authorization": token
-        ]
-        
-        AF.request(
-            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getPagosxAlumno/\(ctacli),\(anio)",
-            method: .get,
-            headers: headers
-        )
-        .responseDecodable(of: String.self) { res in
-            switch res.result {
-            case .success(let success):
-                let res: EResult<[PagoDto]> = success.toData()
-                switch res {
-                case .success(let data):
-                    completion(.success(data.map{ $0.toDomain() }))
-                case .failure(let err):
-                    completion(.failure(err))
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
+                
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getPagosxAlumno/\(ctacli),\(anio)",
+                    method: .get,
+                    headers: headers
+                )
+                .responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let success):
+                        let res: EResult<[PagoDto]> = success.toData()
+                        switch res {
+                        case .success(let data):
+                            completion(.success(data.map{ $0.toDomain() }))
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let failure):
+                        completion(.failure(failure.localizedDescription))
+                    }
                 }
-            case .failure(let failure):
-                completion(.failure(failure.localizedDescription))
+            case .failure(let err):
+                completion(.failure(err))
             }
         }
     }
+    
 }
 
 

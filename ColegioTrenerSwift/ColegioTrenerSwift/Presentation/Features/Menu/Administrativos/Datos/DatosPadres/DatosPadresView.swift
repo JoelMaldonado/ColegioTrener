@@ -15,8 +15,6 @@ enum TipoFamiliar {
 struct DatosPadresView: View {
     @State private var isShowingAlert = false
     @StateObject var viewModel = DatosPadresViewModel()
-    var opciones = ["Opción 1", "Opción 2", "Opción 3"]
-    
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -133,7 +131,6 @@ struct DatosPadresView: View {
             }
             .padding(12)
         }
-        
         .alert(isPresented: $isShowingAlert) {
             Alert(title: Text("Usuario guardado"), message: Text("El usuario se ha guardado correctamente"), dismissButton: .default(Text("Aceptar")))
         }

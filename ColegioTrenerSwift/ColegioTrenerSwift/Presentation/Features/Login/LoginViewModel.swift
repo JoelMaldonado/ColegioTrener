@@ -7,6 +7,7 @@
 
 import Foundation
 import SVProgressHUD
+import SwiftUIToast
 
 class LoginViewModel : ObservableObject {
     
@@ -29,44 +30,49 @@ class LoginViewModel : ObservableObject {
         }
         self.recuerdame = UserDefaults.standard.bool(forKey: Keys.loginRecuerdame)
     }
-
+    
     
     func login(){
+        
+        if self.usuario.isEmpty {
+            SUIToast.show(messageItem: .init(
+                message: "Completar usuario",
+                bgColor: .colorS1,
+                messageColor: .white
+            ))
+            return
+        }
+        
+        if self.clave.isEmpty {
+            SUIToast.show(messageItem: .init(
+                message: "Completar contraseña",
+                bgColor: .colorS1,
+                messageColor: .white
+            ))
+            return
+        }
+        
         SVProgressHUD.show()
-        let request = LoginRequest(usuario: usuario, contrasenia: clave)
-        AuthServices.shared.getToken { res in
+        AuthServices.shared.login(
+            usuario: self.usuario,
+            clave: self.clave
+        ){ res in
             switch res {
-            case .success(let token):
-                print(token)
-                AuthServices.shared.login(request: request, token: token){ res in
-                    SVProgressHUD.dismiss()
-                    switch res.result {
-                    case .success(let value):
-                        if value.mensajeCodigo == 1 {
-                            self.toMenu = true
-                            UserDefaults.standard.set(value.familia, forKey: Keys.loginFamilia)
-                            UserDefaults.standard.set(value.linkLoginIntranet, forKey: Keys.loginIntranet)
-                            if self.recuerdame {
-                                UserDefaults.standard.set(self.usuario, forKey: Keys.loginUser)
-                                UserDefaults.standard.set(self.clave, forKey: Keys.loginClave)
-                            } else {
-                                UserDefaults.standard.removeObject(forKey: Keys.loginUser)
-                                UserDefaults.standard.removeObject(forKey: Keys.loginClave)
-                            }
-                            UserDefaults.standard.setValue(self.recuerdame, forKey: Keys.loginRecuerdame)
-                        } else {
-                            self.error = value.mensajeResultado
-                            self.isError = true
-                        }
-                    case .failure(let error):
-                        self.error = error.localizedDescription
-                        self.isError = true
-                    }
+            case .success(let value):
+                self.toMenu = true
+                if self.recuerdame {
+                    UserDefaults.standard.set(self.usuario, forKey: Keys.loginUser)
+                    UserDefaults.standard.set(self.clave, forKey: Keys.loginClave)
+                } else {
+                    UserDefaults.standard.removeObject(forKey: Keys.loginUser)
+                    UserDefaults.standard.removeObject(forKey: Keys.loginClave)
                 }
-                
-            case .failure(let error):
-                self.error = error.localizedDescription
+                UserDefaults.standard.setValue(self.recuerdame, forKey: Keys.loginRecuerdame)
+                SVProgressHUD.dismiss()
+            case .failure(let err):
+                self.error = err
                 self.isError = true
+                SVProgressHUD.dismiss()
             }
         }
         

@@ -12,12 +12,13 @@ struct CajaSelect: View {
     var list: [String]
     var label: String
     var isActive: Bool = true
+    var fontLabel: Font = .footnote
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 4) {
             Text(self.label)
-                .font(.footnote)
+                .font(self.fontLabel)
                 .bold()
                 .foregroundStyle(.colorTexto)
             HStack {

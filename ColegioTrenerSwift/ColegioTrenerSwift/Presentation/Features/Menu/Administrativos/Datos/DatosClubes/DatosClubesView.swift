@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DatosClubesView: View {
-    @StateObject private var viewModel = DatosClubesViewModel()
+    @StateObject var viewModel = DatosClubesViewModel()
     var body: some View {
         VStack {
             
@@ -16,6 +16,7 @@ struct DatosClubesView: View {
                 Text("*Clubes a los que pertenece")
                 Spacer()
                 Button {
+                    viewModel.agregarClub = true
                 } label: {
                     Text("Agregar")
                         .padding(.vertical, 5)
@@ -27,12 +28,17 @@ struct DatosClubesView: View {
             .foregroundStyle(.white)
             .background(.colorT1, in: .rect(cornerRadius: 16))
             
-            ItemClub()
-            ItemClub()
-            ItemClub()
-            ItemClub()
+            ForEach(viewModel.list, id: \.self) { item in
+                ItemClub(item)
+            }
             
             Spacer()
+        }
+        .alert(isPresented: $viewModel.isError) {
+            Alert(title: Text("Error"), message: Text(viewModel.error ?? "Sin definir"))
+        }
+        .sheet(isPresented: $viewModel.agregarClub) {
+            SheetAgregarClub()
         }
         .padding()
     }

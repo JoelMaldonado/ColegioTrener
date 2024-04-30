@@ -18,39 +18,45 @@ class InformeService {
         completion: @escaping (EResult<TrimestreTab>) -> Void
     ) {
         
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
-        
-        let headers: HTTPHeaders = [
-            "Authorization": token
-        ]
-        
-        AF.request(
-            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getTrimestreActual",
-            method: .get,
-            headers: headers
-        ).responseDecodable(of: String.self) { res in
-            switch res.result {
-            case .success(let value):
-                let data: EResult<[TrimestreDto]> = value.toData()
-                switch data {
-                case .success(let t):
-                    let trim = t.first?.trimestre
-                    switch trim {
-                    case "0":
-                        completion(.success(.Uno))
-                    case "1":
-                        completion(.success(.Dos))
-                    case "3":
-                        completion(.success(.Tres))
-                    default:
-                        completion(.failure("Error"))
-                    }
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
                 
-                case .failure(let err):
-                    completion(.failure(err))
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getTrimestreActual",
+                    method: .get,
+                    headers: headers
+                ).responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let value):
+                        let data: EResult<[TrimestreDto]> = value.toData()
+                        switch data {
+                        case .success(let t):
+                            let trim = t.first?.trimestre
+                            switch trim {
+                            case "0":
+                                completion(.success(.Uno))
+                            case "1":
+                                completion(.success(.Dos))
+                            case "3":
+                                completion(.success(.Tres))
+                            default:
+                                completion(.failure("Error"))
+                            }
+                            
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let err):
+                        completion(.failure(err.localizedDescription))
+                    }
                 }
             case .failure(let err):
-                completion(.failure(err.localizedDescription))
+                completion(.failure(err))
             }
         }
     }
@@ -62,35 +68,40 @@ class InformeService {
     ) {
         
         guard let ctmae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
         
-        
-        let headers: HTTPHeaders = [
-            "Authorization": token
-        ]
-        
-        AF.request(
-            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getCitasEntregaInformes/\(ctmae),\(year),\(trimestre)",
-            method: .get,
-            headers: headers
-        )
-        .responseDecodable(of: String.self) {res in
-            switch res.result {
-            case .success(let value):
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
                 
-                let res: EResult<[CitaInformeDto]> = value.toData()
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
                 
-                switch res {
-                case .success(let t):
-                    completion(.success(t.map{ $0.toDomain() } ))
-                case .failure(let err):
-                    completion(.failure(err))
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getCitasEntregaInformes/\(ctmae),\(year),\(trimestre)",
+                    method: .get,
+                    headers: headers
+                )
+                .responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let value):
+                        
+                        let res: EResult<[CitaInformeDto]> = value.toData()
+                        
+                        switch res {
+                        case .success(let t):
+                            completion(.success(t.map{ $0.toDomain() } ))
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let err):
+                        completion(.failure(err.localizedDescription))
+                    }
                 }
             case .failure(let err):
-                completion(.failure(err.localizedDescription))
+                completion(.failure(err))
             }
         }
-        
         
     }
     

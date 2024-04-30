@@ -65,7 +65,7 @@ fun DialogAddClub(
                 .background(ColorFondo)
         ) {
             Text(
-                text = "Agregar Hijo",
+                text = "Agregar Club",
                 color = Color.White,
                 modifier = Modifier
                     .fillMaxWidth()

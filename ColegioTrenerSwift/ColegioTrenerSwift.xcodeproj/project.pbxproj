@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1E5BA22BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E5BA12BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift */; };
+		5D1E5BAD2BE0382D00D3A3D6 /* SwiftUIToast in Frameworks */ = {isa = PBXBuildFile; productRef = 5D1E5BAC2BE0382D00D3A3D6 /* SwiftUIToast */; };
 		5D3320DA2BD96522008C2588 /* SelectEstado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320D92BD96522008C2588 /* SelectEstado.swift */; };
 		5D3320DC2BD966EC008C2588 /* CardAutorizacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320DB2BD966EC008C2588 /* CardAutorizacion.swift */; };
 		5D3320DE2BD96837008C2588 /* SelectAutorizacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320DD2BD96837008C2588 /* SelectAutorizacion.swift */; };
@@ -17,7 +19,6 @@
 		5D3320E82BD97B3D008C2588 /* EstadoAutorizacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320E72BD97B3D008C2588 /* EstadoAutorizacion.swift */; };
 		5D3320ED2BD9897F008C2588 /* DatosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320EC2BD9897F008C2588 /* DatosService.swift */; };
 		5D3980C62B965FC800634A97 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3980C52B965FC800634A97 /* AuthServices.swift */; };
-		5D3980C82B96638B00634A97 /* CajaText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3980C72B96638B00634A97 /* CajaText.swift */; };
 		5D4219162B6C03070025BCD9 /* NotificacionesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4219152B6C03070025BCD9 /* NotificacionesView.swift */; };
 		5D4219182B6C030F0025BCD9 /* NotificacionesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4219172B6C030F0025BCD9 /* NotificacionesViewModel.swift */; };
 		5D42195A2B6D41EC0025BCD9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4219592B6D41EC0025BCD9 /* Alamofire */; };
@@ -40,6 +41,13 @@
 		5D89D4D62B6D4A9F00DC586C /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 5D89D4D52B6D4A9F00DC586C /* SVProgressHUD */; };
 		5D8F66D22B96961E003A19D4 /* ItemClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F66D12B96961E003A19D4 /* ItemClub.swift */; };
 		5D8F66D52B9698FE003A19D4 /* ItemDatoHijo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F66D42B9698FE003A19D4 /* ItemDatoHijo.swift */; };
+		5DBB72B42BE03E54004BC530 /* DatosClubDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB72B32BE03E54004BC530 /* DatosClubDto.swift */; };
+		5DBB72B62BE03ED3004BC530 /* DatosClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB72B52BE03ED3004BC530 /* DatosClub.swift */; };
+		5DBB72B82BE155A6004BC530 /* SheetAgregarClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB72B72BE155A6004BC530 /* SheetAgregarClub.swift */; };
+		5DBB72BA2BE17FCF004BC530 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB72B92BE17FCF004BC530 /* TokenView.swift */; };
+		5DBB72BC2BE17FEC004BC530 /* TokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB72BB2BE17FEC004BC530 /* TokenViewModel.swift */; };
+		5DBB72BF2BE182A4004BC530 /* TokenUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB72BE2BE182A4004BC530 /* TokenUsecase.swift */; };
+		5DBB72C22BE182FA004BC530 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 5DBB72C12BE182FA004BC530 /* JWTDecode */; };
 		5DE1E1AC2B6AE9710064B3C8 /* DatosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1AB2B6AE9710064B3C8 /* DatosView.swift */; };
 		5DE1E1B22B6AED640064B3C8 /* DatosPadresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1B12B6AED640064B3C8 /* DatosPadresView.swift */; };
 		5DE1E1B42B6AED7E0064B3C8 /* DatosApoderadoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1E1B32B6AED7E0064B3C8 /* DatosApoderadoView.swift */; };
@@ -96,6 +104,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D1E5BA12BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetAgregrarHijo.swift; sourceTree = "<group>"; };
 		5D3320D92BD96522008C2588 /* SelectEstado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEstado.swift; sourceTree = "<group>"; };
 		5D3320DB2BD966EC008C2588 /* CardAutorizacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAutorizacion.swift; sourceTree = "<group>"; };
 		5D3320DD2BD96837008C2588 /* SelectAutorizacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAutorizacion.swift; sourceTree = "<group>"; };
@@ -106,7 +115,6 @@
 		5D3320E72BD97B3D008C2588 /* EstadoAutorizacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstadoAutorizacion.swift; sourceTree = "<group>"; };
 		5D3320EC2BD9897F008C2588 /* DatosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosService.swift; sourceTree = "<group>"; };
 		5D3980C52B965FC800634A97 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
-		5D3980C72B96638B00634A97 /* CajaText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CajaText.swift; sourceTree = "<group>"; };
 		5D4219152B6C03070025BCD9 /* NotificacionesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificacionesView.swift; sourceTree = "<group>"; };
 		5D4219172B6C030F0025BCD9 /* NotificacionesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificacionesViewModel.swift; sourceTree = "<group>"; };
 		5D42195F2B6D43490025BCD9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -129,6 +137,12 @@
 		5D7AC6C02BC61CED00400B08 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		5D8F66D12B96961E003A19D4 /* ItemClub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemClub.swift; sourceTree = "<group>"; };
 		5D8F66D42B9698FE003A19D4 /* ItemDatoHijo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDatoHijo.swift; sourceTree = "<group>"; };
+		5DBB72B32BE03E54004BC530 /* DatosClubDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosClubDto.swift; sourceTree = "<group>"; };
+		5DBB72B52BE03ED3004BC530 /* DatosClub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosClub.swift; sourceTree = "<group>"; };
+		5DBB72B72BE155A6004BC530 /* SheetAgregarClub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetAgregarClub.swift; sourceTree = "<group>"; };
+		5DBB72B92BE17FCF004BC530 /* TokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
+		5DBB72BB2BE17FEC004BC530 /* TokenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenViewModel.swift; sourceTree = "<group>"; };
+		5DBB72BE2BE182A4004BC530 /* TokenUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUsecase.swift; sourceTree = "<group>"; };
 		5DE1E1AB2B6AE9710064B3C8 /* DatosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosView.swift; sourceTree = "<group>"; };
 		5DE1E1B12B6AED640064B3C8 /* DatosPadresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosPadresView.swift; sourceTree = "<group>"; };
 		5DE1E1B32B6AED7E0064B3C8 /* DatosApoderadoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosApoderadoView.swift; sourceTree = "<group>"; };
@@ -190,6 +204,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D89D4D62B6D4A9F00DC586C /* SVProgressHUD in Frameworks */,
+				5D1E5BAD2BE0382D00D3A3D6 /* SwiftUIToast in Frameworks */,
+				5DBB72C22BE182FA004BC530 /* JWTDecode in Frameworks */,
 				5D42195A2B6D41EC0025BCD9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +319,8 @@
 				5D5A3D162B69759800F88156 /* Assets.xcassets */,
 				5D5A3D182B69759800F88156 /* ColegioTrenerSwift.entitlements */,
 				5D5A3D192B69759800F88156 /* Preview Content */,
+				5DBB72B92BE17FCF004BC530 /* TokenView.swift */,
+				5DBB72BB2BE17FEC004BC530 /* TokenViewModel.swift */,
 			);
 			path = ColegioTrenerSwift;
 			sourceTree = "<group>";
@@ -372,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				5D8F66D12B96961E003A19D4 /* ItemClub.swift */,
+				5DBB72B72BE155A6004BC530 /* SheetAgregarClub.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -380,8 +399,17 @@
 			isa = PBXGroup;
 			children = (
 				5D8F66D42B9698FE003A19D4 /* ItemDatoHijo.swift */,
+				5D1E5BA12BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5DBB72BD2BE1829B004BC530 /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				5DBB72BE2BE182A4004BC530 /* TokenUsecase.swift */,
+			);
+			path = Usecase;
 			sourceTree = "<group>";
 		};
 		5DE1E1A92B6AE9600064B3C8 /* Administrativos */ = {
@@ -527,7 +555,6 @@
 			children = (
 				5DE1E1E42B6B26A40064B3C8 /* TopView.swift */,
 				5DE1E1F02B6B35060064B3C8 /* SelectHijo.swift */,
-				5D3980C72B96638B00634A97 /* CajaText.swift */,
 				5D42F4DD2BD9C1B600281C92 /* CustomCalendar.swift */,
 				5DF14C072BDB669200106946 /* CajaTexto.swift */,
 				5DF14C0C2BDB815A00106946 /* CajaSelect.swift */,
@@ -559,6 +586,7 @@
 				5DF14C102BDB8EAD00106946 /* HijoTrenerDto.swift */,
 				5DF14C0E2BDB8E8B00106946 /* DatosApoderadoDto.swift */,
 				5DF14C182BDB92BC00106946 /* DatosHijoDto.swift */,
+				5DBB72B32BE03E54004BC530 /* DatosClubDto.swift */,
 			);
 			path = Dto;
 			sourceTree = "<group>";
@@ -604,6 +632,7 @@
 		5DFFD51C2BD869FC00130F0B /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				5DBB72BD2BE1829B004BC530 /* Usecase */,
 				5DFFD51D2BD86A0300130F0B /* Model */,
 			);
 			path = Domain;
@@ -621,6 +650,7 @@
 				5DF14C122BDB8EC800106946 /* HijoTrener.swift */,
 				5DF14C142BDB8ED900106946 /* DatosApoderado.swift */,
 				5DF14C1A2BDB932900106946 /* DatosHijo.swift */,
+				5DBB72B52BE03ED3004BC530 /* DatosClub.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -644,6 +674,8 @@
 			packageProductDependencies = (
 				5D4219592B6D41EC0025BCD9 /* Alamofire */,
 				5D89D4D52B6D4A9F00DC586C /* SVProgressHUD */,
+				5D1E5BAC2BE0382D00D3A3D6 /* SwiftUIToast */,
+				5DBB72C12BE182FA004BC530 /* JWTDecode */,
 			);
 			productName = ColegioTrenerSwift;
 			productReference = 5D5A3D0F2B69759600F88156 /* ColegioTrenerSwift.app */;
@@ -676,6 +708,8 @@
 			packageReferences = (
 				5D4219582B6D41EC0025BCD9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5D89D4D42B6D4A9F00DC586C /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
+				5D1E5BAB2BE0382D00D3A3D6 /* XCRemoteSwiftPackageReference "SwiftUI-Toast" */,
+				5DBB72C02BE182FA004BC530 /* XCRemoteSwiftPackageReference "JWTDecode" */,
 			);
 			productRefGroup = 5D5A3D102B69759600F88156 /* Products */;
 			projectDirPath = "";
@@ -708,12 +742,13 @@
 				5DF14C0D2BDB815A00106946 /* CajaSelect.swift in Sources */,
 				5DF14C042BDB199500106946 /* CardPagoRealizado.swift in Sources */,
 				5DE1E1EA2B6B297C0064B3C8 /* PagosRealizados.swift in Sources */,
+				5DBB72BC2BE17FEC004BC530 /* TokenViewModel.swift in Sources */,
 				5DF14BF62BDB01C900106946 /* PagoService.swift in Sources */,
 				5D5A3D2A2B6981C000F88156 /* LoginViewModel.swift in Sources */,
 				5D3320E82BD97B3D008C2588 /* EstadoAutorizacion.swift in Sources */,
 				5DE1E1DD2B6B24110064B3C8 /* InscripcionesViewModel.swift in Sources */,
 				5D3320DC2BD966EC008C2588 /* CardAutorizacion.swift in Sources */,
-				5D3980C82B96638B00634A97 /* CajaText.swift in Sources */,
+				5DBB72B82BE155A6004BC530 /* SheetAgregarClub.swift in Sources */,
 				5D5A3D252B6975C600F88156 /* LoginView.swift in Sources */,
 				5DE1E1D12B6B23620064B3C8 /* PendientesView.swift in Sources */,
 				5DF14BF22BDAF7C800106946 /* InscripcionService.swift in Sources */,
@@ -728,22 +763,27 @@
 				5D42F4D32BD9A60400281C92 /* CardIncumplimiento.swift in Sources */,
 				5D42F4E32BDAC67900281C92 /* CardDiariaAcumulado.swift in Sources */,
 				5DFFD5142BD832C600130F0B /* CajaLogin.swift in Sources */,
+				5DBB72B42BE03E54004BC530 /* DatosClubDto.swift in Sources */,
 				5DF14BFE2BDB0A8400106946 /* SinInfo.swift in Sources */,
 				5DE1E1EC2B6B29840064B3C8 /* PagosVencidos.swift in Sources */,
 				5DE1E1C72B6B22B60064B3C8 /* AutorizacionesViewModel.swift in Sources */,
 				5DE1E1B62B6AED860064B3C8 /* DatosHijosView.swift in Sources */,
 				5D8F66D52B9698FE003A19D4 /* ItemDatoHijo.swift in Sources */,
 				5DE1E1C92B6B23030064B3C8 /* CitaInformeView.swift in Sources */,
+				5D1E5BA22BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift in Sources */,
 				5DE1E1BA2B6AEF880064B3C8 /* DatosPadresViewModel.swift in Sources */,
 				5DE1E1BC2B6AF0670064B3C8 /* DatosClubesViewModel.swift in Sources */,
 				5DE1E1B42B6AED7E0064B3C8 /* DatosApoderadoView.swift in Sources */,
 				5DE1E1C52B6B22A30064B3C8 /* AutorizacionesView.swift in Sources */,
 				5D3320E02BD969CD008C2588 /* AutorizacionService.swift in Sources */,
+				5DBB72BF2BE182A4004BC530 /* TokenUsecase.swift in Sources */,
 				5DF14BF02BDAF73000106946 /* ItemCardInscripcion.swift in Sources */,
 				5DE1E1D72B6B23CF0064B3C8 /* DiariaAcumuladaView.swift in Sources */,
 				5D5A3D282B6981B500F88156 /* MenuView.swift in Sources */,
 				5DFFD5192BD84E5B00130F0B /* PerfilView.swift in Sources */,
+				5DBB72B62BE03ED3004BC530 /* DatosClub.swift in Sources */,
 				5DE1E1F12B6B35060064B3C8 /* SelectHijo.swift in Sources */,
+				5DBB72BA2BE17FCF004BC530 /* TokenView.swift in Sources */,
 				5D8F66D22B96961E003A19D4 /* ItemClub.swift in Sources */,
 				5D4219182B6C030F0025BCD9 /* NotificacionesViewModel.swift in Sources */,
 				5DE1E1DB2B6B240A0064B3C8 /* InscripcionesView.swift in Sources */,
@@ -1007,6 +1047,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5D1E5BAB2BE0382D00D3A3D6 /* XCRemoteSwiftPackageReference "SwiftUI-Toast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VansonLeung/SwiftUI-Toast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		5D4219582B6D41EC0025BCD9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1023,9 +1071,22 @@
 				minimumVersion = 2.3.1;
 			};
 		};
+		5DBB72C02BE182FA004BC530 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5D1E5BAC2BE0382D00D3A3D6 /* SwiftUIToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D1E5BAB2BE0382D00D3A3D6 /* XCRemoteSwiftPackageReference "SwiftUI-Toast" */;
+			productName = SwiftUIToast;
+		};
 		5D4219592B6D41EC0025BCD9 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5D4219582B6D41EC0025BCD9 /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -1035,6 +1096,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D89D4D42B6D4A9F00DC586C /* XCRemoteSwiftPackageReference "SVProgressHUD" */;
 			productName = SVProgressHUD;
+		};
+		5DBB72C12BE182FA004BC530 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DBB72C02BE182FA004BC530 /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

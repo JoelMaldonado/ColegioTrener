@@ -17,29 +17,35 @@ class InscripcionService {
         completion: @escaping (EResult<[Inscripcion]>) -> Void
     ) {
         
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return completion(.failure("Sin Token")) }
-        
-        let headers: HTTPHeaders = [
-            "Authorization": token
-        ]
-        
-        AF.request(
-            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getInscripcionesAlumno/\(ctacli)",
-            method: .get,
-            headers: headers
-        )
-        .responseDecodable(of: String.self) { res in
-            switch res.result {
-            case .success(let success):
-                let res: EResult<[InscripcionDto]> = success.toData()
-                switch res {
-                case .success(let data):
-                    completion(.success(data.map{ $0.toDomain() }))
-                case .failure(let err):
-                    completion(.failure(err))
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
+                
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getInscripcionesAlumno/\(ctacli)",
+                    method: .get,
+                    headers: headers
+                )
+                .responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let success):
+                        let res: EResult<[InscripcionDto]> = success.toData()
+                        switch res {
+                        case .success(let data):
+                            completion(.success(data.map{ $0.toDomain() }))
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let failure):
+                        completion(.failure(failure.localizedDescription))
+                    }
                 }
-            case .failure(let failure):
-                completion(.failure(failure.localizedDescription))
+            case .failure(let err):
+                completion(.failure(err))
             }
         }
     }

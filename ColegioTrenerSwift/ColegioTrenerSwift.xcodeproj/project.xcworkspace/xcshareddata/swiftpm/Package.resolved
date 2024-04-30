@@ -1,5 +1,5 @@
 {
-  "originHash" : "1ca001e3b0ebb302bc442d2eabf6b70db15cc682c70e303069ef6866c44f87bb",
+  "originHash" : "182589abff963ceacb3431801395635759bb33423b427f55b4fa27500f101b2a",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -11,12 +11,30 @@
       }
     },
     {
+      "identity" : "jwtdecode.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/auth0/JWTDecode.swift",
+      "state" : {
+        "revision" : "58af7278797871e460d79496621b3e5366b865b2",
+        "version" : "3.1.0"
+      }
+    },
+    {
       "identity" : "svprogresshud",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SVProgressHUD/SVProgressHUD.git",
       "state" : {
         "revision" : "c33f7c775ba7feea6047a1fc3257f2e5863b44f7",
         "version" : "2.3.1"
+      }
+    },
+    {
+      "identity" : "swiftui-toast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VansonLeung/SwiftUI-Toast.git",
+      "state" : {
+        "revision" : "5756cf2ea80453e8338fdbf7cd8cf326c94d822e",
+        "version" : "1.0.0"
       }
     }
   ],
