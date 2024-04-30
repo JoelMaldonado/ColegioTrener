@@ -39,10 +39,10 @@ interface ApiService {
         @Path("ctmae") ctmae: String
     ): Response<String>
 
-    @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getHijosActivosapp/{ctli}")
+    @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getHijosActivosapp/{ctamae}")
     suspend fun getHijosMatriculados(
         @Header("Authorization") token: String,
-        @Path("ctli") ctli: String
+        @Path("ctamae") ctamae: String
     ): Response<String>
 
     @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getClubesFamilia/{ctli}")

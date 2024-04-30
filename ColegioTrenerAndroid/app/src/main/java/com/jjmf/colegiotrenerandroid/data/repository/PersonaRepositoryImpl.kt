@@ -26,7 +26,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun datos(): Result<List<DataPersona>> {
         return try {
-            val call = api.data(token = token(), ctli = prefs.getUsuario().toString())
+            val call = api.data(token = token(), ctli = prefs.getUsuario())
             if (call.isSuccessful) {
                 val list = convertJson<Array<DataPersonaDto>>(call.body()).map { it.toDomain() }
                 Result.Correcto(list)
@@ -40,7 +40,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun getDataHijos(): Result<List<DataHijo>> {
         return try {
-            val call = api.getDataHijos(token = token(), ctmae = prefs.getUsuario().toString())
+            val call = api.getDataHijos(token = token(), ctmae = prefs.getUsuario())
             if (call.isSuccessful) {
                 val list = convertJson<Array<DataHijoDto>>(call.body())
                 return Result.Correcto(list.map { it.toDomain() })
@@ -54,7 +54,8 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun getHijos(): Result<List<Hijo>> {
         return try {
-            val call = api.getHijosMatriculados(token = token(), ctli = "00002070")
+            val ctamae = prefs.getUsuario()
+            val call = api.getHijosMatriculados(token = token(), ctamae = ctamae)
             if (call.isSuccessful) {
                 val list = convertJson<Array<HijoDto>>(call.body())
                 return Result.Correcto(list.map { it.toDomain() })
@@ -68,7 +69,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun getClubes(): Result<List<DataClub>> {
         return try {
-            val call = api.getDataClubes(token(), ctli = prefs.getUsuario().toString())
+            val call = api.getDataClubes(token(), ctli = prefs.getUsuario())
             if (call.isSuccessful) {
                 val list = convertJson<Array<DataClubDto>>(call.body())
                 return Result.Correcto(list.map { it.toDomain() })
