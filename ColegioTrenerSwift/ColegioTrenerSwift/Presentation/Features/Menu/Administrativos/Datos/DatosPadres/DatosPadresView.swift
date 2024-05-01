@@ -117,6 +117,17 @@ struct DatosPadresView: View {
                     isActive: !viewModel.bloqueoEnabled
                 )
                 
+                HStack {
+                    Image(systemName: "envelope.fill")
+                        .foregroundStyle(.colorP1)
+                    Text("Solicitud cambio nombres/correo")
+                        .foregroundStyle(.white)
+                }
+                .font(.callout)
+                .fontWeight(.bold)
+                .padding()
+                .background(.colorT1, in: .rect(cornerRadius: 12))
+                
                 Button {
                     self.isShowingAlert = true
                 } label: {
@@ -132,7 +143,17 @@ struct DatosPadresView: View {
             .padding(12)
         }
         .alert(isPresented: $isShowingAlert) {
-            Alert(title: Text("Usuario guardado"), message: Text("El usuario se ha guardado correctamente"), dismissButton: .default(Text("Aceptar")))
+            Alert(
+                title: Text("Usuario guardado"),
+                message: Text("El usuario se ha guardado correctamente"),
+                dismissButton: .default(Text("Aceptar"))
+            )
+        }
+        .alert(isPresented: $viewModel.isError) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.error ?? "Sin definir")
+            )
         }
     }
     

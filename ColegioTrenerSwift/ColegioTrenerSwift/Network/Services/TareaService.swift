@@ -12,6 +12,83 @@ class TareaService {
     
     static let shared = TareaService()
     
+    func getTareasByMonth(
+        ctacli: String,
+        anio: String,
+        mes: String,
+        completion: @escaping (EResult<[FechaTarea]>) -> Void
+    ) {
+        
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
+                
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getTareasByMonth/\(ctacli),\(anio),\(mes)",
+                    method: .get,
+                    headers: headers
+                )
+                .responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let success):
+                        let res: EResult<[FechaTareaDto]> = success.toData()
+                        switch res {
+                        case .success(let data):
+                            completion(.success(data.map { $0.toDomain() } ))
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let failure):
+                        completion(.failure(failure.localizedDescription))
+                    }
+                }
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        }
+    }
+    
+    func getTareasByDay(
+        ctacli: String,
+        anio: String,
+        mes: String,
+        dia: String,
+        completion: @escaping (EResult<[InfoTareaPendiente]>) -> Void
+    ) {
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getTareasByDia/\(ctacli),\(anio),\(mes),\(dia)",
+                    method: .get,
+                    headers: headers
+                )
+                .responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let success):
+                        let res: EResult<[InfoTareaPendienteDto]> = success.toData()
+                        switch res {
+                        case .success(let data):
+                            completion(.success(data.map { $0.toDomain() } ))
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let err):
+                        completion(.failure(err.localizedDescription))
+                    }
+                }
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        }
+    }
+    
     func listarIncumplimientos(
         ctacli: String,
         completion: @escaping (EResult<[TareaIncumplimiento]>) -> Void
@@ -48,33 +125,34 @@ class TareaService {
             }
         }
     }
+    
 }
 
+struct InfoTareaPendienteDto: Codable {
+    let fecpro: String?
+    let curso: String?
+    let tarea: String?
+    let estado: String?
+    let fechaasignacion: String?
+    let fechaentrega: String?
 
-struct TareaIncumplimientoDto: Codable {
-    let ctacli: String?
-    let semana: String?
-    let clatarid: Int?
-    let destar: String?
-    let fectar: String?
-    let cumtar: String?
-    let abrevactualmod: String?
-    let leyenda1: String?
-    let fechaini: String?
-    let fechafin: String?
-    
-    func toDomain() -> TareaIncumplimiento {
-        return TareaIncumplimiento(
-            ctacli: ctacli?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            semana: semana?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            clatarid: clatarid ?? 0,
-            destar: destar?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            fectar: fectar?.toDate() ?? .now,
-            cumtar: cumtar?.toDate() ?? .now,
-            abrevactualmod: abrevactualmod?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            leyenda1: leyenda1?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            fechaini: fechaini?.toDate() ?? .now,
-            fechafin: fechafin?.toDate() ?? .now
+    func toDomain() -> InfoTareaPendiente {
+        InfoTareaPendiente(
+            fecpro: fecpro?.toDate() ?? .now,
+            curso: curso?.trim() ?? "",
+            tarea: tarea?.trim() ?? "",
+            estado: estado?.trim() ?? "",
+            fechaasignacion: fechaasignacion?.toDate() ?? .now,
+            fechaentrega: fechaentrega?.toDate() ?? .now
         )
     }
+}
+
+struct InfoTareaPendiente: Hashable {
+    let fecpro: Date
+    let curso: String
+    let tarea: String
+    let estado: String
+    let fechaasignacion: Date
+    let fechaentrega: Date
 }

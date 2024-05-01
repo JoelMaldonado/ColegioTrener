@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DatosApoderadoView: View {
     @State private var isShowingAlert = false
-    @StateObject private var viewModel = DatosPadresViewModel()
+    @StateObject private var viewModel = DatosApoderadoViewModel()
     var listTipoDoc = ["DNI", "Pasaporte", "CE"]
     
     
@@ -129,6 +129,13 @@ struct DatosApoderadoView: View {
         .alert(isPresented: $isShowingAlert) {
             Alert(title: Text("Usuario guardado"), message: Text("El usuario se ha guardado correctamente"), dismissButton: .default(Text("Aceptar")))
         }
+        .alert(isPresented: $viewModel.isError) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.error ?? "Sin definir")
+            )
+        }
+        
     }
 }
 

@@ -40,6 +40,12 @@ struct DatosHijosView: View {
         .sheet(isPresented: $viewModel.agregarHijo) {
             SheetAgregrarHijo()
         }
+        .alert(isPresented: $viewModel.isError) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.error ?? "Sin definir")
+            )
+        }
     }
 }
 

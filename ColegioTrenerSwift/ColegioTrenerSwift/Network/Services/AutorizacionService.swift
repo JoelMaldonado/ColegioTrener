@@ -142,38 +142,3 @@ struct AutorizarRequest: Codable {
 struct AutorizarResponse: Codable {
     let AutorizarAlumnoResult: String?
 }
-
-struct AutorizacionDto : Codable {
-    let idautorizacion: String?
-    let autorizacion: String?
-    let linkPdf: String?
-    
-    func toDomain() -> Autorizacion {
-        return Autorizacion(
-            idautorizacion: idautorizacion?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            autorizacion: autorizacion?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            linkPdf: linkPdf?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        )
-    }
-    
-}
-
-struct EstadoAutorizacionDto: Codable {
-    let anoaca: String?
-    let ctacli: String?
-    let nombre: String?
-    let ctamae: String?
-    let codgra: String?
-    let autorizo: Double?
-    
-    func toDomain() -> EstadoAutorizacion {
-        return EstadoAutorizacion(
-            anoaca: anoaca?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            ctacli: ctacli?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            nombre: nombre?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            ctamae: ctamae?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            codgra: codgra?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            autorizo: autorizo == 1.0
-        )
-    }
-}

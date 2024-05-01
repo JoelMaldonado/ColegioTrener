@@ -31,8 +31,12 @@ extension String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.timeZone = TimeZone(identifier: "America/Lima")
         return dateFormatter.date(from: self)
+    }
+    
+    func trim() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 

@@ -27,7 +27,7 @@ class AsistenciaService {
                 ]
                 
                 AF.request(
-                    "https://intranet.trener.edu.pe:8093/PublicacionFox/TrenerWCFOX.svc/Trener/getAsistenciaXMes/\(anio),\(mes),\(ctacli)",
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getAsistenciaXMes/\(anio),\(mes),\(ctacli)",
                     method: .get,
                     headers: headers
                 )
@@ -50,91 +50,77 @@ class AsistenciaService {
             }
         }
     }
-}
-
-enum LeyendaAsistenciaTab: CaseIterable{
-    case Tardanza
-    case Justificada
-    case Injustificada
-    case Asesoria
     
-    func color() -> Color {
-        switch self {
-        case .Tardanza:
-                .yellow
-        case .Justificada:
-                .green
-        case .Injustificada:
-                .red
-        case .Asesoria:
-                .purple
+    func getInfoAsistencia(
+        anio: String,
+        mes: String,
+        ctacli: String,
+        completion: @escaping (EResult<InfoAsistencia>) -> Void
+    ) {
+        
+        TokenUsecase.shared.getToken { res in
+            switch res {
+            case .success(let token):
+                let headers: HTTPHeaders = [
+                    "Authorization": token
+                ]
+                AF.request(
+                    "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getAsistenciaTotalMes/\(anio),\(mes),\(ctacli)",
+                    method: .get,
+                    headers: headers
+                )
+                .responseDecodable(of: String.self) { res in
+                    switch res.result {
+                    case .success(let success):
+                        let res : EResult<[InfoAsistenciaDto]> = success.toData()
+                        switch res {
+                        case .success(let data):
+                            if let first = data.first {
+                                completion(.success(first.toDomain()))
+                            } else {
+                                completion(.failure("Error al obtener"))
+                            }
+                            
+                        case .failure(let err):
+                            completion(.failure(err))
+                        }
+                    case .failure(let failure):
+                        completion(.failure(failure.localizedDescription))
+                    }
+                }
+            case .failure(let err):
+                completion(.failure(err))
+            }
         }
     }
     
-    func name() -> String {
-        switch self {
-        case .Tardanza:
-            "Tardanza"
-        case .Justificada:
-            "I. Justificada"
-        case .Injustificada:
-            "I. Injustificada"
-        case .Asesoria:
-            "Asesoría"
-        }
-    }
 }
 
-struct FechaAsistenciaDto: Codable {
-    let anoaca: String?
-    let mes: Int?
-    let dia: Int?
-    let ctacli: String?
-    let codgra: String?
-    let ctaemp: String?
-    let semana: Int?
-    let leyenda: String?
-    let leyendapp: String?
+struct InfoAsistenciaDto: Codable {
+    let fecha: String?
+    let trimestre: String?
+    let asistio: Double?
+    let tardanza: Double?
+    let justificada: Double?
+    let injustificada: Double?
     
-    func toDomain() -> FechaAsistencia {
-        var calendar = Calendar(identifier: .gregorian)
-        
-        var dateComponents = DateComponents()
-        dateComponents.year = Int(anoaca ?? Date.now.format(pattern: "yyyy"))
-        dateComponents.month = mes
-        dateComponents.day = dia
-        
-        let fecha = calendar.date(from: dateComponents)
-        
-        var leyend: LeyendaAsistenciaTab
-        
-        switch self.leyendapp {
-        case "Tardanza":
-            leyend = .Tardanza
-        case "Justificada":
-            leyend = .Justificada
-        case "Injustificada":
-            leyend = .Injustificada
-        default:
-            leyend = .Asesoria
-        }
-        
-        return FechaAsistencia(
-            fecha: fecha ?? .now,
-            ctacli: ctacli?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            codgra: codgra?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            ctaemp: ctaemp?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            semana: semana ?? 0,
-            leyenda: leyend
+    func toDomain() -> InfoAsistencia {
+        return InfoAsistencia(
+            fecha: self.fecha?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+            trimestre: self.trimestre?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+            asistio: Int(self.asistio ?? 0),
+            tardanza: Int(self.tardanza ?? 0),
+            justificada: Int(self.justificada ?? 0),
+            injustificada: Int(self.injustificada ?? 0)
         )
     }
 }
 
-struct FechaAsistencia {
-    let fecha: Date
-    let ctacli: String
-    let codgra: String
-    let ctaemp: String
-    let semana: Int
-    let leyenda: LeyendaAsistenciaTab
+struct InfoAsistencia {
+    let fecha: String
+    let trimestre: String
+    let asistio: Int
+    let tardanza: Int
+    let justificada: Int
+    let injustificada: Int
 }

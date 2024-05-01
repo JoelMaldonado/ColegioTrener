@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1DC06B2BE28E990090DEA4 /* DatosApoderadoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06A2BE28E990090DEA4 /* DatosApoderadoViewModel.swift */; };
+		5D1DC06D2BE2A0840090DEA4 /* FechaAsistenciaDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */; };
+		5D1DC06F2BE2A0A30090DEA4 /* FechaAsistencia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */; };
+		5D1DC0712BE2A0CC0090DEA4 /* TareaIncumplimientoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC0702BE2A0CC0090DEA4 /* TareaIncumplimientoDto.swift */; };
+		5D1DC0732BE2A11F0090DEA4 /* EstadoAutorizacionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC0722BE2A11F0090DEA4 /* EstadoAutorizacionDto.swift */; };
+		5D1DC0752BE2A13E0090DEA4 /* AutorizacionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC0742BE2A13E0090DEA4 /* AutorizacionDto.swift */; };
+		5D1DC0772BE2A1610090DEA4 /* CitaInformeDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC0762BE2A1610090DEA4 /* CitaInformeDto.swift */; };
+		5D1DC07A2BE2A7B00090DEA4 /* LeyendaPendientes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC0792BE2A7B00090DEA4 /* LeyendaPendientes.swift */; };
+		5D1DC07C2BE2A9040090DEA4 /* CardInfoTarea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC07B2BE2A9040090DEA4 /* CardInfoTarea.swift */; };
+		5D1DC07E2BE2B64D0090DEA4 /* FechaTareaDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC07D2BE2B64D0090DEA4 /* FechaTareaDto.swift */; };
+		5D1DC0802BE2B6610090DEA4 /* FechaTarea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC07F2BE2B6610090DEA4 /* FechaTarea.swift */; };
 		5D1E5BA22BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E5BA12BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift */; };
 		5D1E5BAD2BE0382D00D3A3D6 /* SwiftUIToast in Frameworks */ = {isa = PBXBuildFile; productRef = 5D1E5BAC2BE0382D00D3A3D6 /* SwiftUIToast */; };
 		5D3320DA2BD96522008C2588 /* SelectEstado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320D92BD96522008C2588 /* SelectEstado.swift */; };
@@ -104,6 +115,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D1DC06A2BE28E990090DEA4 /* DatosApoderadoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosApoderadoViewModel.swift; sourceTree = "<group>"; };
+		5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaAsistenciaDto.swift; sourceTree = "<group>"; };
+		5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaAsistencia.swift; sourceTree = "<group>"; };
+		5D1DC0702BE2A0CC0090DEA4 /* TareaIncumplimientoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TareaIncumplimientoDto.swift; sourceTree = "<group>"; };
+		5D1DC0722BE2A11F0090DEA4 /* EstadoAutorizacionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstadoAutorizacionDto.swift; sourceTree = "<group>"; };
+		5D1DC0742BE2A13E0090DEA4 /* AutorizacionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizacionDto.swift; sourceTree = "<group>"; };
+		5D1DC0762BE2A1610090DEA4 /* CitaInformeDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitaInformeDto.swift; sourceTree = "<group>"; };
+		5D1DC0792BE2A7B00090DEA4 /* LeyendaPendientes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeyendaPendientes.swift; sourceTree = "<group>"; };
+		5D1DC07B2BE2A9040090DEA4 /* CardInfoTarea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoTarea.swift; sourceTree = "<group>"; };
+		5D1DC07D2BE2B64D0090DEA4 /* FechaTareaDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaTareaDto.swift; sourceTree = "<group>"; };
+		5D1DC07F2BE2B6610090DEA4 /* FechaTarea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaTarea.swift; sourceTree = "<group>"; };
 		5D1E5BA12BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetAgregrarHijo.swift; sourceTree = "<group>"; };
 		5D3320D92BD96522008C2588 /* SelectEstado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEstado.swift; sourceTree = "<group>"; };
 		5D3320DB2BD966EC008C2588 /* CardAutorizacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAutorizacion.swift; sourceTree = "<group>"; };
@@ -213,6 +235,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D1DC0782BE2A7960090DEA4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5D1DC0792BE2A7B00090DEA4 /* LeyendaPendientes.swift */,
+				5D1DC07B2BE2A9040090DEA4 /* CardInfoTarea.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		5D3320D82BD96517008C2588 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				5DE1E1B32B6AED7E0064B3C8 /* DatosApoderadoView.swift */,
+				5D1DC06A2BE28E990090DEA4 /* DatosApoderadoViewModel.swift */,
 			);
 			path = DatosApoderado;
 			sourceTree = "<group>";
@@ -544,6 +576,7 @@
 		5DE1E1CD2B6B23490064B3C8 /* Pendientes */ = {
 			isa = PBXGroup;
 			children = (
+				5D1DC0782BE2A7960090DEA4 /* Components */,
 				5DE1E1D02B6B23620064B3C8 /* PendientesView.swift */,
 				5DE1E1D42B6B238F0064B3C8 /* PendientesViewModel.swift */,
 			);
@@ -582,11 +615,17 @@
 			isa = PBXGroup;
 			children = (
 				5DF14BF82BDB024200106946 /* PagoDto.swift */,
+				5D1DC0762BE2A1610090DEA4 /* CitaInformeDto.swift */,
+				5D1DC0742BE2A13E0090DEA4 /* AutorizacionDto.swift */,
+				5D1DC0722BE2A11F0090DEA4 /* EstadoAutorizacionDto.swift */,
+				5D1DC0702BE2A0CC0090DEA4 /* TareaIncumplimientoDto.swift */,
 				5DF14BFA2BDB02FE00106946 /* InscripcionDto.swift */,
 				5DF14C102BDB8EAD00106946 /* HijoTrenerDto.swift */,
 				5DF14C0E2BDB8E8B00106946 /* DatosApoderadoDto.swift */,
 				5DF14C182BDB92BC00106946 /* DatosHijoDto.swift */,
 				5DBB72B32BE03E54004BC530 /* DatosClubDto.swift */,
+				5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */,
+				5D1DC07D2BE2B64D0090DEA4 /* FechaTareaDto.swift */,
 			);
 			path = Dto;
 			sourceTree = "<group>";
@@ -641,16 +680,18 @@
 		5DFFD51D2BD86A0300130F0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5DF14BFF2BDB0E7400106946 /* Pago.swift */,
 				5DFFD51E2BD86A0E00130F0B /* CitaInforme.swift */,
 				5D3320E32BD96CBA008C2588 /* Autorizacion.swift */,
 				5D3320E72BD97B3D008C2588 /* EstadoAutorizacion.swift */,
 				5D42F4CF2BD9A0AD00281C92 /* TareaIncumplimiento.swift */,
 				5DF14BF32BDAF9C700106946 /* Inscripcion.swift */,
-				5DF14BFF2BDB0E7400106946 /* Pago.swift */,
 				5DF14C122BDB8EC800106946 /* HijoTrener.swift */,
 				5DF14C142BDB8ED900106946 /* DatosApoderado.swift */,
 				5DF14C1A2BDB932900106946 /* DatosHijo.swift */,
 				5DBB72B52BE03ED3004BC530 /* DatosClub.swift */,
+				5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */,
+				5D1DC07F2BE2B6610090DEA4 /* FechaTarea.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -741,6 +782,7 @@
 				5D4219602B6D43490025BCD9 /* Constants.swift in Sources */,
 				5DF14C0D2BDB815A00106946 /* CajaSelect.swift in Sources */,
 				5DF14C042BDB199500106946 /* CardPagoRealizado.swift in Sources */,
+				5D1DC06B2BE28E990090DEA4 /* DatosApoderadoViewModel.swift in Sources */,
 				5DE1E1EA2B6B297C0064B3C8 /* PagosRealizados.swift in Sources */,
 				5DBB72BC2BE17FEC004BC530 /* TokenViewModel.swift in Sources */,
 				5DF14BF62BDB01C900106946 /* PagoService.swift in Sources */,
@@ -753,6 +795,7 @@
 				5DE1E1D12B6B23620064B3C8 /* PendientesView.swift in Sources */,
 				5DF14BF22BDAF7C800106946 /* InscripcionService.swift in Sources */,
 				5DF14BEE2BDAF6E700106946 /* CardInscripcion.swift in Sources */,
+				5D1DC0772BE2A1610090DEA4 /* CitaInformeDto.swift in Sources */,
 				5D3320DE2BD96837008C2588 /* SelectAutorizacion.swift in Sources */,
 				5D7AC6C12BC61CED00400B08 /* SplashView.swift in Sources */,
 				5DF14C0B2BDB7B9100106946 /* SelectTipoFamiliar.swift in Sources */,
@@ -768,8 +811,10 @@
 				5DE1E1EC2B6B29840064B3C8 /* PagosVencidos.swift in Sources */,
 				5DE1E1C72B6B22B60064B3C8 /* AutorizacionesViewModel.swift in Sources */,
 				5DE1E1B62B6AED860064B3C8 /* DatosHijosView.swift in Sources */,
+				5D1DC07C2BE2A9040090DEA4 /* CardInfoTarea.swift in Sources */,
 				5D8F66D52B9698FE003A19D4 /* ItemDatoHijo.swift in Sources */,
 				5DE1E1C92B6B23030064B3C8 /* CitaInformeView.swift in Sources */,
+				5D1DC07A2BE2A7B00090DEA4 /* LeyendaPendientes.swift in Sources */,
 				5D1E5BA22BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift in Sources */,
 				5DE1E1BA2B6AEF880064B3C8 /* DatosPadresViewModel.swift in Sources */,
 				5DE1E1BC2B6AF0670064B3C8 /* DatosClubesViewModel.swift in Sources */,
@@ -780,6 +825,7 @@
 				5DF14BF02BDAF73000106946 /* ItemCardInscripcion.swift in Sources */,
 				5DE1E1D72B6B23CF0064B3C8 /* DiariaAcumuladaView.swift in Sources */,
 				5D5A3D282B6981B500F88156 /* MenuView.swift in Sources */,
+				5D1DC06F2BE2A0A30090DEA4 /* FechaAsistencia.swift in Sources */,
 				5DFFD5192BD84E5B00130F0B /* PerfilView.swift in Sources */,
 				5DBB72B62BE03ED3004BC530 /* DatosClub.swift in Sources */,
 				5DE1E1F12B6B35060064B3C8 /* SelectHijo.swift in Sources */,
@@ -807,11 +853,15 @@
 				5D7041702BDAD4FE00520A30 /* AsistenciaService.swift in Sources */,
 				5D3320E62BD96D61008C2588 /* EResult.swift in Sources */,
 				5DF14C1B2BDB932900106946 /* DatosHijo.swift in Sources */,
+				5D1DC0712BE2A0CC0090DEA4 /* TareaIncumplimientoDto.swift in Sources */,
 				5DE1E1AC2B6AE9710064B3C8 /* DatosView.swift in Sources */,
 				5D42F4D02BD9A0AD00281C92 /* TareaIncumplimiento.swift in Sources */,
+				5D1DC0732BE2A11F0090DEA4 /* EstadoAutorizacionDto.swift in Sources */,
+				5D1DC06D2BE2A0840090DEA4 /* FechaAsistenciaDto.swift in Sources */,
 				5DF14BF92BDB024200106946 /* PagoDto.swift in Sources */,
 				5D4219162B6C03070025BCD9 /* NotificacionesView.swift in Sources */,
 				5D5A3D132B69759600F88156 /* ColegioTrenerSwiftApp.swift in Sources */,
+				5D1DC07E2BE2B64D0090DEA4 /* FechaTareaDto.swift in Sources */,
 				5D3980C62B965FC800634A97 /* AuthServices.swift in Sources */,
 				5DF14C0F2BDB8E8B00106946 /* DatosApoderadoDto.swift in Sources */,
 				5DF14C062BDB19DF00106946 /* SelectYearRealizado.swift in Sources */,
@@ -823,6 +873,8 @@
 				5DF14C022BDB14B100106946 /* CardPago.swift in Sources */,
 				5D42F4CE2BD99DE400281C92 /* TareaService.swift in Sources */,
 				5DE1E1E12B6B243D0064B3C8 /* PagosViewModel.swift in Sources */,
+				5D1DC0752BE2A13E0090DEA4 /* AutorizacionDto.swift in Sources */,
+				5D1DC0802BE2B6610090DEA4 /* FechaTarea.swift in Sources */,
 				5DE1E1D92B6B23D60064B3C8 /* DiariaAcumuladaViewModel.swift in Sources */,
 				5DF14C152BDB8ED900106946 /* DatosApoderado.swift in Sources */,
 			);

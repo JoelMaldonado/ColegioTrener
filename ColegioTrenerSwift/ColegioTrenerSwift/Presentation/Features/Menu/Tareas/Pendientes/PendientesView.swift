@@ -13,6 +13,43 @@ struct PendientesView: View {
     
     var body: some View {
         VStack(spacing: 0){
+            
+            SelectHijo(
+                hijoSelected: $viewModel.hijoSelected,
+                listHijos: viewModel.listHijos,
+                click: {
+                    viewModel.getFechasTareas()
+                    viewModel.getTareasByDia()
+                }
+            )
+            
+            
+            ScrollView(.vertical) {
+                VStack(spacing: 0){
+                    CustomCalendar(
+                        date: $viewModel.fecha,
+                        list: viewModel.listFechaTareas.toFechaCalendar()
+                    )
+                    LeyendaPendientes()
+                    
+                    let list = Dictionary(
+                        grouping: viewModel.listInfoTareasPendientes,
+                        by: { $0.fechaasignacion }
+                    ).values.map{ $0 }
+                    
+                    ForEach(list, id: \.self) { info in
+                        CardInfoTarea(info)
+                    }
+                    
+                }
+            }
+        }
+        .background(.white)
+        .alert(isPresented: $viewModel.isError) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.error ?? "Sin definir")
+            )
         }
     }
 }

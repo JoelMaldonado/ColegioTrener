@@ -14,23 +14,16 @@ struct DateValue: Identifiable {
     var date: Date
 }
 
+struct FechaCalendar: Hashable {
+    let fecha: Date
+    let color: [Color]
+}
+
 struct CustomCalendar: View {
-    @State var date: Date = .now
+    @Binding var date: Date
     @State var currentMonth = 0
     
-    private var years: [Date] = {
-        var years: [Date] = []
-        let calendar = Calendar.current
-        let currentDate = Date()
-        
-        for i in 0..<5 {
-            if let newYear = calendar.date(byAdding: .day, value: -i, to: currentDate) {
-                years.append(newYear)
-            }
-        }
-        
-        return years
-    }()
+    var list: [FechaCalendar]
     
     var body: some View {
         VStack {
@@ -91,7 +84,7 @@ struct CustomCalendar: View {
         .clipShape(.rect(cornerRadius: 16))
         .shadow(radius: 8)
         .padding()
-        .onChange(of: currentMonth) { newValue in
+        .onChange(of: currentMonth) {
             self.date = getCurrentMonth()
         }
         
@@ -101,16 +94,26 @@ struct CustomCalendar: View {
     func CardView(value: DateValue) -> some View {
         VStack(spacing: 4) {
             if value.day != -1 {
-                Text("\(value.day)")
-                    .font(.title3.bold())
-                if let p = years.first(where: { $0.format() == value.date.format()} ) {
-                    Image(systemName: "circle.fill")
-                        .font(.caption2)
-                        .foregroundStyle(.colorP1)
+                Button {
+                    date = value.date
+                } label: {
+                    Text("\(value.day)")
+                        .foregroundStyle(.black)
+                        .font(.callout)
+                        .fontWeight(.bold)
+                }
+                if let first = list.first(where: { $0.fecha.format() == value.date.format()} ) {
+                    HStack(spacing: 2) {
+                        ForEach(first.color, id: \.self) { color in
+                            Image(systemName: "circle.fill")
+                                .font(.caption2)
+                                .foregroundStyle(color)
+                        }
+                    }
                 }
             }
         }
-        .frame(height: 50, alignment: .top)
+        .frame(height: 40, alignment: .top)
     }
     
     func getCurrentMonth() -> Date {
@@ -141,7 +144,7 @@ extension Date {
     func getAllDates() -> [Date] {
         let cal = Calendar.current
         let startDate = cal.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
-        var range = cal.range(of: .day, in: .month, for: startDate)!
+        let range = cal.range(of: .day, in: .month, for: startDate)!
         return range.compactMap { day -> Date in
             return cal.date(byAdding: .day, value: day - 1, to: startDate)!
         }
@@ -149,5 +152,5 @@ extension Date {
 }
 
 #Preview {
-    CustomCalendar()
+    DiariaAcumuladaView()
 }

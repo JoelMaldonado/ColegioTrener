@@ -10,11 +10,13 @@ import SwiftUI
 extension DiariaAcumuladaView {
     
     @ViewBuilder
-    func CardDiariaAcumulado() -> some View {
+    func CardDiariaAcumulado(
+        _ info:InfoAsistencia?
+    ) -> some View {
         
         VStack(spacing: 0) {
             ZStack {
-                Text("Trimestre 3")
+                Text("\(info?.trimestre ?? "Sin Definir")")
                     .font(.footnote)
                     .padding(.leading, 4)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -25,11 +27,11 @@ extension DiariaAcumuladaView {
             .foregroundStyle(.white)
             .background(.colorT1)
             HStack {
-                Text("Inasistencia 0")
+                Text("Asistencia \(info?.asistio ?? 0)")
                     .frame(maxWidth: .infinity)
                 Divider()
                     .background(.colorT1)
-                Text("Tardanza 4")
+                Text("Tardanza \(info?.tardanza ?? 0)")
                     .frame(maxWidth: .infinity)
             }
             .font(.callout)
@@ -38,11 +40,11 @@ extension DiariaAcumuladaView {
             Divider()
                 .background(.colorT1)
             HStack {
-                Text("Inasistencia 0")
+                Text("I. Justificada \(info?.justificada ?? 0)")
                     .frame(maxWidth: .infinity)
                 Divider()
                     .background(.colorT1)
-                Text("Tardanza 4")
+                Text("I. Injustificada \(info?.injustificada ?? 0)")
                     .frame(maxWidth: .infinity)
             }
             .font(.callout)

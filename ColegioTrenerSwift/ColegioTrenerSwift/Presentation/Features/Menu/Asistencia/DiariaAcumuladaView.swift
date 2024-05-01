@@ -10,8 +10,6 @@ import SwiftUI
 struct DiariaAcumuladaView: View {
     
     @StateObject var viewModel = DiariaAcumuladaViewModel()
-    @State private var fecha : Date = .now
-    @State private var asistencias: [Date: Bool] = [:]
     
     var body: some View {
         
@@ -21,21 +19,33 @@ struct DiariaAcumuladaView: View {
                 hijoSelected: $viewModel.hijoSelected,
                 listHijos: viewModel.listHijos,
                 click: {
-                    
+                    viewModel.listarFechas()
+                    viewModel.getInfoAsistencia()
                 }
             )
         
             ScrollView {
                 VStack {
-                    CustomCalendar()
+                    
+                    CustomCalendar(
+                        date: $viewModel.fecha,
+                        list: viewModel.listFechas.map { $0.toFechaCalendar() }
+                    )
                     
                     LeyendaAcumulada()
                     
-                    CardDiariaAcumulado()
+                    CardDiariaAcumulado(viewModel.infoAsistencia)
+                    
                 }
             }
         }
         .background(.white)
+        .alert(isPresented: $viewModel.isError) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.error ?? "Sin definir")
+            )
+        }
     }
 }
 

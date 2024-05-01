@@ -10,7 +10,6 @@ import SwiftUI
 struct InscripcionesView: View {
     
     @StateObject private var viewModel = InscripcionesViewModel()
-    @State private var on = false
 
     var back: () -> Void
     
