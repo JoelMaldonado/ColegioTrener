@@ -17,10 +17,10 @@ struct DatosView: View {
                         isSelected = 1
                     } label: {
                         VStack {
-                            Image(.icPadres)
+                            Image(.imgPadres)
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 50)
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
                             Text("Padres")
                             if isSelected == 1 {
                                 Rectangle()
@@ -34,10 +34,10 @@ struct DatosView: View {
                         isSelected = 2
                     } label: {
                         VStack {
-                            Image(.icApoderado)
+                            Image(.imgApoderado)
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 50)
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
                             Text("Apoderado")
                             if isSelected == 2 {
                                 Rectangle()
@@ -51,10 +51,10 @@ struct DatosView: View {
                         isSelected = 3
                     } label: {
                         VStack {
-                            Image(.icHijos)
+                            Image(.imgHijos)
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 50)
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
                             Text("Hijos")
                             if isSelected == 3 {
                                 Rectangle()
@@ -68,10 +68,10 @@ struct DatosView: View {
                         isSelected = 4
                     } label: {
                         VStack {
-                            Image(.icClubes)
+                            Image(.imgClubs)
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 50)
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
                             Text("Clubes")
                             if isSelected == 4 {
                                 Rectangle()

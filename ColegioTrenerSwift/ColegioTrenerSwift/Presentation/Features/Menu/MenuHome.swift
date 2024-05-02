@@ -45,7 +45,7 @@ struct MenuHome: View {
                         self.tab = .Inscripciones
                     } label: {
                         VStack{
-                            Image(.icInscripcion)
+                            Image(.icInscripciones)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
@@ -63,7 +63,7 @@ struct MenuHome: View {
                     self.tab = .DiariaAcumulada
                 } label: {
                     HStack{
-                        Image(.icCalendario)
+                        Image(.icDiariaAcumulada)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)
@@ -82,7 +82,7 @@ struct MenuHome: View {
                         self.tab = .Pendientes
                     } label: {
                         VStack{
-                            Image(.icTareas)
+                            Image(.icPendientes)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
@@ -95,7 +95,7 @@ struct MenuHome: View {
                         self.tab = .Incumplimientos
                     } label: {
                         VStack{
-                            Image(.icRevisar)
+                            Image(.icIncumplimientos)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
@@ -113,7 +113,7 @@ struct MenuHome: View {
                     self.tab = .CitaInforme
                 } label: {
                     HStack{
-                        Image(.icCita)
+                        Image(.icCitaInforme)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)

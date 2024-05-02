@@ -86,7 +86,7 @@ struct SelectHijoItem : View {
             VStack(alignment: .leading){
                 Text(hijo.nombre)
                     .bold()
-                HStack{
+                HStack {
                     Image(systemName: "person")
                         .foregroundStyle(.colorP1)
                     Text("Código:")
@@ -97,6 +97,7 @@ struct SelectHijoItem : View {
                     Text(hijo.anoaca)
                         .bold()
                 }
+                .font(.footnote)
             }
             
             ZStack { }
