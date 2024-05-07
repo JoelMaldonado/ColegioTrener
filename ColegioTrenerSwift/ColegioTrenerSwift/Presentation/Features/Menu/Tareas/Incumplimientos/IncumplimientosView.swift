@@ -37,7 +37,7 @@ struct IncumplimientosView: View {
                 }
                 .bold()
                 .background(.colorS1.opacity(0.2))
-                .clipShape(.buttonBorder)
+                .clipShape(.rect(cornerRadius: 16))
                 
                 ScrollView {
                     VStack {

@@ -28,7 +28,7 @@ extension DatosClubesView {
                     label: "Club",
                     fontLabel: .callout
                 )
-                .onChange(of: viewModel.club) {
+                .onChange(of: viewModel.club) { newValue in
                     if let code = viewModel.listComboClubs.first(where: { $0.descrip == viewModel.club }) {
                         viewModel.codClub = code.codigo
                     }
@@ -48,7 +48,7 @@ extension DatosClubesView {
                     label: "Vinculo",
                     fontLabel: .callout
                 )
-                .onChange(of: viewModel.vinculo) {
+                .onChange(of: viewModel.vinculo) { newValue in
                     switch viewModel.vinculo {
                     case "Padre":
                         viewModel.codVinculo = "001"
@@ -67,7 +67,7 @@ extension DatosClubesView {
                             .padding(.vertical, 8)
                             .padding(.horizontal)
                             .background(.colorP1)
-                            .clipShape(.buttonBorder)
+                            .clipShape(.rect(cornerRadius: 16))
                     }
                     .frame(maxWidth: .infinity)
                     Button {
@@ -77,7 +77,7 @@ extension DatosClubesView {
                             .padding(.vertical, 8)
                             .padding(.horizontal)
                             .background(.colorS1)
-                            .clipShape(.buttonBorder)
+                            .clipShape(.rect(cornerRadius: 16))
                     }
                     .frame(maxWidth: .infinity)
                 }

@@ -121,7 +121,7 @@ struct DatosApoderadoView: View {
                         .frame(height: 40)
                         .padding(.horizontal)
                         .background(.colorS1)
-                        .clipShape(.buttonBorder)
+                        .clipShape(.rect(cornerRadius: 16))
                 }
             }
             .padding(12)

@@ -84,7 +84,7 @@ struct CustomCalendar: View {
         .clipShape(.rect(cornerRadius: 16))
         .shadow(radius: 8)
         .padding()
-        .onChange(of: currentMonth) {
+        .onChange(of: currentMonth) { newValue in
             self.date = getCurrentMonth()
         }
         

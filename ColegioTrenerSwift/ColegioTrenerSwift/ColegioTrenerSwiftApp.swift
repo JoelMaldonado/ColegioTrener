@@ -19,7 +19,9 @@ struct ColegioTrenerSwiftApp: App {
                     LoginView()
                 }
                 SplashView(isActive: $isSplashActive)
-            }.onAppear {
+            }
+            .preferredColorScheme(.light)
+            .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     withAnimation {
                         self.isSplashActive = false

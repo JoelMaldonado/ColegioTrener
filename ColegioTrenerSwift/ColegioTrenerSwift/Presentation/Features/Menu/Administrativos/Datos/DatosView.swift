@@ -82,9 +82,8 @@ struct DatosView: View {
                     }
                     .frame(maxWidth: .infinity)
                 }
-                .font(.system(size: 16))
+                .font(.system(size: 16).bold())
                 .foregroundStyle(.colorP1)
-                .bold()
                 
                 switch isSelected {
                     

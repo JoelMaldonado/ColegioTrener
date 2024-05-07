@@ -123,8 +123,7 @@ struct DatosPadresView: View {
                     Text("Solicitud cambio nombres/correo")
                         .foregroundStyle(.white)
                 }
-                .font(.callout)
-                .fontWeight(.bold)
+                .font(.callout.bold())
                 .padding()
                 .background(.colorT1, in: .rect(cornerRadius: 12))
                 
@@ -137,7 +136,7 @@ struct DatosPadresView: View {
                         .frame(height: 40)
                         .padding(.horizontal)
                         .background(.colorS1)
-                        .clipShape(.buttonBorder)
+                        .clipShape(.rect(cornerRadius: 16))
                 }
             }
             .padding(12)

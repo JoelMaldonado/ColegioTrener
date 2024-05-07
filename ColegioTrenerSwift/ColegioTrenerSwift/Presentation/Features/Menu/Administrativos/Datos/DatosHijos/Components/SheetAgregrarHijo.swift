@@ -36,7 +36,7 @@ extension DatosHijosView {
                 )
                 .keyboardType(.numberPad)
                 
-                .onChange(of: viewModel.fechaTxt) {
+                .onChange(of: viewModel.fechaTxt) { newValue in
                     viewModel.fechaTxt = formatDateString(input: viewModel.fechaTxt)
                 }
                 
@@ -48,7 +48,7 @@ extension DatosHijosView {
                             .padding(.vertical, 8)
                             .padding(.horizontal)
                             .background(.colorP1)
-                            .clipShape(.buttonBorder)
+                            .clipShape(.rect(cornerRadius: 16))
                     }
                     .frame(maxWidth: .infinity)
                     Button {
@@ -58,7 +58,7 @@ extension DatosHijosView {
                             .padding(.vertical, 8)
                             .padding(.horizontal)
                             .background(.colorS1)
-                            .clipShape(.buttonBorder)
+                            .clipShape(.rect(cornerRadius: 16))
                     }
                     .frame(maxWidth: .infinity)
                 }

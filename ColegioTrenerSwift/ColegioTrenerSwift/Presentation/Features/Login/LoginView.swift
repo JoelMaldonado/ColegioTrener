@@ -73,7 +73,7 @@ struct LoginView: View {
                         .font(.title3)
                         .frame(width: 200, height: 50)
                         .background(.colorP1)
-                        .clipShape(.buttonBorder)
+                        .clipShape(.rect(cornerRadius: 16))
                 }
                 Spacer()
                 
