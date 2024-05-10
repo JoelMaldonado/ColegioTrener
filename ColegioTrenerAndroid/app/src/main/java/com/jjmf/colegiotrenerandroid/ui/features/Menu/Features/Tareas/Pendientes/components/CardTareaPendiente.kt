@@ -23,7 +23,7 @@ import com.jjmf.colegiotrenerandroid.util.format
 fun CardTareaPendiente(
     list: List<EstadoCalPendienteDia>
 ) {
-    val fecha = list.firstOrNull()?.fecpro
+    val fecha = list.firstOrNull()?.fecpro ?: return
 
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),

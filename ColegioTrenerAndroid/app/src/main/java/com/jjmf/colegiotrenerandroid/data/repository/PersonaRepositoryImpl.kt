@@ -7,6 +7,8 @@ import com.jjmf.colegiotrenerandroid.data.dto.DataHijoDto
 import com.jjmf.colegiotrenerandroid.data.dto.DataPersonaDto
 import com.jjmf.colegiotrenerandroid.data.dto.HijoDto
 import com.jjmf.colegiotrenerandroid.data.services.ApiService
+import com.jjmf.colegiotrenerandroid.data.services.RequestUpdateApoderado
+import com.jjmf.colegiotrenerandroid.data.services.ResponseTrener
 import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
 import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
 import com.jjmf.colegiotrenerandroid.domain.model.DataClub
@@ -104,6 +106,43 @@ class PersonaRepositoryImpl @Inject constructor(
             }
         } catch (e: Exception) {
             Result.Error(e.message.toString())
+        }
+    }
+
+    override suspend fun updateApoderado(
+        tipo: String,
+        fechanacimiento: String,
+        distrito: String,
+        direccion: String,
+        celular: String,
+        telefono: String,
+        empresa: String,
+        telefempresa: String,
+        cargo: String,
+        e_mailp: String,
+    ): Result<Nothing> {
+        return try {
+            val request = RequestUpdateApoderado(
+                ctamae = prefs.getUsuario(),
+                tipo = tipo,
+                fechanacimiento = fechanacimiento,
+                distrito = distrito,
+                direccion = direccion,
+                celular = celular,
+                telefono = telefono,
+                empresa = empresa,
+                telefempresa = telefempresa,
+                cargo = cargo,
+                e_mailp = e_mailp
+            )
+            val call = api.updateApoderado(token = token(), request = request)
+            if (call.isSuccessful) {
+                val data = convertJson<ResponseTrener>(call.body())
+                if (data.status == 1) Result.Correcto(null)
+                else Result.Error(data.message)
+            } else Result.Error(call.message())
+        } catch (e: Exception) {
+            Result.Error(e.message)
         }
     }
 }

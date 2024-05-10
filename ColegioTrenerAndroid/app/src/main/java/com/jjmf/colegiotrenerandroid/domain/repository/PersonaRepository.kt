@@ -21,4 +21,17 @@ interface PersonaRepository {
     suspend fun editHijo(data: DataHijoRequest): Result<String>
 
     suspend fun editClub(data: DataClubRequest): Result<String>
+
+    suspend fun updateApoderado(
+        tipo: String,
+        fechanacimiento: String,
+        distrito: String,
+        direccion: String,
+        celular: String,
+        telefono: String,
+        empresa: String,
+        telefempresa: String,
+        cargo: String,
+        e_mailp: String
+    ): Result<Nothing>
 }

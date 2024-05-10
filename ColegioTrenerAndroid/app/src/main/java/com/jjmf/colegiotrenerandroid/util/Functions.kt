@@ -1,12 +1,16 @@
 package com.jjmf.colegiotrenerandroid.util
 
 import com.google.gson.Gson
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
+fun Double.toSoles(): String {
+    return NumberFormat.getCurrencyInstance(Locale("es", "PE")).format(this)
+}
 
 fun Date.format(pattern:String = "dd/MM/yyyy"): String {
     return SimpleDateFormat(pattern, Locale.getDefault()).format(this)

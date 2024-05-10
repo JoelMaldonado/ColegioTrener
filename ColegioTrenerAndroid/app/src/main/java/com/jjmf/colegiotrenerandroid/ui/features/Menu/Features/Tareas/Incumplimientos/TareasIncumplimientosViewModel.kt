@@ -34,8 +34,7 @@ class TareasIncumplimientosViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 when (val res = repository.getTrimestreActual()) {
-                    is Result.Correcto -> trimestre =
-                        Trimestre.entries.find { it.num == res.datos } ?: Trimestre.Uno
+                    is Result.Correcto -> trimestre = res.datos ?: Trimestre.Uno
 
                     is Result.Error -> error = res.mensaje
                 }

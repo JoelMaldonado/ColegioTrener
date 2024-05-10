@@ -46,6 +46,7 @@ import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.P
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.ItemPago
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 import java.time.LocalDate
 
 @Composable
@@ -80,33 +81,39 @@ fun CitaInformeScreen(
                     )
                 }
             } else {
-                items(viewModel.list) {
-                    CardPago(
-                        title = "${it.nalumno}",
-                        modifier = Modifier.fillMaxWidth(),
-                        content = {
-                            ItemPago(
-                                label = "Fecha",
-                                text = "${it.fechacita}",
-                                ic = Icons.Default.CalendarMonth
-                            )
-                            ItemPago(
-                                label = "Horario",
-                                text = "${it.horario}",
-                                ic = Icons.Default.AccessTime
-                            )
-                            ItemPago(
-                                label = "Clase",
-                                text = "${it.clase}",
-                                ic = Icons.Default.DoorFront
-                            )
-                            ItemPago(
-                                label = "Observación",
-                                text = "${it.observa?.ifEmpty { "--" }}",
-                                ic = Icons.Default.Visibility
-                            )
-                        }
-                    )
+                if (viewModel.list.isEmpty()){
+                    item {
+                        Text(text = "Sin Resultados", color = Color.Gray)
+                    }
+                } else {
+                    items(viewModel.list) {
+                        CardPago(
+                            title = "${it.nalumno}",
+                            modifier = Modifier.fillMaxWidth(),
+                            content = {
+                                ItemPago(
+                                    label = "Fecha",
+                                    text = "${it.fechacita}",
+                                    ic = Icons.Default.CalendarMonth
+                                )
+                                ItemPago(
+                                    label = "Horario",
+                                    text = "${it.horario}",
+                                    ic = Icons.Default.AccessTime
+                                )
+                                ItemPago(
+                                    label = "Clase",
+                                    text = "${it.clase}",
+                                    ic = Icons.Default.DoorFront
+                                )
+                                ItemPago(
+                                    label = "Observación",
+                                    text = "${it.observa?.ifEmpty { "--" }}",
+                                    ic = Icons.Default.Visibility
+                                )
+                            }
+                        )
+                    }
                 }
             }
         }

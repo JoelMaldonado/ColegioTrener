@@ -17,11 +17,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jjmf.colegiotrenerandroid.domain.model.EstadoAutorizacion
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Autorizaciones.Estado
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 
 
 @Composable
 fun CardAutorizacionEstado(
+    tipoEstado: Estado,
     estado: EstadoAutorizacion,
     click: (Boolean)->Unit
 ) {
@@ -72,7 +74,8 @@ fun CardAutorizacionEstado(
 
             SwitchAutorizacion(
                 bool = estado.autorizo,
-                click = click
+                click = click,
+                enabled = tipoEstado == Estado.Activo
             )
 
         }

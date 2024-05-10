@@ -39,12 +39,18 @@ class CitaInformeRepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun getTrimestreActual(): Result<String> {
+    override suspend fun getTrimestreActual(): Result<Trimestre> {
         return try {
             val call = api.getTrimestreActual(token = token())
             if (call.isSuccessful) {
                 val body = convertJson<Array<TrimestreDto>>(call.body()).firstOrNull()?.trimestre
-                Result.Correcto(body)
+                val trim: Trimestre = when(body){
+                    "0" -> Trimestre.Uno
+                    "1" -> Trimestre.Dos
+                    "2" -> Trimestre.Tres
+                    else -> Trimestre.Uno
+                }
+                Result.Correcto(trim)
             }
             else Result.Error(call.message())
         } catch (e: Exception) {

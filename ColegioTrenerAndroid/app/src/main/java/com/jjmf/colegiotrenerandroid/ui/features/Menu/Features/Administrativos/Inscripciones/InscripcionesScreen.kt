@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -11,13 +13,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Inscripciones.components.CardInscripcion
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Inscripciones.components.ItemInscripcion
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
 import com.jjmf.colegiotrenerandroid.util.show
 
 @Composable
 fun InscripcionesScreen(
-    back:()->Unit,
+    back: () -> Unit,
     viewModel: InscripcionesViewModel = hiltViewModel()
 ) {
 
@@ -49,14 +52,16 @@ fun InscripcionesScreen(
 
         SelectHijo(
             click = {
-                viewModel.getListInscripciones(it)
+                viewModel.ctacli = it
+                viewModel.getListInscripciones()
             }
         )
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
@@ -64,6 +69,12 @@ fun InscripcionesScreen(
                 .groupBy { it.tipoinscripcion }
                 .entries
                 .forEach {
+                    CardInscripcion(
+                        title = it.key.toString(),
+                        data = it.value,
+                        ctacli = viewModel.ctacli ?: return@forEach
+                    )
+                    /*
                     CardPago(
                         title = it.key.toString()
                     ) {
@@ -71,6 +82,7 @@ fun InscripcionesScreen(
                             ItemInscripcion(it)
                         }
                     }
+                     */
                 }
         }
 

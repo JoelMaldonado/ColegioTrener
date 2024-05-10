@@ -17,17 +17,18 @@ class InscripcionesViewModel @Inject constructor(
     private val repository: InscripcionesRepository
 ) : ViewModel() {
 
+    var ctacli by mutableStateOf<String?>(null)
     var listInscripcion by mutableStateOf<List<Inscripcion>>(emptyList())
     var isLoading by mutableStateOf(false)
     var error by mutableStateOf<String?>(null)
 
     var alert by mutableStateOf(false)
 
-    fun getListInscripciones(idHijo: String) {
+    fun getListInscripciones() {
         viewModelScope.launch {
             try {
                 isLoading = true
-                when (val res = repository.getListInscripciones(idHijo)) {
+                when (val res = repository.getListInscripciones(ctacli ?: return@launch)) {
                     is Result.Correcto -> {
                         listInscripcion = res.datos ?: emptyList()
                         alert = res.datos?.firstOrNull()?.inscripcionbloqueo == "0"

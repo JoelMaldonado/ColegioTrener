@@ -41,24 +41,50 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.jjmf.colegiotrenerandroid.R
 import com.jjmf.colegiotrenerandroid.ui.components.BoxForm
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.components.CajaText
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 import com.jjmf.colegiotrenerandroid.util.enums.TipoFamiliar
 import com.jjmf.colegiotrenerandroid.util.format
+import com.jjmf.colegiotrenerandroid.util.show
 
 @Composable
 fun PadresDatosAdminScreen(
     back: () -> Unit,
     viewModel: PadresDatosAdminViewModel = hiltViewModel()
 ) {
+
+    val context = LocalContext.current
+
     BackHandler(onBack = back)
+
+    if (viewModel.isSuccess) {
+        SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE).apply {
+            titleText = "Success"
+            contentText = "Usuario Actualizado"
+            confirmButtonBackgroundColor = ColorP1.hashCode()
+            setConfirmButton("Continuar") {
+                viewModel.isSuccess = false
+                dismissWithAnimation()
+            }
+            setCancelable(false)
+            show()
+        }
+    }
+
+    viewModel.error?.let {
+        context.show(it)
+        viewModel.error = null
+    }
 
     Column(
         modifier = Modifier
@@ -256,7 +282,7 @@ fun PadresDatosAdminScreen(
                     isEnabled = viewModel.isCorreoEnabled
                 )
 
-                Button(onClick = {}) {
+                Button(onClick = viewModel::save) {
 
                     Text(text = "Grabar")
                 }

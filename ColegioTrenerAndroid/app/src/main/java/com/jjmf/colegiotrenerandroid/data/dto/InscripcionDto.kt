@@ -19,7 +19,7 @@ data class InscripcionDto(
             inscripcion = inscripcion?.trim(),
             codinscripcion = codinscripcion?.trim(),
             precio = precio ?: 0.0,
-            estadoinscripcion = estadoinscripcion?.trim(),
+            estadoinscripcion = estadoinscripcion?.trim() == "Si",
             inscripcionbloqueo = inscripcionbloqueo?.trim()
         )
     }

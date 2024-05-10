@@ -1,5 +1,6 @@
 package com.jjmf.colegiotrenerandroid.data.services
 
+import com.google.gson.annotations.SerializedName
 import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
 import com.jjmf.colegiotrenerandroid.data.services.request.AddClubResponse
 import com.jjmf.colegiotrenerandroid.data.services.request.DataHijoRequest
@@ -67,4 +68,29 @@ interface ApiService {
     suspend fun getClubs(
         @Header("Authorization") token: String
     ): Response<String>
+
+    @POST("PublicacionFox/TrenerWCFOX.svc/Trener/actualizarDatosPadres")
+    suspend fun updateApoderado(
+        @Header("Authorization") token: String,
+        @Body request: RequestUpdateApoderado
+    ): Response<String>
 }
+
+data class RequestUpdateApoderado(
+    @SerializedName("ctamae") val ctamae: String,
+    @SerializedName("tipo") val tipo: String,
+    @SerializedName("fechanacimiento") val fechanacimiento: String,
+    @SerializedName("distrito") val distrito: String,
+    @SerializedName("direccion") val direccion: String,
+    @SerializedName("celular") val celular: String,
+    @SerializedName("telefono") val telefono: String,
+    @SerializedName("empresa") val empresa: String,
+    @SerializedName("cargo") val cargo: String,
+    @SerializedName("telefempresa") val telefempresa: String,
+    @SerializedName("e_mailp") val e_mailp: String
+)
+
+data class ResponseTrener(
+    val message: String?,
+    val status: Int?
+)

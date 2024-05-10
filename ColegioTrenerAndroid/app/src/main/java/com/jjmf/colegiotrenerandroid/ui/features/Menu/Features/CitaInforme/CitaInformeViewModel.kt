@@ -9,7 +9,6 @@ import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.domain.model.CitaInforme
 import com.jjmf.colegiotrenerandroid.domain.repository.CitaInformeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -27,14 +26,16 @@ class CitaInformeViewModel @Inject constructor(
 
     init {
         getTrimestreActual()
-        listarCitas()
     }
 
     private fun getTrimestreActual() {
         viewModelScope.launch {
             try {
                 when(val res = repository.getTrimestreActual()){
-                    is Result.Correcto -> trimestre.value = Trimestre.entries.find { it.num == res.datos } ?: Trimestre.Uno
+                    is Result.Correcto -> {
+                        trimestre.value = res.datos ?: Trimestre.Uno
+                        listarCitas()
+                    }
                     is Result.Error -> error = res.mensaje
                 }
             }catch (e:Exception){
@@ -47,7 +48,6 @@ class CitaInformeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 isLoading = true
-                delay(2000)
                 val res = repository.listarCitas(
                     year = fecha.value.year.toString(),
                     trimestre = trimestre.value

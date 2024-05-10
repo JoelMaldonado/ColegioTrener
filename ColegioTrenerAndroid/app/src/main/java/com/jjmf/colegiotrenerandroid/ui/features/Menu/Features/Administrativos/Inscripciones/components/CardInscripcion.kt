@@ -20,7 +20,11 @@ import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 
 
 @Composable
-fun CardInscripcion(title: String, data: List<Inscripcion>) {
+fun CardInscripcion(
+    ctacli: String,
+    title: String,
+    data: List<Inscripcion>
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -53,7 +57,7 @@ fun CardInscripcion(title: String, data: List<Inscripcion>) {
                 )
             }
             data.forEach {
-                ItemInscripcion(it)
+                ItemInscripcion(ctacli = ctacli, data = it)
             }
         }
     }

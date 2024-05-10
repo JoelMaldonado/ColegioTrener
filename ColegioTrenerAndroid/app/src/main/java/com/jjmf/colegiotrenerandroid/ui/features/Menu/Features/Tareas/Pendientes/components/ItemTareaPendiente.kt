@@ -31,7 +31,7 @@ fun ItemTareaPendiente(data: EstadoCalPendienteDia) {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "ScI".uppercase(),
+            text = data.curso?.uppercase() ?: "Sin Definir",
             fontWeight = FontWeight.SemiBold,
             fontSize = 14.sp,
             color = Color.White
@@ -54,36 +54,29 @@ fun ItemTareaPendiente(data: EstadoCalPendienteDia) {
         Text(
             text = buildAnnotatedString {
                 withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append("Tarea:")
+                    append("Tarea: ")
                 }
                 append("${data.tarea}")
             },
             fontSize = 12.sp
         )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                modifier = Modifier.weight(1f),
-                text = buildAnnotatedString {
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                        append("Fecha asignación:")
-                    }
-                    append("${data.fechaasignacion?.format()}")
-                },
-                fontSize = 12.sp
-            )
-            Text(
-                modifier = Modifier.weight(1f),
-                text = buildAnnotatedString {
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                        append("Fecha entrega:")
-                    }
-                    append("${data.fechaentrega?.format()}")
-                },
-                fontSize = 12.sp
-            )
-        }
+        Text(
+            text = buildAnnotatedString {
+                withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                    append("Fecha asignación: ")
+                }
+                append("${data.fechaasignacion?.format()}")
+            },
+            fontSize = 12.sp
+        )
+        Text(
+            text = buildAnnotatedString {
+                withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                    append("Fecha entrega: ")
+                }
+                append("${data.fechaentrega?.format()}")
+            },
+            fontSize = 12.sp
+        )
     }
 }

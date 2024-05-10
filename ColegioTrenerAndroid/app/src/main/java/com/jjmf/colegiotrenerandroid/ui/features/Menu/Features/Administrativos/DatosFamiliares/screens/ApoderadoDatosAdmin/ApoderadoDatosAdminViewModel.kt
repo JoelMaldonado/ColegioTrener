@@ -10,6 +10,7 @@ import com.jjmf.colegiotrenerandroid.domain.repository.AuthRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.PersonaRepository
 import com.jjmf.colegiotrenerandroid.domain.model.DataPersona
 import com.jjmf.colegiotrenerandroid.util.enums.TipoFamiliar
+import com.jjmf.colegiotrenerandroid.util.format
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,6 +41,7 @@ class ApoderadoDatosAdminViewModel @Inject constructor(
 
     var error by mutableStateOf<String?>(null)
     var isLoading by mutableStateOf(false)
+    var isSuccess by mutableStateOf(false)
 
     init {
         getDatos()
@@ -59,6 +61,35 @@ class ApoderadoDatosAdminViewModel @Inject constructor(
                 error = e.message
             } finally {
                 isLoading = false
+            }
+        }
+    }
+
+
+    fun save() {
+        viewModelScope.launch {
+            try {
+                val res = repository.updateApoderado(
+                    tipo = "APODERADO",
+                    fechanacimiento = "${fechaNac?.format("yyyy-MM-dd") ?: "1999-01-01"}T00:00:00",
+                    distrito = distrito,
+                    direccion = direc,
+                    celular = cel,
+                    telefono = telf,
+                    empresa = empresa,
+                    telefempresa = telfEmpresa,
+                    cargo = cargo,
+                    e_mailp = correo
+                )
+                when (res) {
+                    is Result.Correcto -> {
+                        isSuccess = true
+                        getDatos()
+                    }
+                    is Result.Error -> error = res.mensaje
+                }
+            } catch (e: Exception) {
+                error = e.message
             }
         }
     }

@@ -79,7 +79,6 @@ fun AutorizacionesScreen(
                 }
             }
 
-
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -91,6 +90,7 @@ fun AutorizacionesScreen(
                     if (viewModel.listEstados.isNotEmpty()) {
                         viewModel.listEstados.forEach { estado ->
                             CardAutorizacionEstado(
+                                tipoEstado = viewModel.estado,
                                 estado = estado,
                                 click = {
                                     viewModel.grabar(
