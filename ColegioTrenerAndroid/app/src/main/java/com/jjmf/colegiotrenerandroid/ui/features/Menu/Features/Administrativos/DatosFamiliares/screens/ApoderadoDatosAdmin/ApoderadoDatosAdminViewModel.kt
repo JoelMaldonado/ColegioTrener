@@ -94,7 +94,7 @@ class ApoderadoDatosAdminViewModel @Inject constructor(
         }
     }
 
-    fun setearDatos(persona: DataPersona?) {
+    private fun setearDatos(persona: DataPersona?) {
         nombre = persona?.nombre ?: ""
         apodo = persona?.alias ?: ""
         tipoDoc = persona?.tipodoc ?: ""

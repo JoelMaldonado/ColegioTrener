@@ -40,17 +40,18 @@ class InscripcionesViewModel : ObservableObject {
     
     func listarInscripciones() {
         if let ctacli = hijoSelected?.ctacli {
+            print(ctacli)
             SVProgressHUD.show()
             InscripcionService.shared.getListIncripciones(ctacli: ctacli) { res in
                 switch res {
                 case .success(let data):
                     self.listInscripciones = data
-                    SVProgressHUD.dismiss()
                     if let first = data.first {
                         if first.inscripcionbloqueo {
                             self.alert = true
                         }
                     }
+                    SVProgressHUD.dismiss()
                 case .failure(let err):
                     self.error = err
                     self.isError = true

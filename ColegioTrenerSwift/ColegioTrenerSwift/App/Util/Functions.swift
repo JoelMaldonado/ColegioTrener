@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 extension Date {
     func format(pattern: String = "dd/MM/yyyy") -> String {
         let formatter = DateFormatter()
@@ -16,7 +17,12 @@ extension Date {
 }
 
 extension String {
-    func toData<T: Decodable>() -> EResult<T> {
+    
+    func toData<T: Decodable>( _ show: Bool = false) -> EResult<T> {
+        if show {
+            let a = self
+            print("Asi llega A = \(a)")
+        }
         guard let jsonData = self.data(using: .utf8) else { return EResult.failure("Error al convertir") }
         do {
             let object = try JSONDecoder().decode(T.self, from: jsonData)

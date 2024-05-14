@@ -28,8 +28,10 @@ struct DatosClubesView: View {
             .foregroundStyle(.white)
             .background(.colorT1, in: .rect(cornerRadius: 16))
             
-            ForEach(viewModel.list, id: \.self) { item in
-                ItemClub(item)
+            ScrollView {
+                ForEach(viewModel.list, id: \.self) { item in
+                    ItemClub(item)
+                }
             }
             
             Spacer()

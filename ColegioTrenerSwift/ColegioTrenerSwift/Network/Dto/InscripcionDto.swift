@@ -14,8 +14,8 @@ struct InscripcionDto: Codable {
     let codinscripcion: String?
     let precio: Double?
     let estadoinscripcion: String?
-    let inscripcionbloqueo: String?
-    
+    let inscripcionbloqueo: Double?
+
     func toDomain() -> Inscripcion {
         return Inscripcion(
             tipoinscripcion: tipoinscripcion?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
@@ -24,7 +24,7 @@ struct InscripcionDto: Codable {
             codinscripcion: codinscripcion?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
             precio: precio ?? 0.0,
             estadoinscripcion: estadoinscripcion?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
-            inscripcionbloqueo: inscripcionbloqueo == "0"
+            inscripcionbloqueo: inscripcionbloqueo == 0.0
         )
     }
 }

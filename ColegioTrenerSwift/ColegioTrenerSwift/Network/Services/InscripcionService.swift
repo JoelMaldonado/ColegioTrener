@@ -33,7 +33,7 @@ class InscripcionService {
                 .responseDecodable(of: String.self) { res in
                     switch res.result {
                     case .success(let success):
-                        let res: EResult<[InscripcionDto]> = success.toData()
+                        let res: EResult<[InscripcionDto]> = success.toData(true)
                         switch res {
                         case .success(let data):
                             completion(.success(data.map{ $0.toDomain() }))

@@ -29,8 +29,10 @@ struct DatosHijosView: View {
             .foregroundStyle(.white)
             .background(.colorT1, in: .rect(cornerRadius: 16))
             
-            ForEach(viewModel.listHijos, id: \.self) { hijo in
-                ItemDatoHijo(hijo)
+            ScrollView {
+                ForEach(viewModel.listHijos, id: \.self) { hijo in
+                    ItemDatoHijo(hijo)
+                }
             }
             
             Spacer()

@@ -10,7 +10,7 @@ import SwiftUI
 struct InscripcionesView: View {
     
     @StateObject private var viewModel = InscripcionesViewModel()
-
+    
     var back: () -> Void
     
     var body: some View {
@@ -24,10 +24,14 @@ struct InscripcionesView: View {
                 }
             )
             
-            VStack {
-                let list = Dictionary(grouping: viewModel.listInscripciones, by: { $0.codtipoinscripcion }).values.map{ $0 }
-                ForEach(list, id: \.self) { inscripciones in
-                    CardInscripcion(list: inscripciones)
+            ScrollView {
+                if viewModel.listInscripciones.isEmpty {
+                    Text("Sin Resultados")
+                } else {
+                    let list = Dictionary(grouping: viewModel.listInscripciones, by: { $0.codtipoinscripcion }).values.map{ $0 }
+                    ForEach(list, id: \.self) { inscripciones in
+                        CardInscripcion(list: inscripciones)
+                    }
                 }
             }
             .padding(4)
