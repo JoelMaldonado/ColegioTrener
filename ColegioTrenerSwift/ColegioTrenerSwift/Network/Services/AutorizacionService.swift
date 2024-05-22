@@ -17,7 +17,7 @@ class AutorizacionService {
         completion: @escaping (EResult<[Autorizacion]>) -> Void
     ) {
         
-        guard let ctamae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
+        guard let ctamae = UserDefaults.standard.string(forKey: Keys.ctamae) else { return completion(.failure("Sin Usuario")) }
      
         TokenUsecase.shared.getToken { res in
             switch res {
@@ -56,7 +56,7 @@ class AutorizacionService {
         idAutorizacion: String,
         completion: @escaping (EResult<[EstadoAutorizacion]>) -> Void
     ) {
-        guard let ctamae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
+        guard let ctamae = UserDefaults.standard.string(forKey: Keys.ctamae) else { return completion(.failure("Sin Usuario")) }
        
         TokenUsecase.shared.getToken { res in
             switch res {
@@ -97,7 +97,7 @@ class AutorizacionService {
         completion: @escaping (EResult<Bool>) -> Void
     ) {
         
-        guard let ctamae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
+        guard let ctamae = UserDefaults.standard.string(forKey: Keys.ctamae) else { return completion(.failure("Sin Usuario")) }
         
         TokenUsecase.shared.getToken { res in
             switch res {

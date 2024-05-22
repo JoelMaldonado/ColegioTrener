@@ -83,6 +83,7 @@ struct LoginView: View {
             
             SUIToastViewContainer(stackOverlap: .stack)
                 .padding(.bottom, 50)
+            
         }
         .alert(isPresented: $viewModel.isError) {
             Alert(

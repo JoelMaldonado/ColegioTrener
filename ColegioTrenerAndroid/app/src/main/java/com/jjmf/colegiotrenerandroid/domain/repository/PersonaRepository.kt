@@ -25,13 +25,13 @@ interface PersonaRepository {
     suspend fun updateApoderado(
         tipo: String,
         fechanacimiento: String,
-        distrito: String,
+        distrito: String?,
         direccion: String,
         celular: String,
         telefono: String,
         empresa: String,
-        telefempresa: String,
+        telefEmpresa: String,
         cargo: String,
-        e_mailp: String
+        email: String
     ): Result<Nothing>
 }

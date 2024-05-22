@@ -67,7 +67,7 @@ class InformeService {
         completion: @escaping (EResult<[CitaInforme]>) -> Void
     ) {
         
-        guard let ctmae = UserDefaults.standard.string(forKey: Keys.loginUser) else { return completion(.failure("Sin Usuario")) }
+        guard let ctmae = UserDefaults.standard.string(forKey: Keys.ctamae) else { return completion(.failure("Sin Usuario")) }
         
         TokenUsecase.shared.getToken { res in
             switch res {

@@ -1,6 +1,5 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.DatosFamiliares.screens.ClubesDatosAdmin
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.domain.repository.AuthRepository
-import com.jjmf.colegiotrenerandroid.domain.repository.ClubRepository
+import com.jjmf.colegiotrenerandroid.domain.repository.ComboRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.PersonaRepository
 import com.jjmf.colegiotrenerandroid.data.services.request.DataClubRequest
 import com.jjmf.colegiotrenerandroid.domain.model.Club
@@ -20,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ClubesDatosAdminViewModel @Inject constructor(
     private val repository: PersonaRepository,
-    private val repoClub: ClubRepository,
+    private val repoClub: ComboRepository,
     private val auth: AuthRepository
 ) : ViewModel() {
 

@@ -9,7 +9,6 @@ import com.jjmf.colegiotrenerandroid.app.Preferencias
 import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.domain.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +28,6 @@ class LoginViewModel @Inject constructor(
     init {
         if (prefs.getRecuerdame()){
             usuario = prefs.getUsuario()
-            clave = prefs.getClave()
         } else {
             usuario = ""
             clave = ""
@@ -45,12 +43,11 @@ class LoginViewModel @Inject constructor(
                     is Result.Correcto -> {
                         toMenu = true
                         prefs.saveRecuerdame(recuerdame)
+                        prefs.saveCtamae(usuario)
                         if (recuerdame){
                             prefs.saveUsuario(usuario)
-                            prefs.saveClave(clave)
                         } else {
                             prefs.removeUsuario()
-                            prefs.removeClave()
                         }
                     }
                     is Result.Error -> error = resLogin.mensaje

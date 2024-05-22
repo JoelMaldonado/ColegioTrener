@@ -24,7 +24,7 @@ class AutorizacionRepositoryImpl @Inject constructor(
     ): Result<List<Autorizacion>> {
         return try {
             val call = api.listarAutorizaciones(
-                ctamae = prefs.getUsuario(),
+                ctamae = prefs.getCtamae(),
                 estado = estado.code,
                 token = token()
             )
@@ -42,7 +42,7 @@ class AutorizacionRepositoryImpl @Inject constructor(
     override suspend fun estado(idPermiso: String): Result<List<EstadoAutorizacion>> {
         return try {
             val call = api.estado(
-                ctamae = prefs.getUsuario(),
+                ctamae = prefs.getCtamae(),
                 idPermiso = idPermiso,
                 token = token()
             )
@@ -66,7 +66,7 @@ class AutorizacionRepositoryImpl @Inject constructor(
         return try {
             val request = GrabarAutorizacionRequest(
                 idpermiso = idPermiso,
-                ctamae = prefs.getUsuario(),
+                ctamae = prefs.getCtamae(),
                 ctacli = ctacli,
                 autorizo = autorizo
             )

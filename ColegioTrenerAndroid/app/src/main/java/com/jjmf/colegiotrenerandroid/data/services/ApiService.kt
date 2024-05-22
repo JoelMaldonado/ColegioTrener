@@ -69,6 +69,11 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<String>
 
+    @GET("PublicacionFox/TrenerWCFOX.svc/Trener/getListaDistritos")
+    suspend fun getDistrito(
+        @Header("Authorization") token: String
+    ): Response<String>
+
     @POST("PublicacionFox/TrenerWCFOX.svc/Trener/actualizarDatosPadres")
     suspend fun updateApoderado(
         @Header("Authorization") token: String,
@@ -79,15 +84,15 @@ interface ApiService {
 data class RequestUpdateApoderado(
     @SerializedName("ctamae") val ctamae: String,
     @SerializedName("tipo") val tipo: String,
-    @SerializedName("fechanacimiento") val fechanacimiento: String,
-    @SerializedName("distrito") val distrito: String,
+    @SerializedName("fechaNacimiento") val fechanacimiento: String,
+    @SerializedName("distrito") val distrito: String?,
     @SerializedName("direccion") val direccion: String,
     @SerializedName("celular") val celular: String,
     @SerializedName("telefono") val telefono: String,
     @SerializedName("empresa") val empresa: String,
     @SerializedName("cargo") val cargo: String,
-    @SerializedName("telefempresa") val telefempresa: String,
-    @SerializedName("e_mailp") val e_mailp: String
+    @SerializedName("telefEmpresa") val telefEmpresa: String,
+    @SerializedName("email") val email: String
 )
 
 data class ResponseTrener(

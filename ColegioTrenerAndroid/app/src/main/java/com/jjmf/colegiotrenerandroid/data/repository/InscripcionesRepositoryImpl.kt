@@ -38,7 +38,7 @@ class InscripcionesRepositoryImpl @Inject constructor(
     ): Result<Nothing> {
         return try {
             val request = RequestInsertInscripcion(
-                ctamae = prefs.getUsuario(),
+                ctamae = prefs.getCtamae(),
                 ctacli = ctacli,
                 codtipoinscripcion = codTipoInscripcion,
                 codinscripcion = codInscripcion

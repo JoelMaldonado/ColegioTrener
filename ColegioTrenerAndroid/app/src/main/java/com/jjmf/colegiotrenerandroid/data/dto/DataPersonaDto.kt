@@ -50,7 +50,7 @@ data class DataPersonaDto(
             cargo = this.cargo?.trim(),
             telefempresa = this.telefempresa?.trim(),
             e_mailp = this.e_mailp?.trim(),
-            emailbloqueo = emailbloqueo?.trim()
+            emailbloqueo = emailbloqueo?.trim() == "1"
         )
     }
 }

@@ -2,13 +2,13 @@ package com.jjmf.colegiotrenerandroid.data.module
 
 import com.jjmf.colegiotrenerandroid.data.repository.AsistenciaRepositoryImpl
 import com.jjmf.colegiotrenerandroid.domain.repository.AuthRepository
-import com.jjmf.colegiotrenerandroid.domain.repository.ClubRepository
+import com.jjmf.colegiotrenerandroid.domain.repository.ComboRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.PagosRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.PersonaRepository
 import com.jjmf.colegiotrenerandroid.data.repository.AuthRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.AutorizacionRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.CitaInformeRepositoryImpl
-import com.jjmf.colegiotrenerandroid.data.repository.ClubRepositoryImpl
+import com.jjmf.colegiotrenerandroid.data.repository.ComboRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.InscripcionesRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.PagosRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.PersonaRepositoryImpl
@@ -34,7 +34,7 @@ abstract class RepositoryModule {
     abstract fun personRepo(impl: PersonaRepositoryImpl): PersonaRepository
 
     @Binds
-    abstract fun clubRepo(impl: ClubRepositoryImpl): ClubRepository
+    abstract fun comboRepo(impl: ComboRepositoryImpl): ComboRepository
 
     @Binds
     abstract fun pagoRepo(impl: PagosRepositoryImpl): PagosRepository

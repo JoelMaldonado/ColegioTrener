@@ -76,7 +76,7 @@ fun TareasIncumplimientosScreen(
                 )
                 Text(
                     modifier = Modifier.weight(1f),
-                    text = viewModel.trimestre.num,
+                    text = viewModel.trimestre?.num ?: "Sin Definir",
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )

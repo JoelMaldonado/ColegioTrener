@@ -52,16 +52,16 @@ fun ItemInscripcion(
     val bool = remember { mutableStateOf(data.estadoinscripcion) }
 
     Column {
-        Row(
+        Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.LightGray),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(3.dp)
-        ) {
-            Text(text = "Libro:", fontSize = 14.sp)
-            Text(text = data.inscripcion.toString(), fontWeight = FontWeight.Bold, fontSize = 14.sp)
-        }
+                .background(Color.LightGray)
+                .padding(start = 4.dp),
+            text = data.inscripcion.toString(),
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp
+        )
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -79,7 +79,7 @@ fun ItemInscripcion(
                 bool = bool.value,
                 newValue = {
                     bool.value = it
-                    if (it){
+                    if (it) {
                         viewModel.save(
                             ctacli = ctacli,
                             codTipoInscripcion = data.codtipoinscripcion ?: return@SwitchTrener,
@@ -91,7 +91,7 @@ fun ItemInscripcion(
                             titleText = "Warning"
                             contentText = "No se puede realizar esta acción"
                             confirmButtonBackgroundColor = ColorP1.hashCode()
-                            setConfirmButton("Continuar"){
+                            setConfirmButton("Continuar") {
                                 bool.value = true
                                 dismissWithAnimation()
                             }

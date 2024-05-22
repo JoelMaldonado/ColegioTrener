@@ -35,6 +35,7 @@ struct PerfilView: View {
         .alert(isPresented: $bool) {
             Alert(title: Text("Cerrar Sesión"), primaryButton: .default(Text("Confirmar"), action: {
                 dismiss()
+                UserDefaults.standard.removeObject(forKey: Keys.ctamae)
             }), secondaryButton: .cancel(Text("Cancelar")))
         }
     }

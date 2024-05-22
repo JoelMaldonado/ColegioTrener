@@ -1,8 +1,8 @@
 package com.jjmf.colegiotrenerandroid.data.repository
 
 import com.google.gson.annotations.SerializedName
+import com.jjmf.colegiotrenerandroid.app.Preferencias
 import com.jjmf.colegiotrenerandroid.core.Result
-import com.jjmf.colegiotrenerandroid.data.dto.AsistenciaDto
 import com.jjmf.colegiotrenerandroid.data.dto.CitaInformeDto
 import com.jjmf.colegiotrenerandroid.data.services.CitaInformeService
 import com.jjmf.colegiotrenerandroid.domain.model.CitaInforme
@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 class CitaInformeRepositoryImpl @Inject constructor(
     private val api: CitaInformeService,
-    private val token: TokenUseCase
+    private val token: TokenUseCase,
+    private val prefs: Preferencias
 ) : CitaInformeRepository {
     override suspend fun listarCitas(
         year: String,
@@ -22,7 +23,7 @@ class CitaInformeRepositoryImpl @Inject constructor(
     ): Result<List<CitaInforme>> {
         return try {
             val call = api.listarCitasInforme(
-                ctamae = "00002070",
+                ctamae = prefs.getCtamae(),
                 year = year,
                 trimestre = trimestre.num,
                 token = token()
@@ -45,9 +46,9 @@ class CitaInformeRepositoryImpl @Inject constructor(
             if (call.isSuccessful) {
                 val body = convertJson<Array<TrimestreDto>>(call.body()).firstOrNull()?.trimestre
                 val trim: Trimestre = when(body){
-                    "0" -> Trimestre.Uno
-                    "1" -> Trimestre.Dos
-                    "2" -> Trimestre.Tres
+                    "1" -> Trimestre.Uno
+                    "2" -> Trimestre.Dos
+                    "3" -> Trimestre.Tres
                     else -> Trimestre.Uno
                 }
                 Result.Correcto(trim)

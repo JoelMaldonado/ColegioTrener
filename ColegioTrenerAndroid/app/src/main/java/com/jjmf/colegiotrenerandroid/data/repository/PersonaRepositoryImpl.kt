@@ -28,7 +28,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun datos(): Result<List<DataPersona>> {
         return try {
-            val call = api.data(token = token(), ctli = prefs.getUsuario())
+            val call = api.data(token = token(), ctli = prefs.getCtamae())
             if (call.isSuccessful) {
                 val list = convertJson<Array<DataPersonaDto>>(call.body()).map { it.toDomain() }
                 Result.Correcto(list)
@@ -42,7 +42,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun getDataHijos(): Result<List<DataHijo>> {
         return try {
-            val call = api.getDataHijos(token = token(), ctmae = prefs.getUsuario())
+            val call = api.getDataHijos(token = token(), ctmae = prefs.getCtamae())
             if (call.isSuccessful) {
                 val list = convertJson<Array<DataHijoDto>>(call.body())
                 return Result.Correcto(list.map { it.toDomain() })
@@ -56,7 +56,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun getHijos(): Result<List<Hijo>> {
         return try {
-            val ctamae = prefs.getUsuario()
+            val ctamae = prefs.getCtamae()
             val call = api.getHijosMatriculados(token = token(), ctamae = ctamae)
             if (call.isSuccessful) {
                 val list = convertJson<Array<HijoDto>>(call.body())
@@ -71,7 +71,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun getClubes(): Result<List<DataClub>> {
         return try {
-            val call = api.getDataClubes(token(), ctli = prefs.getUsuario())
+            val call = api.getDataClubes(token(), ctli = prefs.getCtamae())
             if (call.isSuccessful) {
                 val list = convertJson<Array<DataClubDto>>(call.body())
                 return Result.Correcto(list.map { it.toDomain() })
@@ -85,7 +85,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun editHijo(data: DataHijoRequest): Result<String> {
         return try {
-            val call = api.insertHijo(data.copy(ctamae = prefs.getUsuario()), token())
+            val call = api.insertHijo(data.copy(ctamae = prefs.getCtamae()), token())
             if (call.isSuccessful) {
                 Result.Correcto("Guardado")
             } else {
@@ -98,7 +98,7 @@ class PersonaRepositoryImpl @Inject constructor(
 
     override suspend fun editClub(data: DataClubRequest): Result<String> {
         return try {
-            val call = api.insertClub(data.copy(ctamae = prefs.getUsuario()), token())
+            val call = api.insertClub(data.copy(ctamae = prefs.getCtamae()), token())
             if (call.isSuccessful) {
                 Result.Correcto("Guardado")
             } else {
@@ -112,18 +112,18 @@ class PersonaRepositoryImpl @Inject constructor(
     override suspend fun updateApoderado(
         tipo: String,
         fechanacimiento: String,
-        distrito: String,
+        distrito: String?,
         direccion: String,
         celular: String,
         telefono: String,
         empresa: String,
-        telefempresa: String,
+        telefEmpresa: String,
         cargo: String,
-        e_mailp: String,
+        email: String,
     ): Result<Nothing> {
         return try {
             val request = RequestUpdateApoderado(
-                ctamae = prefs.getUsuario(),
+                ctamae = prefs.getCtamae(),
                 tipo = tipo,
                 fechanacimiento = fechanacimiento,
                 distrito = distrito,
@@ -131,9 +131,9 @@ class PersonaRepositoryImpl @Inject constructor(
                 celular = celular,
                 telefono = telefono,
                 empresa = empresa,
-                telefempresa = telefempresa,
+                telefEmpresa = telefEmpresa,
                 cargo = cargo,
-                e_mailp = e_mailp
+                email = email
             )
             val call = api.updateApoderado(token = token(), request = request)
             if (call.isSuccessful) {

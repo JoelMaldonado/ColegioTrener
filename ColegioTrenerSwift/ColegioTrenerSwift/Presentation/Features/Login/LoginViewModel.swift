@@ -58,8 +58,7 @@ class LoginViewModel : ObservableObject {
             clave: self.clave
         ){ res in
             switch res {
-            case .success(let value):
-                self.toMenu = true
+            case .success( _):
                 if self.recuerdame {
                     UserDefaults.standard.set(self.usuario, forKey: Keys.loginUser)
                     UserDefaults.standard.set(self.clave, forKey: Keys.loginClave)
@@ -67,8 +66,10 @@ class LoginViewModel : ObservableObject {
                     UserDefaults.standard.removeObject(forKey: Keys.loginUser)
                     UserDefaults.standard.removeObject(forKey: Keys.loginClave)
                 }
+                UserDefaults.standard.setValue(self.usuario, forKey: Keys.ctamae)
                 UserDefaults.standard.setValue(self.recuerdame, forKey: Keys.loginRecuerdame)
                 SVProgressHUD.dismiss()
+                self.toMenu = true
             case .failure(let err):
                 self.error = err
                 self.isError = true

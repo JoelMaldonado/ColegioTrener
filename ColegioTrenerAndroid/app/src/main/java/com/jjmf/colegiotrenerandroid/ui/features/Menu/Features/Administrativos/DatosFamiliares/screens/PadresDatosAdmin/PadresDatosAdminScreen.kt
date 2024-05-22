@@ -43,14 +43,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.jjmf.colegiotrenerandroid.R
 import com.jjmf.colegiotrenerandroid.ui.components.BoxForm
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.DatosFamiliares.components.dialogs.formatDateString
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.components.CajaSelectDistrito
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.components.CajaText
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.components.CajaTextField
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 import com.jjmf.colegiotrenerandroid.util.enums.TipoFamiliar
@@ -66,20 +72,6 @@ fun PadresDatosAdminScreen(
     val context = LocalContext.current
 
     BackHandler(onBack = back)
-
-    if (viewModel.isSuccess) {
-        SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE).apply {
-            titleText = "Success"
-            contentText = "Usuario Actualizado"
-            confirmButtonBackgroundColor = ColorP1.hashCode()
-            setConfirmButton("Continuar") {
-                viewModel.isSuccess = false
-                dismissWithAnimation()
-            }
-            setCancelable(false)
-            show()
-        }
-    }
 
     viewModel.error?.let {
         context.show(it)
@@ -208,17 +200,23 @@ fun PadresDatosAdminScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    CajaText(
+                    CajaTextField(
                         modifier = Modifier.weight(1f),
-                        value = viewModel.fechaNac?.format("dd/MM/yyyy").toString(),
-                        newValue = { },
-                        label = "Fecha de nacimiento"
+                        value = viewModel.fecha.value,
+                        newValue = {
+                            val formattedDate = formatDateString(it.text)
+                            viewModel.fecha.value = TextFieldValue(
+                                text = formattedDate,
+                                selection = TextRange(formattedDate.length)
+                            )
+                        },
+                        label = "Fecha de nacimiento",
+                        keyboardType = KeyboardType.Number
                     )
-                    CajaText(
+                    CajaSelectDistrito(
                         modifier = Modifier.weight(1f),
-                        value = viewModel.distrito,
-                        newValue = { viewModel.distrito = it },
-                        label = "Distrito"
+                        distrito = viewModel.distrito,
+                        list = viewModel.listDistritos,
                     )
                 }
 
@@ -282,7 +280,9 @@ fun PadresDatosAdminScreen(
                     isEnabled = viewModel.isCorreoEnabled
                 )
 
-                Button(onClick = viewModel::save) {
+                Button(onClick = {
+                    viewModel.save(context)
+                }) {
 
                     Text(text = "Grabar")
                 }

@@ -8,8 +8,8 @@ class Preferencias @Inject constructor(
 ) {
 
     private val KEY_RERCUERDAME = "KEY_RERCUERDAME"
+    private val KEY_CTAMAE = "KEY_CTAMAE"
     private val KEY_USUARIO = "KEY_USUARIO"
-    private val KEY_CLAVE = "KEY_CLAVE"
 
     fun saveRecuerdame(data: Boolean) {
         sp.edit().putBoolean(KEY_RERCUERDAME, data).apply()
@@ -23,14 +23,14 @@ class Preferencias @Inject constructor(
 
     fun getUsuario() = sp.getString(KEY_USUARIO, null) ?: throw Exception("Sin ID")
 
-    fun removeUsuario() = sp.edit().remove(KEY_USUARIO)
-
-    fun saveClave(data: String) {
-        sp.edit().putString(KEY_CLAVE, data).apply()
+    fun removeUsuario() = sp.edit().remove(KEY_USUARIO).apply()
+    fun saveCtamae(data: String) {
+        sp.edit().putString(KEY_CTAMAE, data).apply()
     }
 
-    fun getClave() = sp.getString(KEY_CLAVE, null) ?: ""
-    fun removeClave() = sp.edit().remove(KEY_CLAVE)
+    fun getCtamae() = sp.getString(KEY_CTAMAE, null) ?: throw Exception("Sin ID")
+
+    fun removeCtamae() = sp.edit().remove(KEY_CTAMAE).apply()
 
     fun saveLink(link: String?) {
         sp.edit().putString("KEY_LINK", link).apply()

@@ -20,7 +20,7 @@ class TareasIncumplimientosViewModel @Inject constructor(
     private val repo: TareaRepository
 ) : ViewModel() {
 
-    var trimestre by mutableStateOf(Trimestre.Uno)
+    var trimestre by mutableStateOf<Trimestre?>(null)
     var list by mutableStateOf<List<Incumplimiento>>(emptyList())
     var error by mutableStateOf<String?>(null)
     var isLoadingList by mutableStateOf(false)
@@ -34,8 +34,7 @@ class TareasIncumplimientosViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 when (val res = repository.getTrimestreActual()) {
-                    is Result.Correcto -> trimestre = res.datos ?: Trimestre.Uno
-
+                    is Result.Correcto -> trimestre = res.datos
                     is Result.Error -> error = res.mensaje
                 }
             } catch (e: Exception) {
