@@ -28,9 +28,11 @@ struct InscripcionesView: View {
                 if viewModel.listInscripciones.isEmpty {
                     Text("Sin Resultados")
                 } else {
-                    let list = Dictionary(grouping: viewModel.listInscripciones, by: { $0.codtipoinscripcion }).values.map{ $0 }
+                    let list = Dictionary(grouping: viewModel.listInscripciones, by: { $0.tipoinscripcion }).values.map{ $0 }
                     ForEach(list, id: \.self) { inscripciones in
-                        CardInscripcion(list: inscripciones)
+                        if let ctacli = viewModel.hijoSelected?.ctacli {
+                            CardInscripcion(list: inscripciones, ctacli: ctacli)
+                        }
                     }
                 }
             }

@@ -10,6 +10,7 @@ import SwiftUI
 struct DatosHijosView: View {
     
     @ObservedObject var viewModel = DatosHijosViewModel()
+    
     var body: some View {
         VStack {
             
@@ -46,6 +47,16 @@ struct DatosHijosView: View {
             Alert(
                 title: Text("Error"),
                 message: Text(viewModel.error ?? "Sin definir")
+            )
+        }
+        .alert(isPresented: $viewModel.alertEliminar) {
+            Alert(
+                title: Text("Warning"),
+                message: Text("¿Seguro de eliminar?"),
+                primaryButton: .default(Text("Si, eliminar")) {
+                    viewModel.deleteHijo()
+                },
+                secondaryButton: .cancel(Text("Cancelar"))
             )
         }
     }

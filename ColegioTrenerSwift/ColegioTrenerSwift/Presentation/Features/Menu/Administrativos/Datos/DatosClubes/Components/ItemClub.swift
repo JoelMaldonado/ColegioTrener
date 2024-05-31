@@ -33,16 +33,6 @@ extension DatosClubesView {
                     .foregroundStyle(.colorS1)
             }
         }
-        .alert(isPresented: $viewModel.alertEliminar) {
-            Alert(
-                title: Text("Warning"),
-                message: Text("¿Seguro de eliminar?"),
-                primaryButton: .default(Text("Si, eliminar")) {
-                    viewModel.deleteClub()
-                },
-                secondaryButton: .cancel(Text("Cancelar"))
-            )
-        }
         .frame(maxWidth: .infinity)
         .frame(height: 80)
         .padding(.trailing)

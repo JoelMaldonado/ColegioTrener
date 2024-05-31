@@ -120,7 +120,7 @@ class PersonaRepositoryImpl @Inject constructor(
         telefEmpresa: String,
         cargo: String,
         email: String,
-    ): Result<Nothing> {
+    ): Result<String> {
         return try {
             val request = RequestUpdateApoderado(
                 ctamae = prefs.getCtamae(),
@@ -138,7 +138,7 @@ class PersonaRepositoryImpl @Inject constructor(
             val call = api.updateApoderado(token = token(), request = request)
             if (call.isSuccessful) {
                 val data = convertJson<ResponseTrener>(call.body())
-                if (data.status == 1) Result.Correcto(null)
+                if (data.status == 1) Result.Correcto(data.message)
                 else Result.Error(data.message)
             } else Result.Error(call.message())
         } catch (e: Exception) {

@@ -12,8 +12,18 @@ enum TipoFamiliar {
     case madre
 }
 
+extension TipoFamiliar {
+    func code() -> String {
+        return switch self {
+        case .padre:
+            "padre"
+        case .madre:
+            "madre"
+        }
+    }
+}
+
 struct DatosPadresView: View {
-    @State private var isShowingAlert = false
     @StateObject var viewModel = DatosPadresViewModel()
     
     var body: some View {
@@ -63,11 +73,11 @@ struct DatosPadresView: View {
                         placeholder: "Ingresar fecha de nacimiento"
                     )
                     
-                    CajaTexto(
-                        text: $viewModel.distrito,
-                        label: "Distrito",
-                        placeholder: "Ingresar distrito"
+                    CajaSelectDistrito(
+                        distrito: $viewModel.distrito,
+                        list: viewModel.listDistritos
                     )
+                    
                 }
                 
                 CajaTexto(
@@ -128,7 +138,7 @@ struct DatosPadresView: View {
                 .background(.colorT1, in: .rect(cornerRadius: 12))
                 
                 Button {
-                    self.isShowingAlert = true
+                    viewModel.save()
                 } label: {
                     Text("Grabar")
                         .fontWeight(.heavy)
@@ -141,19 +151,8 @@ struct DatosPadresView: View {
             }
             .padding(12)
         }
-        .alert(isPresented: $isShowingAlert) {
-            Alert(
-                title: Text("Usuario guardado"),
-                message: Text("El usuario se ha guardado correctamente"),
-                dismissButton: .default(Text("Aceptar"))
-            )
-        }
-        .alert(isPresented: $viewModel.isError) {
-            Alert(
-                title: Text("Error"),
-                message: Text(viewModel.error ?? "Sin definir")
-            )
-        }
+        .alert(Text(viewModel.error ?? "Sin definir"), isPresented: $viewModel.isError, actions: {})
+        .alert(Text(viewModel.mensaje), isPresented: $viewModel.isSuccess, actions: {})
     }
     
 }

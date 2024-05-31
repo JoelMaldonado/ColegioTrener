@@ -9,13 +9,15 @@ import SwiftUI
 
 struct CardAutorizacion : View {
     var estado: EstadoAutorizacion
+    var estadoTab: EstadoAutorizacionTab
     var autorizar: (Bool) -> Void
     @State private var isOn : Bool
     
     
     
-    init(estado: EstadoAutorizacion, autorizar: @escaping (Bool) -> Void) {
+    init(estado: EstadoAutorizacion, estadoTab: EstadoAutorizacionTab, autorizar: @escaping (Bool) -> Void) {
         self.estado = estado
+        self.estadoTab = estadoTab
         self.autorizar = autorizar
         self.isOn = estado.autorizo
     }
@@ -40,6 +42,7 @@ struct CardAutorizacion : View {
                 
                 Text("¿Autorizo?")
                 Toggle("", isOn: $isOn)
+                    .disabled(estadoTab == .Vencidos)
                     .tint(.colorP1)
                     .frame(width: 60)
                     .onChange(of: isOn) { newValue in

@@ -5,6 +5,7 @@ import com.jjmf.colegiotrenerandroid.core.Result
 import com.jjmf.colegiotrenerandroid.data.dto.InscripcionDto
 import com.jjmf.colegiotrenerandroid.data.services.InscripcionesService
 import com.jjmf.colegiotrenerandroid.data.services.RequestInsertInscripcion
+import com.jjmf.colegiotrenerandroid.data.services.ResponseTrener
 import com.jjmf.colegiotrenerandroid.domain.model.Inscripcion
 import com.jjmf.colegiotrenerandroid.domain.repository.InscripcionesRepository
 import com.jjmf.colegiotrenerandroid.domain.usecase.TokenUseCase
@@ -35,7 +36,7 @@ class InscripcionesRepositoryImpl @Inject constructor(
         ctacli: String,
         codTipoInscripcion: String,
         codInscripcion: String
-    ): Result<Nothing> {
+    ): Result<String> {
         return try {
             val request = RequestInsertInscripcion(
                 ctamae = prefs.getCtamae(),
@@ -47,7 +48,11 @@ class InscripcionesRepositoryImpl @Inject constructor(
                 token = token(),
                 request = request
             )
-            if (call.isSuccessful) Result.Correcto(null)
+            if (call.isSuccessful) {
+                val data = convertJson<ResponseTrener>(call.body()?.incribirAlumnoResult)
+                if (data.status == 1) Result.Correcto(data.message)
+                else Result.Error(data.message)
+            }
             else Result.Error(call.message())
         } catch (e: Exception) {
             Result.Error(e.message)

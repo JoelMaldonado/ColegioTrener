@@ -168,7 +168,7 @@ fun LoginScreen(
                         }
                     }
 
-                    Text(text = "v${getVersionName(context)}", color = Color.Gray, fontSize = 12.sp)
+                    Text(text = "v${context.getVersion()}", color = Color.Gray, fontSize = 12.sp)
 
                 }
             }
@@ -176,11 +176,6 @@ fun LoginScreen(
     }
 }
 
-fun getVersionName(context: Context): String {
-    return try {
-        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
-        packageInfo.versionName
-    } catch (e: PackageManager.NameNotFoundException) {
-        "Error al obtener la versión"
-    }
+fun Context.getVersion(): String {
+    return packageManager.getPackageInfo(packageName, 0).versionName
 }

@@ -25,9 +25,6 @@ class LoginViewModel : ObservableObject {
         if let valor = UserDefaults.standard.string(forKey: Keys.loginUser) {
             self.usuario = valor
         }
-        if let valor = UserDefaults.standard.string(forKey: Keys.loginClave) {
-            self.clave = valor
-        }
         self.recuerdame = UserDefaults.standard.bool(forKey: Keys.loginRecuerdame)
     }
     
@@ -61,10 +58,8 @@ class LoginViewModel : ObservableObject {
             case .success( _):
                 if self.recuerdame {
                     UserDefaults.standard.set(self.usuario, forKey: Keys.loginUser)
-                    UserDefaults.standard.set(self.clave, forKey: Keys.loginClave)
                 } else {
                     UserDefaults.standard.removeObject(forKey: Keys.loginUser)
-                    UserDefaults.standard.removeObject(forKey: Keys.loginClave)
                 }
                 UserDefaults.standard.setValue(self.usuario, forKey: Keys.ctamae)
                 UserDefaults.standard.setValue(self.recuerdame, forKey: Keys.loginRecuerdame)

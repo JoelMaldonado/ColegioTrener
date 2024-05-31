@@ -36,11 +36,21 @@ struct DatosClubesView: View {
             
             Spacer()
         }
+        .sheet(isPresented: $viewModel.agregarClub) {
+            SheetAgregarClub()
+        }
         .alert(isPresented: $viewModel.isError) {
             Alert(title: Text("Error"), message: Text(viewModel.error ?? "Sin definir"))
         }
-        .sheet(isPresented: $viewModel.agregarClub) {
-            SheetAgregarClub()
+        .alert(isPresented: $viewModel.alertEliminar) {
+            Alert(
+                title: Text("Warning"),
+                message: Text("¿Seguro de eliminar?"),
+                primaryButton: .default(Text("Si, eliminar")) {
+                    viewModel.deleteClub()
+                },
+                secondaryButton: .cancel(Text("Cancelar"))
+            )
         }
         .padding()
     }

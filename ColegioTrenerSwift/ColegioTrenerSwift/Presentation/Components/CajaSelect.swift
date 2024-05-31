@@ -54,3 +54,41 @@ struct CajaSelect: View {
         }
     }
 }
+
+
+struct CajaSelectDistrito: View {
+    @Binding var distrito: ComboDistrito?
+    var list: [ComboDistrito]
+    
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Distrito")
+                .font(.footnote)
+                .bold()
+                .foregroundStyle(.colorTexto)
+            HStack {
+                Picker(
+                    "",
+                    selection: $distrito,
+                    content: {
+                        ForEach(list, id: \.self) { item in
+                            Text(item.abrdis)
+                                .frame(maxWidth: .infinity)
+                                .tag(item as ComboDistrito?)
+                        }
+                    }
+                )
+                .pickerStyle(.menu)
+                .tint(.colorTexto)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                
+            }
+            .padding(.horizontal, 6)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(.colorT1, lineWidth: 1.5)
+            )
+        }
+    }
+}

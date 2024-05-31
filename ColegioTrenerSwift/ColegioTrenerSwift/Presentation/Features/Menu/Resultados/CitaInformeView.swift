@@ -169,11 +169,11 @@ enum TrimestreTab: CaseIterable {
     func code() -> String {
         switch self {
         case .Uno:
-            return "0"
-        case .Dos:
             return "1"
-        case .Tres:
+        case .Dos:
             return "2"
+        case .Tres:
+            return "3"
         }
     }
 }

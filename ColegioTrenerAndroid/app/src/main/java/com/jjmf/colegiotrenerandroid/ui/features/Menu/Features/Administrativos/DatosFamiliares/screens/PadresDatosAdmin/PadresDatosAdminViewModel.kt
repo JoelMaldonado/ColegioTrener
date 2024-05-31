@@ -136,8 +136,7 @@ class PadresDatosAdminViewModel @Inject constructor(
                 when (res) {
                     is Result.Correcto -> {
                         SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE).apply {
-                            titleText = "Success"
-                            contentText = "Usuario Actualizado"
+                            titleText = res.datos
                             confirmButtonBackgroundColor = ColorP1.hashCode()
                             setConfirmButton("Continuar") {
                                 getDatos()

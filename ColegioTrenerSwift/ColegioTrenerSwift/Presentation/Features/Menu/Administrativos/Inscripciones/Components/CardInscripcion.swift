@@ -11,7 +11,8 @@ extension InscripcionesView {
     
     @ViewBuilder
     func CardInscripcion(
-        list: [Inscripcion]
+        list: [Inscripcion],
+        ctacli: String
     ) -> some View {
         let first = list.first
         VStack(spacing: 0) {
@@ -28,7 +29,7 @@ extension InscripcionesView {
             .background(.colorS1)
             VStack(spacing: 0) {
                 ForEach(list, id: \.self){ inscrip in
-                    ItemCardInscripcion(inscripcion: inscrip)
+                    ItemCardInscripcion(inscripcion: inscrip, ctacli: ctacli)
                 }
             }
             .font(.footnote)

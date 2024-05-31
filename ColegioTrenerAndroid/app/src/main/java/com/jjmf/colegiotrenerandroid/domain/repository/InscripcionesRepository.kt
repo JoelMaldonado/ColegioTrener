@@ -10,5 +10,5 @@ interface InscripcionesRepository {
         ctacli: String,
         codTipoInscripcion: String,
         codInscripcion: String
-    ): Result<Nothing>
+    ): Result<String>
 }

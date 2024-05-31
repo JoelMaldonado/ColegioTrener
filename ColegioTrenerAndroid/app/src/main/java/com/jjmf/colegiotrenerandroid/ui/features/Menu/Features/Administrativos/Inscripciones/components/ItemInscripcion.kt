@@ -124,7 +124,7 @@ class ItemInscripcionViewModel @Inject constructor(
                     codInscripcion = codInscripcion
                 )
                 error = when (res) {
-                    is Result.Correcto -> "Actualizado"
+                    is Result.Correcto -> res.datos
                     is Result.Error -> res.mensaje
                 }
             } catch (e: Exception) {

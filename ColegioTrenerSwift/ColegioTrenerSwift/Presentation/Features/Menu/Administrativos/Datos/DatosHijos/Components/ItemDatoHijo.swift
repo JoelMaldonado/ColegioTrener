@@ -41,15 +41,5 @@ extension DatosHijosView {
         }
         .frame(height: 80)
         .cornerRadius(16)
-        .alert(isPresented: $viewModel.alertEliminar) {
-            Alert(
-                title: Text("Warning"),
-                message: Text("¿Seguro de eliminar?"),
-                primaryButton: .default(Text("Si, eliminar")) {
-                    viewModel.deleteHijo()
-                },
-                secondaryButton: .cancel(Text("Cancelar"))
-            )
-        }
     }
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DatosApoderadoView: View {
-    @State private var isShowingAlert = false
     @StateObject private var viewModel = DatosApoderadoViewModel()
     var listTipoDoc = ["DNI", "Pasaporte", "CE"]
     
@@ -58,10 +57,10 @@ struct DatosApoderadoView: View {
                         placeholder: "Ingresar fecha de nacimiento"
                     )
                     
-                    CajaTexto(
-                        text: $viewModel.distrito,
-                        label: "Distrito",
-                        placeholder: "Ingresar distrito"
+                    
+                    CajaSelectDistrito(
+                        distrito: $viewModel.distrito,
+                        list: viewModel.listDistritos
                     )
                 }
                 
@@ -113,7 +112,7 @@ struct DatosApoderadoView: View {
                 )
                 
                 Button {
-                    self.isShowingAlert = true
+                    viewModel.save()
                 } label: {
                     Text("Grabar")
                         .fontWeight(.heavy)
@@ -126,15 +125,8 @@ struct DatosApoderadoView: View {
             }
             .padding(12)
         }
-        .alert(isPresented: $isShowingAlert) {
-            Alert(title: Text("Usuario guardado"), message: Text("El usuario se ha guardado correctamente"), dismissButton: .default(Text("Aceptar")))
-        }
-        .alert(isPresented: $viewModel.isError) {
-            Alert(
-                title: Text("Error"),
-                message: Text(viewModel.error ?? "Sin definir")
-            )
-        }
+        .alert(Text(viewModel.error ?? "Sin definir"), isPresented: $viewModel.isError, actions: {})
+        .alert(Text(viewModel.mensaje), isPresented: $viewModel.isSuccess, actions: {})
         
     }
 }

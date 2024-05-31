@@ -33,5 +33,5 @@ interface PersonaRepository {
         telefEmpresa: String,
         cargo: String,
         email: String
-    ): Result<Nothing>
+    ): Result<String>
 }

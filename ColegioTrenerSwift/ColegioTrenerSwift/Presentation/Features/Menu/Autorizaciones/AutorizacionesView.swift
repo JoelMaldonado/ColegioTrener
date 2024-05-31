@@ -28,8 +28,6 @@ struct AutorizacionesView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12){
             
-            
-            
             SelectEstado()
             
             SelectAutorizacion()
@@ -37,6 +35,7 @@ struct AutorizacionesView: View {
             ForEach(viewModel.listEstado, id: \.self) { estado in
                 CardAutorizacion(
                     estado: estado,
+                    estadoTab: viewModel.estado,
                     autorizar: { bool in
                         viewModel.autorizar(estado: bool, ctacli: estado.ctacli)
                     }

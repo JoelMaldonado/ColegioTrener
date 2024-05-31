@@ -38,9 +38,9 @@ class InformeService {
                         case .success(let t):
                             let trim = t.first?.trimestre
                             switch trim {
-                            case "0":
-                                completion(.success(.Uno))
                             case "1":
+                                completion(.success(.Uno))
+                            case "2":
                                 completion(.success(.Dos))
                             case "3":
                                 completion(.success(.Tres))

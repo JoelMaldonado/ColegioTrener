@@ -16,7 +16,7 @@ class DatosPadresViewModel : ObservableObject {
     @Published var tipoDoc = ""
     @Published var doc = ""
     @Published var fechaNac = ""
-    @Published var distrito = ""
+    @Published var distrito: ComboDistrito?
     @Published var direc = ""
     @Published var cel = ""
     @Published var telf = ""
@@ -29,11 +29,28 @@ class DatosPadresViewModel : ObservableObject {
     @Published var padre: DatosApoderado?
     @Published var madre: DatosApoderado?
     
+    @Published var listDistritos: [ComboDistrito] = []
+    
+    @Published var isSuccess = false
     @Published var isError = false
     @Published var error: String?
+    @Published var mensaje = ""
     
     init() {
-        self.getDatosApoderados()
+        self.getDistritos()
+    }
+    
+    func getDistritos() {
+        DatosService.shared.getComboDistritos { res in
+            switch res {
+            case .success(let data):
+                self.listDistritos = data
+                self.getDatosApoderados()
+            case .failure(let err):
+                self.error = err
+                self.isError = true
+            }
+        }
     }
     
     func getDatosApoderados() {
@@ -54,6 +71,31 @@ class DatosPadresViewModel : ObservableObject {
         }
     }
     
+    func save() {
+        DatosService.shared.saveDatos(
+            tipo: tipo.code(),
+            fechaNacimiento: fechaNac,
+            distrito: distrito?.coddis,
+            direccion: direc,
+            celular: cel,
+            telefono: telf,
+            empresa: empresa,
+            cargo: cargoArea,
+            telefEmpresa: telfEmpresa,
+            email: correo
+        ) { res in
+            switch res {
+            case .success(let data):
+                self.isSuccess = true
+                self.mensaje = data
+                self.getDatosApoderados()
+            case .failure(let err):
+                self.error = err
+                self.isError = true
+            }
+        }
+    }
+    
     func setearDatos(data: DatosApoderado?) {
         if let a = data {
             self.nombres = a.nombre
@@ -61,7 +103,7 @@ class DatosPadresViewModel : ObservableObject {
             self.tipoDoc = a.tipodoc
             self.doc = a.documento
             self.fechaNac = a.fechanacimiento.format()
-            self.distrito = a.distrito
+            self.distrito = listDistritos.first(where: { $0.coddis == a.distrito })
             self.direc = a.direccion
             self.cel = a.celular
             self.telf = a.telefono
