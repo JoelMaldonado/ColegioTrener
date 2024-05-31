@@ -28,7 +28,6 @@ class DiariaAcumuladaViewModel : ObservableObject {
     
     init() {
         self.listarHijos()
-        self.listarFechas()
     }
     
     func listarHijos() {
@@ -37,6 +36,8 @@ class DiariaAcumuladaViewModel : ObservableObject {
             case .success(let data):
                 self.listHijos = data
                 self.hijoSelected = data.first
+                self.listarFechas()
+                self.getInfoAsistencia()
             case .failure(let err):
                 self.error = err
                 self.isError = true

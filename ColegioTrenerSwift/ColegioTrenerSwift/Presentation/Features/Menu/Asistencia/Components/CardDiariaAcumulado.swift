@@ -27,7 +27,7 @@ extension DiariaAcumuladaView {
             .foregroundStyle(.white)
             .background(.colorT1)
             HStack {
-                Text("Asistencia \(info?.asistio ?? 0)")
+                Text("Inasistencia \(info?.asistio ?? 0)")
                     .frame(maxWidth: .infinity)
                 Divider()
                     .background(.colorT1)
