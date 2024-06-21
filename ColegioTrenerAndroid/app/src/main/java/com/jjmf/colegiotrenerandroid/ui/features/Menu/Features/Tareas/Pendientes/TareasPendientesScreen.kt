@@ -17,12 +17,17 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -37,11 +42,14 @@ import com.jjmf.colegiotrenerandroid.ui.components.CircleText
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Pendientes.components.CardTareaPendiente
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorGreen
+import com.jjmf.colegiotrenerandroid.ui.theme.ColorRed
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorYellow
+import com.jjmf.colegiotrenerandroid.util.capitalize
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.Locale
@@ -54,7 +62,7 @@ fun TareasPendientesScreen(
 
     val coroutine = rememberCoroutineScope()
     val currentMonth = remember { YearMonth.now() }
-    val startMonth = remember { currentMonth.minusMonths(24) }
+    val startMonth = remember { currentMonth.minusMonths(1) }
     val endMonth = remember { currentMonth.plusMonths(0) }
 
     val cal = rememberCalendarState(
@@ -63,12 +71,15 @@ fun TareasPendientesScreen(
         firstVisibleMonth = currentMonth
     )
 
+    val cal2 = remember { mutableStateOf(LocalDate.now()) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
+
 
         SelectHijo(
             click = {
@@ -93,7 +104,6 @@ fun TareasPendientesScreen(
                 ),
                 elevation = CardDefaults.cardElevation(8.dp)
             ) {
-
                 HorizontalCalendar(
                     modifier = Modifier.fillMaxWidth(),
                     state = cal,
@@ -102,7 +112,7 @@ fun TareasPendientesScreen(
                             modifier = Modifier
                                 .aspectRatio(1f)
                                 .clickable {
-                                           viewModel.selectDia(day.date)
+                                    viewModel.selectDia(day.date)
                                 },
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
@@ -115,28 +125,17 @@ fun TareasPendientesScreen(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 viewModel.list.find { it.fechaasignacion == day.date }?.let {
-                                    if (it.estado == "Tarea") {
+                                    when (it.estado) {
+                                        "Pendiente" -> ColorYellow
+                                        "Revisado" -> ColorGreen
+                                        "No hizo tarea" -> ColorT1
+                                        else -> null
+                                    }?.let { color ->
                                         Box(
                                             modifier = Modifier
                                                 .size(6.dp)
                                                 .clip(CircleShape)
-                                                .background(ColorT1)
-                                        )
-                                    }
-                                    if (it.estado == "Pendiente") {
-                                        Box(
-                                            modifier = Modifier
-                                                .size(6.dp)
-                                                .clip(CircleShape)
-                                                .background(ColorYellow)
-                                        )
-                                    }
-                                    if (it.estado == "Revisado") {
-                                        Box(
-                                            modifier = Modifier
-                                                .size(6.dp)
-                                                .clip(CircleShape)
-                                                .background(ColorGreen)
+                                                .background(color)
                                         )
                                     }
                                 }
@@ -161,10 +160,13 @@ fun TareasPendientesScreen(
                                                 .minusMonths(1)
                                         )
                                     }
-                                    viewModel.listarDatosCalendario(
-                                        anio = cal.firstVisibleMonth.yearMonth.year.toString(),
-                                        mes = (cal.firstVisibleMonth.yearMonth.month.value - 1).toString()
-                                    )
+                                    if (cal2.value.monthValue > cal.startMonth.monthValue){
+                                        cal2.value = cal2.value.minusMonths(1)
+                                        viewModel.listarDatosCalendario(
+                                            anio = cal2.value.year.toString(),
+                                            mes = cal2.value.monthValue.toString()
+                                        )
+                                    }
                                 }
                             ) {
                                 Icon(
@@ -178,21 +180,25 @@ fun TareasPendientesScreen(
                                     TextStyle.FULL,
                                     Locale.getDefault()
                                 )
+                                    .capitalize()
                             )
 
                             IconButton(
                                 onClick = {
                                     coroutine.launch {
                                         cal.animateScrollToMonth(
-                                            cal.firstVisibleMonth.yearMonth.plusMonths(
-                                                1
-                                            )
+                                            cal.firstVisibleMonth
+                                                .yearMonth
+                                                .plusMonths(1)
                                         )
                                     }
-                                    viewModel.listarDatosCalendario(
-                                        anio = cal.firstVisibleMonth.yearMonth.year.toString(),
-                                        mes = (cal.firstVisibleMonth.yearMonth.month.value - 1).toString()
-                                    )
+                                    if (cal2.value.monthValue < cal.endMonth.monthValue){
+                                        cal2.value = cal2.value.plusMonths(1)
+                                        viewModel.listarDatosCalendario(
+                                            anio = cal2.value.year.toString(),
+                                            mes = cal2.value.monthValue.toString()
+                                        )
+                                    }
                                 }
                             ) {
                                 Icon(
@@ -203,6 +209,17 @@ fun TareasPendientesScreen(
                         }
                     },
                     monthBody = { i, calendario ->
+                        if (viewModel.isLoading) {
+
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .aspectRatio(1f), contentAlignment = Alignment.Center
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                            return@HorizontalCalendar
+                        }
                         Row(
                             modifier = Modifier.fillMaxWidth()
                         ) {

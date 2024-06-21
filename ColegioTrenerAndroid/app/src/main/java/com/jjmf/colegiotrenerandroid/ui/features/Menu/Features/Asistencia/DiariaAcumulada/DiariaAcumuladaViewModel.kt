@@ -12,6 +12,7 @@ import com.jjmf.colegiotrenerandroid.domain.model.Inasistencia
 import com.jjmf.colegiotrenerandroid.domain.repository.AsistenciaRepository
 import com.kizitonwose.calendar.core.atStartOfMonth
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -26,6 +27,8 @@ class DiariaAcumuladaViewModel @Inject constructor(
     var list by mutableStateOf<List<Inasistencia>>(emptyList())
     var asistencia by mutableStateOf<Asistencia?>(null)
     var ctacli by mutableStateOf("")
+
+    var isLoading by mutableStateOf(false)
 
     fun getTotalMes(fecha: LocalDate, ctacli: String) {
         viewModelScope.launch {
@@ -51,7 +54,8 @@ class DiariaAcumuladaViewModel @Inject constructor(
 
     fun getList(year: String, month: String, ctacli: String) {
         viewModelScope.launch {
-            Log.d("tagito", "$month/$year")
+            isLoading = true
+            delay(500)
             try {
                 val res = repository.listarInasistenciasPorAlumno(
                     year = year,
@@ -67,6 +71,8 @@ class DiariaAcumuladaViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.d("tagito", e.message.toString())
+            } finally {
+                isLoading = false
             }
         }
     }

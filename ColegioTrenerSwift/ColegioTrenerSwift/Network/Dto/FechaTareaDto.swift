@@ -45,17 +45,17 @@ struct FechaTareaDto: Codable {
     
     func toDomain() -> FechaTarea {
         
-        var estado: LeyendaPendientesTab
+        var estado: LeyendaPendientesTab?
         
         switch self.estado?.trimmingCharacters(in: .whitespacesAndNewlines) {
-        case "Esta ausente":
+        case "No hizo tarea":
             estado = .NoTarea
         case "Pendiente":
             estado = .Pendiente
         case "Revisado":
             estado = .Revisado
         default:
-            estado = .Pendiente
+            estado = nil
         }
         
         return FechaTarea(

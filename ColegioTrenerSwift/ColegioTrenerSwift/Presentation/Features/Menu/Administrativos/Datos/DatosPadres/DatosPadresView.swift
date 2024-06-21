@@ -127,16 +127,6 @@ struct DatosPadresView: View {
                     isActive: !viewModel.bloqueoEnabled
                 )
                 
-                HStack {
-                    Image(systemName: "envelope.fill")
-                        .foregroundStyle(.colorP1)
-                    Text("Solicitud cambio nombres/correo")
-                        .foregroundStyle(.white)
-                }
-                .font(.callout.bold())
-                .padding()
-                .background(.colorT1, in: .rect(cornerRadius: 12))
-                
                 Button {
                     viewModel.save()
                 } label: {

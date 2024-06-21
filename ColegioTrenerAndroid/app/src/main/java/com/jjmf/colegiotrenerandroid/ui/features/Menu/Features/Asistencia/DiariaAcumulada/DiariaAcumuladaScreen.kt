@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +19,7 @@ import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.compon
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.components.CardInasistencia
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.components.LeyendaAsistencia
 import com.kizitonwose.calendar.compose.rememberCalendarState
+import java.time.LocalDate
 import java.time.YearMonth
 
 @Composable
@@ -36,6 +38,7 @@ fun DiariaAcumuladaScreen(
         firstVisibleMonth = currentMonth
     )
 
+    val cal2 = remember { mutableStateOf(LocalDate.now()) }
 
     Column(
         modifier = Modifier
@@ -64,7 +67,8 @@ fun DiariaAcumuladaScreen(
         ) {
 
             CalendarioAsistencia(
-                cal = cal
+                cal = cal,
+                cal2 = cal2,
             )
 
             LeyendaAsistencia()

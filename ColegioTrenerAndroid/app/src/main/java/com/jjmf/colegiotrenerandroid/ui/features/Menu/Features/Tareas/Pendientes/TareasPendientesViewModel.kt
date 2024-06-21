@@ -11,6 +11,7 @@ import com.jjmf.colegiotrenerandroid.domain.model.EstadoCalPendiente
 import com.jjmf.colegiotrenerandroid.domain.model.EstadoCalPendienteDia
 import com.jjmf.colegiotrenerandroid.domain.repository.TareaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -25,12 +26,17 @@ class TareasPendientesViewModel @Inject constructor(
     var listDia by mutableStateOf<List<EstadoCalPendienteDia>?>(null)
     var error by mutableStateOf<String?>(null)
 
+    var isLoading by mutableStateOf(false)
+
     fun listarDatosCalendario(
         anio: String,
         mes: String
     ) {
         viewModelScope.launch {
             try {
+                isLoading = true
+                Log.d("tagito", "Año: $anio, Mes: $mes")
+                delay(500)
                 val res = repository.getEstadoCalPendiente(
                     ctacli = ctacli,
                     anio = anio,
@@ -45,6 +51,8 @@ class TareasPendientesViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 error = e.message
+            } finally {
+                isLoading = false
             }
         }
     }

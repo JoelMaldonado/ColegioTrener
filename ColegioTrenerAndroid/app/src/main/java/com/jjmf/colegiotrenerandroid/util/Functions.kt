@@ -8,6 +8,14 @@ import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
+fun String.capitalize(full: Boolean = false): String {
+    return if (full){
+        this.split(" ").joinToString(" ") { it.lowercase().replaceFirstChar { it.uppercase() } }
+    } else {
+        this.lowercase().replaceFirstChar { it.uppercase() }
+    }
+}
+
 fun Double.toSoles(): String {
     return NumberFormat.getCurrencyInstance(Locale("es", "PE")).format(this)
 }

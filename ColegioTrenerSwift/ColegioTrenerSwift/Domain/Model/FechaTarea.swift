@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FechaTarea: Hashable {
     let fechaAsignacion: Date
-    let estado: LeyendaPendientesTab
+    let estado: LeyendaPendientesTab?
     let cantidad: Int
 }
 
@@ -30,15 +30,17 @@ extension [FechaTarea] {
                 
                 fechas.forEach { fecha in
                     var color: Color
-                    switch fecha.estado {
-                    case .NoTarea:
-                        color = .colorT1
-                    case .Pendiente:
-                        color = .yellow
-                    case .Revisado:
-                        color = .green
+                    if let estado = fecha.estado {
+                        switch estado {
+                        case .NoTarea:
+                            color = .colorT1
+                        case .Pendiente:
+                            color = .yellow
+                        case .Revisado:
+                            color = .green
+                        }
+                        colors.append(color)
                     }
-                    colors.append(color)
                 }
                 
                 let fechaCalendar = FechaCalendar(
