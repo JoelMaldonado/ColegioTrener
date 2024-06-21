@@ -62,7 +62,7 @@ fun TareasPendientesScreen(
 
     val coroutine = rememberCoroutineScope()
     val currentMonth = remember { YearMonth.now() }
-    val startMonth = remember { currentMonth.minusMonths(1) }
+    val startMonth = remember { currentMonth.minusMonths(24) }
     val endMonth = remember { currentMonth.plusMonths(0) }
 
     val cal = rememberCalendarState(
