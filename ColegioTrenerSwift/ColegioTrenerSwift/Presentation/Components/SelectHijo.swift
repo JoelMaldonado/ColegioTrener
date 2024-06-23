@@ -69,7 +69,7 @@ struct SelectHijoItem : View {
                     .frame(width: 5)
                     .cornerRadius(10)
             }
-            let url = URL(string: hijo.dirfotapp)
+            let url = URL(string: hijo.dirfotapp.trim())
             AsyncImage(url: url){ image in
                 if let img = image.image {
                     img
