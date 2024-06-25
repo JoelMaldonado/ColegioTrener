@@ -49,7 +49,6 @@ import java.util.Locale
 @Composable
 fun CalendarioAsistencia(
     cal: CalendarState,
-    cal2: MutableState<LocalDate>,
     viewModel: DiariaAcumuladaViewModel = hiltViewModel()
 ) {
 
@@ -113,20 +112,14 @@ fun CalendarioAsistencia(
                                 )
                             }
 
-                            if (cal2.value.monthValue > cal.startMonth.monthValue) {
-                                cal2.value = cal2.value.minusMonths(1)
+                            val ca = cal.firstVisibleMonth
+                            if (ca.yearMonth.isAfter(cal.startMonth)){
                                 viewModel.getList(
-                                    year = cal2.value.year.toString(),
-                                    month = cal2.value.monthValue.toString(),
+                                    year = ca.yearMonth.minusMonths(1).year.toString(),
+                                    month = ca.yearMonth.minusMonths(1).monthValue.toString(),
                                     ctacli = viewModel.ctacli
                                 )
                             }
-
-                            viewModel.getList(
-                                year = cal.firstVisibleMonth.yearMonth.year.toString(),
-                                month = (cal.firstVisibleMonth.yearMonth.month.value - 1).toString(),
-                                ctacli = viewModel.ctacli
-                            )
                         }
                     ) {
                         Icon(
@@ -152,19 +145,14 @@ fun CalendarioAsistencia(
                                 )
                             }
 
-                            if (cal2.value.monthValue < cal.endMonth.monthValue) {
-                                cal2.value = cal2.value.plusMonths(1)
+                            val ca = cal.firstVisibleMonth
+                            if (ca.yearMonth.isBefore(cal.endMonth)){
                                 viewModel.getList(
-                                    year = cal2.value.year.toString(),
-                                    month = cal2.value.monthValue.toString(),
+                                    year = ca.yearMonth.plusMonths(1).year.toString(),
+                                    month = ca.yearMonth.plusMonths(1).monthValue.toString(),
                                     ctacli = viewModel.ctacli
                                 )
                             }
-                            viewModel.getList(
-                                year = cal.firstVisibleMonth.yearMonth.year.toString(),
-                                month = (cal.firstVisibleMonth.yearMonth.month.value - 1).toString(),
-                                ctacli = viewModel.ctacli
-                            )
                         }
                     ) {
                         Icon(

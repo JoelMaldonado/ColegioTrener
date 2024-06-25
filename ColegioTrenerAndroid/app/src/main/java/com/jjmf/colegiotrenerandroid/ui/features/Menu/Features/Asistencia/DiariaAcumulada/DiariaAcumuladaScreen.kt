@@ -29,7 +29,7 @@ fun DiariaAcumuladaScreen(
 
 
     val currentMonth = remember { YearMonth.now() }
-    val startMonth = remember { currentMonth.minusMonths(24) }
+    val startMonth = remember { currentMonth.minusMonths(12) }
     val endMonth = remember { currentMonth.plusMonths(0) }
 
     val cal = rememberCalendarState(
@@ -37,8 +37,6 @@ fun DiariaAcumuladaScreen(
         endMonth = endMonth,
         firstVisibleMonth = currentMonth
     )
-
-    val cal2 = remember { mutableStateOf(LocalDate.now()) }
 
     Column(
         modifier = Modifier
@@ -67,8 +65,7 @@ fun DiariaAcumuladaScreen(
         ) {
 
             CalendarioAsistencia(
-                cal = cal,
-                cal2 = cal2,
+                cal = cal
             )
 
             LeyendaAsistencia()

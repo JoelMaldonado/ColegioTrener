@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -19,6 +21,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
@@ -46,6 +49,7 @@ import com.jjmf.colegiotrenerandroid.ui.theme.ColorRed
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorYellow
 import com.jjmf.colegiotrenerandroid.util.capitalize
+import com.jjmf.colegiotrenerandroid.util.format
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import kotlinx.coroutines.launch
@@ -62,7 +66,7 @@ fun TareasPendientesScreen(
 
     val coroutine = rememberCoroutineScope()
     val currentMonth = remember { YearMonth.now() }
-    val startMonth = remember { currentMonth.minusMonths(24) }
+    val startMonth = remember { currentMonth.minusMonths(12) }
     val endMonth = remember { currentMonth.plusMonths(0) }
 
     val cal = rememberCalendarState(
@@ -70,8 +74,6 @@ fun TareasPendientesScreen(
         endMonth = endMonth,
         firstVisibleMonth = currentMonth
     )
-
-    val cal2 = remember { mutableStateOf(LocalDate.now()) }
 
     Column(
         modifier = Modifier
@@ -96,6 +98,18 @@ fun TareasPendientesScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(text = "Start: ${cal.startMonth.monthValue}")
+
+                Text(text = "Mes: ${cal.firstVisibleMonth.yearMonth.monthValue}")
+
+                Text(text = "End: ${cal.endMonth.monthValue}")
+            }
 
             ElevatedCard(
                 modifier = Modifier.fillMaxWidth(),
@@ -160,11 +174,11 @@ fun TareasPendientesScreen(
                                                 .minusMonths(1)
                                         )
                                     }
-                                    if (cal2.value.monthValue > cal.startMonth.monthValue){
-                                        cal2.value = cal2.value.minusMonths(1)
+                                    val ca = cal.firstVisibleMonth
+                                    if (ca.yearMonth.isAfter(cal.startMonth)){
                                         viewModel.listarDatosCalendario(
-                                            anio = cal2.value.year.toString(),
-                                            mes = cal2.value.monthValue.toString()
+                                            anio = ca.yearMonth.minusMonths(1).year.toString(),
+                                            mes = ca.yearMonth.minusMonths(1).monthValue.toString()
                                         )
                                     }
                                 }
@@ -192,11 +206,12 @@ fun TareasPendientesScreen(
                                                 .plusMonths(1)
                                         )
                                     }
-                                    if (cal2.value.monthValue < cal.endMonth.monthValue){
-                                        cal2.value = cal2.value.plusMonths(1)
+
+                                    val ca = cal.firstVisibleMonth
+                                    if (ca.yearMonth.isBefore(cal.endMonth)){
                                         viewModel.listarDatosCalendario(
-                                            anio = cal2.value.year.toString(),
-                                            mes = cal2.value.monthValue.toString()
+                                            anio = ca.yearMonth.plusMonths(1).year.toString(),
+                                            mes = ca.yearMonth.plusMonths(1).monthValue.toString()
                                         )
                                     }
                                 }
