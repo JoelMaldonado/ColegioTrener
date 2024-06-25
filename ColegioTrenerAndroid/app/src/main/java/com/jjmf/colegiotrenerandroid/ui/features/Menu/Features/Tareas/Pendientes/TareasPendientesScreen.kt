@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.jjmf.colegiotrenerandroid.domain.model.EstadoCalPendiente
 import com.jjmf.colegiotrenerandroid.ui.components.CircleText
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Pendientes.components.CardTareaPendiente
@@ -50,7 +51,7 @@ import java.util.Locale
 
 @Composable
 fun TareasPendientesScreen(
-    viewModel: TareasPendientesViewModel = hiltViewModel()
+    viewModel: TareasPendientesViewModel = hiltViewModel(),
 ) {
 
 
@@ -116,20 +117,13 @@ fun TareasPendientesScreen(
                             Row(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                viewModel.list.find { it.fechaasignacion == day.date }?.let {
-                                    when (it.estado) {
-                                        "Pendiente" -> ColorYellow
-                                        "Revisado" -> ColorGreen
-                                        "No hizo tarea" -> ColorT1
-                                        else -> null
-                                    }?.let { color ->
-                                        Box(
-                                            modifier = Modifier
-                                                .size(6.dp)
-                                                .clip(CircleShape)
-                                                .background(color)
-                                        )
-                                    }
+                                viewModel.list.find { it.fechaasignacion == day.date }?.getColor()?.let { color ->
+                                    Box(
+                                        modifier = Modifier
+                                            .size(6.dp)
+                                            .clip(CircleShape)
+                                            .background(color)
+                                    )
                                 }
                             }
                         }
@@ -153,7 +147,7 @@ fun TareasPendientesScreen(
                                         )
                                     }
                                     val ca = cal.firstVisibleMonth
-                                    if (ca.yearMonth.isAfter(cal.startMonth)){
+                                    if (ca.yearMonth.isAfter(cal.startMonth)) {
                                         viewModel.listarDatosCalendario(
                                             anio = ca.yearMonth.minusMonths(1).year.toString(),
                                             mes = ca.yearMonth.minusMonths(1).monthValue.toString()
@@ -186,7 +180,7 @@ fun TareasPendientesScreen(
                                     }
 
                                     val ca = cal.firstVisibleMonth
-                                    if (ca.yearMonth.isBefore(cal.endMonth)){
+                                    if (ca.yearMonth.isBefore(cal.endMonth)) {
                                         viewModel.listarDatosCalendario(
                                             anio = ca.yearMonth.plusMonths(1).year.toString(),
                                             mes = ca.yearMonth.plusMonths(1).monthValue.toString()
