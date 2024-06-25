@@ -11,26 +11,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -45,15 +38,12 @@ import com.jjmf.colegiotrenerandroid.ui.components.CircleText
 import com.jjmf.colegiotrenerandroid.ui.components.SelectHijo.SelectHijo
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Pendientes.components.CardTareaPendiente
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorGreen
-import com.jjmf.colegiotrenerandroid.ui.theme.ColorRed
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorYellow
 import com.jjmf.colegiotrenerandroid.util.capitalize
-import com.jjmf.colegiotrenerandroid.util.format
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.Locale
@@ -98,18 +88,6 @@ fun TareasPendientesScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround
-            ) {
-                Text(text = "Start: ${cal.startMonth.monthValue}")
-
-                Text(text = "Mes: ${cal.firstVisibleMonth.yearMonth.monthValue}")
-
-                Text(text = "End: ${cal.endMonth.monthValue}")
-            }
 
             ElevatedCard(
                 modifier = Modifier.fillMaxWidth(),
