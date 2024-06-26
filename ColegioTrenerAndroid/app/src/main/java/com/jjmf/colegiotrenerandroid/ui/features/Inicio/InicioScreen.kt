@@ -72,7 +72,7 @@ fun InicioScreen(
                 )
 
                 ItemInicio(
-                    text = "Inscripciones",
+                    text = "Registros",
                     ic = R.drawable.ic_inscripciones,
                     click = {
                         navMenu.navigate(Rutas.Administrativos.Inscripciones.route)

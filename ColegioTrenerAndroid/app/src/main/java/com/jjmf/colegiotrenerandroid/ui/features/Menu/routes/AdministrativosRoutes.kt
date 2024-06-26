@@ -33,7 +33,7 @@ fun NavGraphBuilder.administrativosRoutes(
         composable(
             route = Rutas.Administrativos.Inscripciones.route
         ) {
-            viewModel.title = "Inscripciones"
+            viewModel.title = "Registros"
             InscripcionesScreen(
                 back = back
             )

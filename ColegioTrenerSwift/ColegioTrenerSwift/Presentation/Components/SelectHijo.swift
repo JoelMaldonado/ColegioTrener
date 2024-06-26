@@ -75,10 +75,6 @@ struct SelectHijoItem : View {
                     img
                         .resizable()
                         .scaledToFit()
-                } else {
-                    Image(systemName: "person")
-                        .resizable()
-                        .scaledToFit()
                 }
             }
             .frame(width: 60, height: 60)

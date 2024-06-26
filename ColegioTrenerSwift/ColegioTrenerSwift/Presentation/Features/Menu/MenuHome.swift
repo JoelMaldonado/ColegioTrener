@@ -49,7 +49,7 @@ struct MenuHome: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
-                            Text("Incripciones")
+                            Text("Registros")
                         }
                         .frame(maxWidth: .infinity)
                     }

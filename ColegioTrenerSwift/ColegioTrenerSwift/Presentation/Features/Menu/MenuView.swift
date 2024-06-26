@@ -76,7 +76,7 @@ enum MenuTab {
         case .Pagos:
             return "Pagos"
         case .Inscripciones:
-            return "Inscripciones"
+            return "Registros"
         case .DiariaAcumulada:
             return "Diaria Acumulada"
         case .Pendientes:
