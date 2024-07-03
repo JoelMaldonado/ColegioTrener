@@ -2,6 +2,7 @@ package com.jjmf.colegiotrenerandroid.ui.features.Notificaciones.components
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Patterns
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,11 +18,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jjmf.colegiotrenerandroid.domain.model.Notificacion
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 
 
 @Composable
-fun ItemNotificacion() {
+fun ItemNotificacion(
+    notificacion: Notificacion
+) {
     val context = LocalContext.current
     Row(
         modifier = Modifier
@@ -31,20 +35,26 @@ fun ItemNotificacion() {
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Text(text = "Inscripción de libros", fontSize = 14.sp)
-            Text(text = "Quedan 3 días para el cierre de inscripciones", fontSize = 12.sp)
+            Text(text = "${notificacion.titulo}", fontSize = 14.sp)
+            Text(text = "${notificacion.descripcion}", fontSize = 12.sp)
         }
-        FloatingActionButton(
-            modifier = Modifier.size(40.dp),
-            onClick = {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"))
-                context.startActivity(intent)
-            },
-            shape = CircleShape,
-            containerColor = ColorS1,
-            contentColor = Color.White
-        ) {
-            Text(text = "IR")
+
+        notificacion.vinculo?.let { url ->
+            val isUrlValid =  Patterns.WEB_URL.matcher(url).matches()
+            if (isUrlValid) {
+                FloatingActionButton(
+                    modifier = Modifier.size(40.dp),
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        context.startActivity(intent)
+                    },
+                    shape = CircleShape,
+                    containerColor = ColorS1,
+                    contentColor = Color.White
+                ) {
+                    Text(text = "IR")
+                }
+            }
         }
     }
     HorizontalDivider()

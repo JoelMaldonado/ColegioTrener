@@ -10,6 +10,7 @@ import com.jjmf.colegiotrenerandroid.data.repository.AutorizacionRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.CitaInformeRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.ComboRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.InscripcionesRepositoryImpl
+import com.jjmf.colegiotrenerandroid.data.repository.NotifacionRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.PagosRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.PersonaRepositoryImpl
 import com.jjmf.colegiotrenerandroid.data.repository.TareaRepositoryImpl
@@ -17,6 +18,7 @@ import com.jjmf.colegiotrenerandroid.domain.repository.AsistenciaRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.AutorizacionRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.CitaInformeRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.InscripcionesRepository
+import com.jjmf.colegiotrenerandroid.domain.repository.NotifacionRepository
 import com.jjmf.colegiotrenerandroid.domain.repository.TareaRepository
 import dagger.Binds
 import dagger.Module
@@ -53,5 +55,8 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun tarea(impl: TareaRepositoryImpl): TareaRepository
+
+    @Binds
+    abstract fun notifacionRepo(impl: NotifacionRepositoryImpl): NotifacionRepository
 
 }
