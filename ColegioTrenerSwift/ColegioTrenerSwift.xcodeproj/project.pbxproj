@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D06128A2C36457000116322 /* NotificacionesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0612892C36457000116322 /* NotificacionesService.swift */; };
 		5D1DC06B2BE28E990090DEA4 /* DatosApoderadoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06A2BE28E990090DEA4 /* DatosApoderadoViewModel.swift */; };
 		5D1DC06D2BE2A0840090DEA4 /* FechaAsistenciaDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */; };
 		5D1DC06F2BE2A0A30090DEA4 /* FechaAsistencia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */; };
@@ -115,6 +116,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D0612892C36457000116322 /* NotificacionesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificacionesService.swift; sourceTree = "<group>"; };
 		5D1DC06A2BE28E990090DEA4 /* DatosApoderadoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosApoderadoViewModel.swift; sourceTree = "<group>"; };
 		5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaAsistenciaDto.swift; sourceTree = "<group>"; };
 		5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaAsistencia.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				5D70416F2BDAD4FE00520A30 /* AsistenciaService.swift */,
 				5DF14BF12BDAF7C800106946 /* InscripcionService.swift */,
 				5DF14BF52BDB01C900106946 /* PagoService.swift */,
+				5D0612892C36457000116322 /* NotificacionesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				5DE1E1EC2B6B29840064B3C8 /* PagosVencidos.swift in Sources */,
 				5DE1E1C72B6B22B60064B3C8 /* AutorizacionesViewModel.swift in Sources */,
 				5DE1E1B62B6AED860064B3C8 /* DatosHijosView.swift in Sources */,
+				5D06128A2C36457000116322 /* NotificacionesService.swift in Sources */,
 				5D1DC07C2BE2A9040090DEA4 /* CardInfoTarea.swift in Sources */,
 				5D8F66D52B9698FE003A19D4 /* ItemDatoHijo.swift in Sources */,
 				5DE1E1C92B6B23030064B3C8 /* CitaInformeView.swift in Sources */,
