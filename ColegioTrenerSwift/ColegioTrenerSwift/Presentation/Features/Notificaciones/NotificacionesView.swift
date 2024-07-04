@@ -51,7 +51,7 @@ struct NotificacionesView: View {
                                     }
                                 }
                             }
-                            .padding()
+                            .padding(8)
                             Divider()
                         }
                     }
