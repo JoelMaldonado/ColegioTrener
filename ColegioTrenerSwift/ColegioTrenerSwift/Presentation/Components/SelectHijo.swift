@@ -10,7 +10,7 @@ import SwiftUI
 struct SelectHijo: View {
     @Binding var hijoSelected: HijoTrener?
     var listHijos: [HijoTrener]
-    var click: () -> Void
+    var click: (_ ctacli: String) -> Void
     @State private var isVisible = false
     
     var body: some View {
@@ -25,7 +25,7 @@ struct SelectHijo: View {
                                 isVisible.toggle()
                                 hijoSelected = valor
                             }
-                            click()
+                            click(valor.ctacli)
                         } label: {
                             SelectHijoItem(
                                 hijo: valor,

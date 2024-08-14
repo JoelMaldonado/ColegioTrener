@@ -17,7 +17,7 @@ struct PendientesView: View {
             SelectHijo(
                 hijoSelected: $viewModel.hijoSelected,
                 listHijos: viewModel.listHijos,
-                click: {
+                click: { ctacli in
                     viewModel.getFechasTareas()
                     viewModel.getTareasByDia()
                 }

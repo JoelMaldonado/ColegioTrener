@@ -19,8 +19,8 @@ struct InscripcionesView: View {
             SelectHijo(
                 hijoSelected: $viewModel.hijoSelected,
                 listHijos: viewModel.listHijos,
-                click: {
-                    viewModel.listarInscripciones()
+                click: { ctacli in
+                    viewModel.listarInscripciones(ctacli: ctacli)
                 }
             )
             

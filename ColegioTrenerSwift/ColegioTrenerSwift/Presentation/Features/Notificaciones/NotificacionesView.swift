@@ -15,7 +15,7 @@ struct NotificacionesView: View {
             SelectHijo(
                 hijoSelected: $viewModel.hijoSelected,
                 listHijos: viewModel.listHijos,
-                click: {
+                click: { ctacli in
                     viewModel.getNotificaciones()
                 }
             )
