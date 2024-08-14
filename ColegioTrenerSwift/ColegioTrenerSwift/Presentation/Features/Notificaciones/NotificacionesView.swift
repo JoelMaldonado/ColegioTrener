@@ -58,7 +58,7 @@ struct NotificacionesView: View {
                     Spacer()
                 }
             }
-            .frame(maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .background(.white)
     }

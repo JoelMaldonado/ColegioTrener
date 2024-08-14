@@ -24,11 +24,12 @@ class InscripcionesViewModel @Inject constructor(
 
     var alert by mutableStateOf(false)
 
-    fun getListInscripciones() {
+    fun getListInscripciones(ctacli: String) {
         viewModelScope.launch {
             try {
                 isLoading = true
-                when (val res = repository.getListInscripciones(ctacli ?: return@launch)) {
+                listInscripcion = emptyList()
+                when (val res = repository.getListInscripciones(ctacli)) {
                     is Result.Correcto -> {
                         listInscripcion = res.datos ?: emptyList()
                         alert = res.datos?.firstOrNull()?.inscripcionbloqueo == "0"

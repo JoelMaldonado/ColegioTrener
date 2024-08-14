@@ -45,6 +45,7 @@ import com.jjmf.colegiotrenerandroid.util.capitalize
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.Locale
@@ -115,15 +116,20 @@ fun TareasPendientesScreen(
                             )
 
                             Row(
-                                verticalAlignment = Alignment.CenterVertically
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
-                                viewModel.list.find { it.fechaasignacion == day.date }?.getColor()?.let { color ->
-                                    Box(
-                                        modifier = Modifier
-                                            .size(6.dp)
-                                            .clip(CircleShape)
-                                            .background(color)
-                                    )
+                                viewModel.list.toFechaCalendar().forEach {fechCal->
+                                    if (fechCal.fecha == day.date) {
+                                        fechCal.color.forEach { color ->
+                                            Box(
+                                                modifier = Modifier
+                                                    .size(8.dp)
+                                                    .clip(CircleShape)
+                                                    .background(color)
+                                            )
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -243,6 +249,37 @@ fun TareasPendientesScreen(
 
     }
 
+}
+
+data class FechaCalendar(
+    val fecha: LocalDate?,
+    val color: List<Color>,
+)
+
+fun List<EstadoCalPendiente>.toFechaCalendar(): List<FechaCalendar> {
+    val listCal = mutableListOf<FechaCalendar>()
+    val list = this.groupBy { it.fechaasignacion }
+    list.forEach { fechas ->
+        fechas.value.firstOrNull()?.let { fecha ->
+            val colors = mutableListOf<Color>()
+            fechas.value.forEach { fec ->
+                when (fec.estado) {
+                    "Pendiente" -> ColorYellow
+                    "Revisado" -> ColorGreen
+                    "No hizo tarea" -> ColorT1
+                    else -> null
+                }?.let { color ->
+                    colors.add(color)
+                }
+            }
+            val fechCalendar = FechaCalendar(
+                fecha = fecha.fechaasignacion,
+                color = colors
+            )
+            listCal.add(fechCalendar)
+        }
+    }
+    return listCal
 }
 
 
