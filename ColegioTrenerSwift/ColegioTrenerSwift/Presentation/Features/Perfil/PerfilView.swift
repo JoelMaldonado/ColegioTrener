@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct PerfilView: View {
-    @Environment(\.dismiss) private var dismiss
-    @State private var bool = false
+    @State var logout = false
     var body: some View {
         VStack {
+            
             Button {
-                self.bool = true
+                UserDefaults.standard.removeObject(forKey: Keys.ctamae)
+                UserDefaults.standard.removeObject(forKey: Keys.loginUser)
+                UserDefaults.standard.removeObject(forKey: Keys.pass)
+                UserDefaults.standard.removeObject(forKey: Keys.loginRecuerdame)
+                UserDefaults.standard.removeObject(forKey: "token")
+                logout.toggle()
             } label: {
                 HStack {
                     Image(.logo3)
@@ -30,17 +35,14 @@ struct PerfilView: View {
                 .padding()
                 .background(.white)
             }
+            .navigationDestination(
+                isPresented: $logout,
+                destination: {
+                    LoginView()
+                        .navigationBarBackButtonHidden()
+                }
+            )
             Spacer()
         }
-        .alert(isPresented: $bool) {
-            Alert(title: Text("Cerrar Sesión"), primaryButton: .default(Text("Confirmar"), action: {
-                dismiss()
-                UserDefaults.standard.removeObject(forKey: Keys.ctamae)
-            }), secondaryButton: .cancel(Text("Cancelar")))
-        }
     }
-}
-
-#Preview {
-    PerfilView()
 }

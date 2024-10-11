@@ -14,6 +14,7 @@ class Constants {
 class Keys {
     static let ctamae = "ctaMae"
     static let loginUser = "loginUser"
+    static let pass = "loginPass"
     static let loginRecuerdame = "loginRecuerdame"
     static let loginFamilia = "loginFamilia"
     static let loginIntranet = "loginIntranet"

@@ -47,7 +47,6 @@ class InscripcionesViewModel : ObservableObject {
             switch res {
             case .success(let data):
                 self.listInscripciones = data
-                print("Prueba \(data)")
                 if let first = data.first {
                     if first.inscripcionbloqueo {
                         self.alert = true

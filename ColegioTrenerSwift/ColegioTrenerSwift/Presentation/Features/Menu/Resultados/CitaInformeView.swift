@@ -97,37 +97,56 @@ struct CardInforme: View {
                 .foregroundStyle(.white)
                 .padding(.vertical, 4)
                 .background(.colorT1)
-            VStack {
-                HStack {
-                    Image(systemName: "calendar")
-                    Text("Fecha")
-                    Text(cita.fechacita)
-                        .foregroundStyle(.black)
-                    Spacer()
+            ZStack(alignment: .bottomTrailing) {
+                VStack {
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text("Fecha")
+                        Text(cita.fechacita)
+                            .foregroundStyle(.black)
+                        Spacer()
+                    }
+                    .padding(.top, 1)
+                    HStack {
+                        Image(systemName: "clock")
+                        Text("Horario")
+                        Text(cita.horario)
+                            .foregroundStyle(.black)
+                        Spacer()
+                    }
+                    HStack {
+                        Image(systemName: "door.left.hand.closed")
+                        Text("Clase")
+                        Text(cita.clase)
+                            .foregroundStyle(.black)
+                        Spacer()
+                    }
+                    HStack {
+                        Image(systemName: "eye.fill")
+                        Text("Observación")
+                        Text(cita.observa)
+                            .foregroundStyle(.black)
+                        Spacer()
+                    }
+                    .padding(.bottom, 10)
                 }
-                .padding(.top, 1)
-                HStack {
-                    Image(systemName: "clock")
-                    Text("Horario")
-                    Text(cita.horario)
-                        .foregroundStyle(.black)
-                    Spacer()
+                if let url = cita.linkinforme {
+                    Link(
+                        destination: url,
+                        label: {
+                            HStack {
+                                Image(systemName: "arrow.down.to.line")
+                                Text("Informe")
+                            }
+                            .foregroundStyle(.white)
+                            .padding(.horizontal)
+                            .padding(.vertical, 4)
+                            .background(.colorS1)
+                            .clipShape(.capsule)
+                        }
+                    )
+                    .padding(.bottom)
                 }
-                HStack {
-                    Image(systemName: "door.left.hand.closed")
-                    Text("Clase")
-                    Text(cita.clase)
-                        .foregroundStyle(.black)
-                    Spacer()
-                }
-                HStack {
-                    Image(systemName: "eye.fill")
-                    Text("Observación")
-                    Text(cita.observa)
-                        .foregroundStyle(.black)
-                    Spacer()
-                }
-                .padding(.bottom, 10)
             }
             .foregroundStyle(.gray)
             .padding(.horizontal)

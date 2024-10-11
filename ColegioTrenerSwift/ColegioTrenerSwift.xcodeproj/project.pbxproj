@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5D06128A2C36457000116322 /* NotificacionesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0612892C36457000116322 /* NotificacionesService.swift */; };
+		5D0E9B412C73A73000080369 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E9B402C73A73000080369 /* FilePicker.swift */; };
+		5D0E9B452C73A82E00080369 /* SelectArchivo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E9B442C73A82E00080369 /* SelectArchivo.swift */; };
 		5D1DC06B2BE28E990090DEA4 /* DatosApoderadoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06A2BE28E990090DEA4 /* DatosApoderadoViewModel.swift */; };
 		5D1DC06D2BE2A0840090DEA4 /* FechaAsistenciaDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */; };
 		5D1DC06F2BE2A0A30090DEA4 /* FechaAsistencia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */; };
@@ -21,6 +23,15 @@
 		5D1DC0802BE2B6610090DEA4 /* FechaTarea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC07F2BE2B6610090DEA4 /* FechaTarea.swift */; };
 		5D1E5BA22BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E5BA12BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift */; };
 		5D1E5BAD2BE0382D00D3A3D6 /* SwiftUIToast in Frameworks */ = {isa = PBXBuildFile; productRef = 5D1E5BAC2BE0382D00D3A3D6 /* SwiftUIToast */; };
+		5D2637C12C70703F0032AA64 /* JustificacionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637C02C70703F0032AA64 /* JustificacionView.swift */; };
+		5D2637C32C7070460032AA64 /* CarnetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637C22C7070460032AA64 /* CarnetView.swift */; };
+		5D2637C52C7070C30032AA64 /* JustificacionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637C42C7070C30032AA64 /* JustificacionViewModel.swift */; };
+		5D2637C72C707AD10032AA64 /* CarnetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637C62C707AD10032AA64 /* CarnetViewModel.swift */; };
+		5D2637C92C70890F0032AA64 /* InasistenciaDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637C82C70890F0032AA64 /* InasistenciaDto.swift */; };
+		5D2637CB2C7089A80032AA64 /* Inasistencia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637CA2C7089A80032AA64 /* Inasistencia.swift */; };
+		5D2637CD2C70913E0032AA64 /* ItemJustificacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637CC2C70913E0032AA64 /* ItemJustificacion.swift */; };
+		5D2637CF2C7093670032AA64 /* RazonDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637CE2C7093670032AA64 /* RazonDto.swift */; };
+		5D2637D12C7093DC0032AA64 /* Razon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2637D02C7093DC0032AA64 /* Razon.swift */; };
 		5D3320DA2BD96522008C2588 /* SelectEstado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320D92BD96522008C2588 /* SelectEstado.swift */; };
 		5D3320DC2BD966EC008C2588 /* CardAutorizacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320DB2BD966EC008C2588 /* CardAutorizacion.swift */; };
 		5D3320DE2BD96837008C2588 /* SelectAutorizacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3320DD2BD96837008C2588 /* SelectAutorizacion.swift */; };
@@ -117,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		5D0612892C36457000116322 /* NotificacionesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificacionesService.swift; sourceTree = "<group>"; };
+		5D0E9B402C73A73000080369 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
+		5D0E9B442C73A82E00080369 /* SelectArchivo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectArchivo.swift; sourceTree = "<group>"; };
 		5D1DC06A2BE28E990090DEA4 /* DatosApoderadoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosApoderadoViewModel.swift; sourceTree = "<group>"; };
 		5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaAsistenciaDto.swift; sourceTree = "<group>"; };
 		5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaAsistencia.swift; sourceTree = "<group>"; };
@@ -129,6 +142,15 @@
 		5D1DC07D2BE2B64D0090DEA4 /* FechaTareaDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaTareaDto.swift; sourceTree = "<group>"; };
 		5D1DC07F2BE2B6610090DEA4 /* FechaTarea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FechaTarea.swift; sourceTree = "<group>"; };
 		5D1E5BA12BE02C5E00D3A3D6 /* SheetAgregrarHijo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetAgregrarHijo.swift; sourceTree = "<group>"; };
+		5D2637C02C70703F0032AA64 /* JustificacionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustificacionView.swift; sourceTree = "<group>"; };
+		5D2637C22C7070460032AA64 /* CarnetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnetView.swift; sourceTree = "<group>"; };
+		5D2637C42C7070C30032AA64 /* JustificacionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustificacionViewModel.swift; sourceTree = "<group>"; };
+		5D2637C62C707AD10032AA64 /* CarnetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnetViewModel.swift; sourceTree = "<group>"; };
+		5D2637C82C70890F0032AA64 /* InasistenciaDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InasistenciaDto.swift; sourceTree = "<group>"; };
+		5D2637CA2C7089A80032AA64 /* Inasistencia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inasistencia.swift; sourceTree = "<group>"; };
+		5D2637CC2C70913E0032AA64 /* ItemJustificacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemJustificacion.swift; sourceTree = "<group>"; };
+		5D2637CE2C7093670032AA64 /* RazonDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazonDto.swift; sourceTree = "<group>"; };
+		5D2637D02C7093DC0032AA64 /* Razon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Razon.swift; sourceTree = "<group>"; };
 		5D3320D92BD96522008C2588 /* SelectEstado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEstado.swift; sourceTree = "<group>"; };
 		5D3320DB2BD966EC008C2588 /* CardAutorizacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAutorizacion.swift; sourceTree = "<group>"; };
 		5D3320DD2BD96837008C2588 /* SelectAutorizacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAutorizacion.swift; sourceTree = "<group>"; };
@@ -237,6 +259,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D0E9B3F2C73A72600080369 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5D0E9B402C73A73000080369 /* FilePicker.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5D0E9B432C73A82300080369 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5D0E9B442C73A82E00080369 /* SelectArchivo.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		5D1DC0782BE2A7960090DEA4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +282,43 @@
 				5D1DC07B2BE2A9040090DEA4 /* CardInfoTarea.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5D2637BC2C7070020032AA64 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D2637BD2C70700B0032AA64 /* DiariaAcumulada */,
+				5D2637BE2C7070120032AA64 /* Justificacion */,
+				5D2637BF2C7070190032AA64 /* Carnet */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5D2637BD2C70700B0032AA64 /* DiariaAcumulada */ = {
+			isa = PBXGroup;
+			children = (
+				5DE1E1D62B6B23CE0064B3C8 /* DiariaAcumuladaView.swift */,
+				5DE1E1D82B6B23D60064B3C8 /* DiariaAcumuladaViewModel.swift */,
+			);
+			path = DiariaAcumulada;
+			sourceTree = "<group>";
+		};
+		5D2637BE2C7070120032AA64 /* Justificacion */ = {
+			isa = PBXGroup;
+			children = (
+				5D2637C02C70703F0032AA64 /* JustificacionView.swift */,
+				5D2637C42C7070C30032AA64 /* JustificacionViewModel.swift */,
+			);
+			path = Justificacion;
+			sourceTree = "<group>";
+		};
+		5D2637BF2C7070190032AA64 /* Carnet */ = {
+			isa = PBXGroup;
+			children = (
+				5D2637C22C7070460032AA64 /* CarnetView.swift */,
+				5D2637C62C707AD10032AA64 /* CarnetViewModel.swift */,
+			);
+			path = Carnet;
 			sourceTree = "<group>";
 		};
 		5D3320D82BD96517008C2588 /* Components */ = {
@@ -293,6 +368,7 @@
 		5D42195D2B6D433A0025BCD9 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5D0E9B3F2C73A72600080369 /* Core */,
 				5D42195E2B6D433D0025BCD9 /* Util */,
 			);
 			path = App;
@@ -322,6 +398,7 @@
 			children = (
 				5D42F4E02BDAC59A00281C92 /* LeyendaDiariaAcumulada.swift */,
 				5D42F4E22BDAC67900281C92 /* CardDiariaAcumulado.swift */,
+				5D2637CC2C70913E0032AA64 /* ItemJustificacion.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -370,6 +447,7 @@
 		5D5A3D212B6975B100F88156 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				5D0E9B432C73A82300080369 /* Common */,
 				5DE1E1E22B6B268E0064B3C8 /* Components */,
 				5D5A3D222B6975B600F88156 /* Features */,
 			);
@@ -560,8 +638,7 @@
 			isa = PBXGroup;
 			children = (
 				5D42F4DF2BDAC57E00281C92 /* Components */,
-				5DE1E1D62B6B23CE0064B3C8 /* DiariaAcumuladaView.swift */,
-				5DE1E1D82B6B23D60064B3C8 /* DiariaAcumuladaViewModel.swift */,
+				5D2637BC2C7070020032AA64 /* Views */,
 			);
 			path = Asistencia;
 			sourceTree = "<group>";
@@ -629,6 +706,8 @@
 				5DBB72B32BE03E54004BC530 /* DatosClubDto.swift */,
 				5D1DC06C2BE2A0840090DEA4 /* FechaAsistenciaDto.swift */,
 				5D1DC07D2BE2B64D0090DEA4 /* FechaTareaDto.swift */,
+				5D2637C82C70890F0032AA64 /* InasistenciaDto.swift */,
+				5D2637CE2C7093670032AA64 /* RazonDto.swift */,
 			);
 			path = Dto;
 			sourceTree = "<group>";
@@ -695,6 +774,8 @@
 				5DBB72B52BE03ED3004BC530 /* DatosClub.swift */,
 				5D1DC06E2BE2A0A30090DEA4 /* FechaAsistencia.swift */,
 				5D1DC07F2BE2B6610090DEA4 /* FechaTarea.swift */,
+				5D2637CA2C7089A80032AA64 /* Inasistencia.swift */,
+				5D2637D02C7093DC0032AA64 /* Razon.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -789,11 +870,13 @@
 				5DE1E1EA2B6B297C0064B3C8 /* PagosRealizados.swift in Sources */,
 				5DBB72BC2BE17FEC004BC530 /* TokenViewModel.swift in Sources */,
 				5DF14BF62BDB01C900106946 /* PagoService.swift in Sources */,
+				5D2637C92C70890F0032AA64 /* InasistenciaDto.swift in Sources */,
 				5D5A3D2A2B6981C000F88156 /* LoginViewModel.swift in Sources */,
 				5D3320E82BD97B3D008C2588 /* EstadoAutorizacion.swift in Sources */,
 				5DE1E1DD2B6B24110064B3C8 /* InscripcionesViewModel.swift in Sources */,
 				5D3320DC2BD966EC008C2588 /* CardAutorizacion.swift in Sources */,
 				5DBB72B82BE155A6004BC530 /* SheetAgregarClub.swift in Sources */,
+				5D2637CD2C70913E0032AA64 /* ItemJustificacion.swift in Sources */,
 				5D5A3D252B6975C600F88156 /* LoginView.swift in Sources */,
 				5DE1E1D12B6B23620064B3C8 /* PendientesView.swift in Sources */,
 				5DF14BF22BDAF7C800106946 /* InscripcionService.swift in Sources */,
@@ -810,12 +893,15 @@
 				5D42F4E32BDAC67900281C92 /* CardDiariaAcumulado.swift in Sources */,
 				5DFFD5142BD832C600130F0B /* CajaLogin.swift in Sources */,
 				5DBB72B42BE03E54004BC530 /* DatosClubDto.swift in Sources */,
+				5D0E9B452C73A82E00080369 /* SelectArchivo.swift in Sources */,
 				5DF14BFE2BDB0A8400106946 /* SinInfo.swift in Sources */,
 				5DE1E1EC2B6B29840064B3C8 /* PagosVencidos.swift in Sources */,
+				5D2637C32C7070460032AA64 /* CarnetView.swift in Sources */,
 				5DE1E1C72B6B22B60064B3C8 /* AutorizacionesViewModel.swift in Sources */,
 				5DE1E1B62B6AED860064B3C8 /* DatosHijosView.swift in Sources */,
 				5D06128A2C36457000116322 /* NotificacionesService.swift in Sources */,
 				5D1DC07C2BE2A9040090DEA4 /* CardInfoTarea.swift in Sources */,
+				5D2637CF2C7093670032AA64 /* RazonDto.swift in Sources */,
 				5D8F66D52B9698FE003A19D4 /* ItemDatoHijo.swift in Sources */,
 				5DE1E1C92B6B23030064B3C8 /* CitaInformeView.swift in Sources */,
 				5D1DC07A2BE2A7B00090DEA4 /* LeyendaPendientes.swift in Sources */,
@@ -845,8 +931,10 @@
 				5D3320ED2BD9897F008C2588 /* DatosService.swift in Sources */,
 				5DF14C082BDB669200106946 /* CajaTexto.swift in Sources */,
 				5DE1E1B82B6AED910064B3C8 /* DatosClubesView.swift in Sources */,
+				5D2637CB2C7089A80032AA64 /* Inasistencia.swift in Sources */,
 				5D42F4E12BDAC59A00281C92 /* LeyendaDiariaAcumulada.swift in Sources */,
 				5DF14BF42BDAF9C700106946 /* Inscripcion.swift in Sources */,
+				5D2637D12C7093DC0032AA64 /* Razon.swift in Sources */,
 				5D3320E22BD96A8C008C2588 /* Functions.swift in Sources */,
 				5DF14C192BDB92BC00106946 /* DatosHijoDto.swift in Sources */,
 				5D3320E42BD96CBA008C2588 /* Autorizacion.swift in Sources */,
@@ -861,13 +949,16 @@
 				5DE1E1AC2B6AE9710064B3C8 /* DatosView.swift in Sources */,
 				5D42F4D02BD9A0AD00281C92 /* TareaIncumplimiento.swift in Sources */,
 				5D1DC0732BE2A11F0090DEA4 /* EstadoAutorizacionDto.swift in Sources */,
+				5D2637C72C707AD10032AA64 /* CarnetViewModel.swift in Sources */,
 				5D1DC06D2BE2A0840090DEA4 /* FechaAsistenciaDto.swift in Sources */,
 				5DF14BF92BDB024200106946 /* PagoDto.swift in Sources */,
 				5D4219162B6C03070025BCD9 /* NotificacionesView.swift in Sources */,
 				5D5A3D132B69759600F88156 /* ColegioTrenerSwiftApp.swift in Sources */,
 				5D1DC07E2BE2B64D0090DEA4 /* FechaTareaDto.swift in Sources */,
+				5D2637C52C7070C30032AA64 /* JustificacionViewModel.swift in Sources */,
 				5D3980C62B965FC800634A97 /* AuthServices.swift in Sources */,
 				5DF14C0F2BDB8E8B00106946 /* DatosApoderadoDto.swift in Sources */,
+				5D2637C12C70703F0032AA64 /* JustificacionView.swift in Sources */,
 				5DF14C062BDB19DF00106946 /* SelectYearRealizado.swift in Sources */,
 				5DE1E1CB2B6B230B0064B3C8 /* CitaInformeViewModel.swift in Sources */,
 				5DF14C132BDB8EC800106946 /* HijoTrener.swift in Sources */,
@@ -879,6 +970,7 @@
 				5DE1E1E12B6B243D0064B3C8 /* PagosViewModel.swift in Sources */,
 				5D1DC0752BE2A13E0090DEA4 /* AutorizacionDto.swift in Sources */,
 				5D1DC0802BE2B6610090DEA4 /* FechaTarea.swift in Sources */,
+				5D0E9B412C73A73000080369 /* FilePicker.swift in Sources */,
 				5DE1E1D92B6B23D60064B3C8 /* DiariaAcumuladaViewModel.swift in Sources */,
 				5DF14C152BDB8ED900106946 /* DatosApoderado.swift in Sources */,
 			);
@@ -1012,7 +1104,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ColegioTrenerSwift/ColegioTrenerSwift.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"ColegioTrenerSwift/Preview Content\"";
 				DEVELOPMENT_TEAM = CXH9DAPMNQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1034,7 +1126,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jjmf.ios.ColegioTrenerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1053,7 +1145,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ColegioTrenerSwift/ColegioTrenerSwift.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"ColegioTrenerSwift/Preview Content\"";
 				DEVELOPMENT_TEAM = CXH9DAPMNQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1075,7 +1167,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jjmf.ios.ColegioTrenerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

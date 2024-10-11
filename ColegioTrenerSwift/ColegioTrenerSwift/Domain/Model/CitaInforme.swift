@@ -13,4 +13,5 @@ struct CitaInforme: Hashable {
     let fechacita: String
     let horario: String
     let observa: String
+    let linkinforme: URL?
 }

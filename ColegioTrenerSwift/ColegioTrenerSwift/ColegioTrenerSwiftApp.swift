@@ -10,18 +10,24 @@ import SwiftUI
 @main
 struct ColegioTrenerSwiftApp: App {
     @State private var isSplashActive: Bool = true
-    @State var selectedDate: Date = Date()
+    @State private var isSessionActive = false
     
     var body: some Scene {
         WindowGroup {
             ZStack {
                 NavigationStack {
-                    LoginView()
+                    if self.isSessionActive {
+                        MenuView()
+                    } else {
+                        LoginView()
+                    }
                 }
                 SplashView(isActive: $isSplashActive)
             }
             .preferredColorScheme(.light)
             .onAppear {
+                print(UserDefaults.standard.bool(forKey: Keys.loginRecuerdame))
+                self.isSessionActive = UserDefaults.standard.bool(forKey: Keys.loginRecuerdame)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     withAnimation {
                         self.isSplashActive = false

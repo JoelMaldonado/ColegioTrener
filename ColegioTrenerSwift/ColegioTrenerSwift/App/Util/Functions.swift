@@ -6,13 +6,32 @@
 //
 
 import SwiftUI
+import SwiftUIToast
 
+func showToast(message: String) {
+    SUIToast.show(
+        messageItem: .init(
+            message: message,
+            bgColor: .colorS1,
+            messageColor: .white
+        )
+    )
+}
 
 extension Date {
     func format(pattern: String = "dd/MM/yyyy") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = pattern
         return formatter.string(from: self)
+    }
+}
+
+func stringToObject<T: Codable>(_ value: String) throws -> T {
+    guard let jsonData = value.data(using: .utf8) else { throw ErrorNetwork.motivo("No se pudo Serializar") }
+    do {
+        return try JSONDecoder().decode(T.self, from: jsonData)
+    } catch {
+        throw error
     }
 }
 

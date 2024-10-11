@@ -11,7 +11,6 @@ import Alamofire
 class InscripcionService {
     
     static let shared = InscripcionService()
-    
     func getListIncripciones(
         ctacli: String,
         completion: @escaping (EResult<[Inscripcion]>) -> Void
@@ -36,10 +35,8 @@ class InscripcionService {
                         let res: EResult<[InscripcionDto]> = success.toData()
                         switch res {
                         case .success(let data):
-                            print(data)
                             completion(.success(data.map{ $0.toDomain() }))
                         case .failure(let err):
-                            print(err)
                             completion(.failure(err))
                         }
                     case .failure(let failure):

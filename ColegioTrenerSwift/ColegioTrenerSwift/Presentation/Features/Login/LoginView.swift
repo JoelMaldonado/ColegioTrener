@@ -10,8 +10,7 @@ import SwiftUIToast
 
 struct LoginView: View {
     
-    @ObservedObject var viewModel = LoginViewModel()
-    
+    @StateObject private var viewModel = LoginViewModel()
     var body: some View {
         ZStack {
             VStack {
@@ -99,9 +98,4 @@ struct LoginView: View {
             }
         )
     }
-}
-
-
-#Preview {
-    LoginView()
 }

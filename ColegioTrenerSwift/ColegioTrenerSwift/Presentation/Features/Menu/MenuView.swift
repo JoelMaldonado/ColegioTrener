@@ -13,7 +13,7 @@ struct MenuView: View {
         VStack(spacing: 0){
             TopView(menuTab: $tab)
             ZStack {
-                Image(.salon)
+                Image(.fondoMenu)
                     .resizable()
                     .ignoresSafeArea()
                 ZStack {
@@ -32,6 +32,10 @@ struct MenuView: View {
                         )
                     case .DiariaAcumulada:
                         DiariaAcumuladaView()
+                    case .Justificacion:
+                        JustificacionView()
+                    case .Carnet:
+                        CarnetView()
                     case .Pendientes:
                         PendientesView()
                     case .Incumplimientos:
@@ -46,7 +50,6 @@ struct MenuView: View {
                         PerfilView()
                     }
                 }
-                .background(.gray.opacity(0.6))
             }
         }
         
@@ -60,6 +63,8 @@ enum MenuTab {
     case Pagos
     case Inscripciones
     case DiariaAcumulada
+    case Justificacion
+    case Carnet
     case Pendientes
     case Incumplimientos
     case CitaInforme
@@ -79,12 +84,16 @@ enum MenuTab {
             return "Registros"
         case .DiariaAcumulada:
             return "Diaria Acumulada"
+        case .Justificacion:
+            return "Justificación"
+        case .Carnet:
+            return "Carnet Recojo"
         case .Pendientes:
             return "Pendientes"
         case .Incumplimientos:
             return "Incumplimientos"
         case .CitaInforme:
-            return "Cita Informe"
+            return "Cita/Informe"
         case .Autorizaciones:
             return "Autorizaciones"
         case .Notificaciones:
@@ -108,8 +117,4 @@ struct ItemMenuView : View {
         }
         .foregroundStyle(.white)
     }
-}
-
-#Preview {
-    MenuView()
 }

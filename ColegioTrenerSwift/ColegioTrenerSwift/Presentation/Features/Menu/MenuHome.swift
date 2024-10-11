@@ -59,18 +59,45 @@ struct MenuHome: View {
                     .frame(height: 12)
                 
                 ItemMenuView(label: "Asistencia")
-                Button {
-                    self.tab = .DiariaAcumulada
-                } label: {
-                    HStack{
-                        Image(.icDiariaAcumulada)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                        Text("Diaria y acumulada")
-                        Spacer()
+                HStack {
+                    Button {
+                        self.tab = .DiariaAcumulada
+                    } label: {
+                        VStack{
+                            Image(.icDiariaAcumulada)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                            Text("Diaria y acumulado")
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    .padding(.leading)
+                    
+                    Button {
+                        self.tab = .Justificacion
+                    } label: {
+                        VStack{
+                            Image(.icJustificacion)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                            Text("Justificación")
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    
+                    Button {
+                        self.tab = .Carnet
+                    } label: {
+                        VStack{
+                            Image(.icCarnet)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                            Text("Carnet")
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
                 }
                 
                 Spacer()
@@ -117,7 +144,7 @@ struct MenuHome: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)
-                        Text("Cita informe")
+                        Text("Cita/informe")
                         Spacer()
                     }
                     .padding(.leading)

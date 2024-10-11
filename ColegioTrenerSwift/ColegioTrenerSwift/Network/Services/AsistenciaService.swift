@@ -12,6 +12,15 @@ class AsistenciaService {
     
     static let shared = AsistenciaService()
     
+    // Diaria y Acumulada
+    func getHeaderToken() async throws -> HTTPHeaders {
+        let token = try await TokenUsecase.shared.getTokenGlobal()
+        let header: HTTPHeaders = [
+            "Authorization": token
+        ]
+        return header
+    }
+    
     func listarFechasAsistenciaAlumno(
         anio: String,
         mes: String,
@@ -94,7 +103,122 @@ class AsistenciaService {
         }
     }
     
+    // Justificación
+    func getInasistencias(ctacli: String) async throws -> [Inasistencia] {
+        let year = Calendar.current.component(.year, from: Date())
+        let response = await AF.request(
+            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getInasistenciasInjustificadas/\(year),\(ctacli)",
+            method: .get,
+            headers: try await getHeaderToken()
+        )
+            .serializingDecodable(String.self)
+            .response
+        
+        switch response.result {
+        case .success(let success):
+            let list: [InasistenciaDto] = try stringToObject(success)
+            let listMap = list.map { $0.toDomain() }
+            return listMap
+        case .failure(let err):
+            throw err
+        }
+    }
+    
+    // Listar Razones para Justificación
+    func getListRazones() async throws -> [Razon] {
+        let response = await AF.request(
+            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/getRazonesJustificar",
+            method: .get,
+            headers: try await getHeaderToken()
+        )
+            .serializingDecodable(String.self)
+            .response
+        
+        switch response.result {
+            
+        case .success(let data):
+            let list: [RazonDto] = try stringToObject(data)
+            let listMap = list.map { $0.toDomain() }
+            return listMap
+        case .failure(let err):
+            throw err
+        }
+    }
+    
+    // Enviar Solicitud de Justificación
+    func sendJustificacion(request: SendJustificacionRequest) async throws -> String {
+        let response = await AF.request(
+            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/registrarJustificacion",
+            method: .post,
+            parameters: request,
+            encoder: JSONParameterEncoder.default,
+            headers: try await getHeaderToken()
+        )
+            .serializingDecodable(SendJustificacionResponse.self)
+            .response
+        switch response.result {
+        case .success(let data):
+            if let body = data.registrarJustificacionResult {
+                let dto: SendJustificacionDto = try stringToObject(body)
+                if dto.status == 1 {
+                    return dto.message ?? "Se registro correctamente"
+                } else {
+                    throw ErrorNetwork.motivo(dto.message ?? "No se pudo enviar ")
+                }
+            } else {
+                throw ErrorNetwork.motivo("No se pudo obtener")
+            }
+        case .failure(let err):
+            throw err
+        }
+    }
+    
+    //Carnet
+    func getCarnet(
+        ctacli: String
+    ) async throws -> CarnetDto {
+        
+        let response = await AF.request(
+            "\(Constants.baseURL)/PublicacionFox/TrenerWCFOX.svc/Trener/fotoCarnetAlumno/\(ctacli)",
+            method: .get,
+            headers: try await getHeaderToken()
+        )
+            .serializingDecodable(String.self)
+            .response
+        
+        switch response.result {
+        case .success(let success):
+            let carnetDto: CarnetDto = try stringToObject(success)
+            return carnetDto
+        case .failure(let err):
+            throw err
+        }
+    }
 }
+
+struct SendJustificacionRequest: Codable {
+    let fecha: String
+    let ctacli: String
+    let ctamae: String
+    let idrazon: String
+    let comentario: String
+    let filename: String
+}
+
+struct SendJustificacionResponse: Codable {
+    let registrarJustificacionResult: String?
+}
+
+struct SendJustificacionDto: Codable {
+    let message: String?
+    let status: Int?
+}
+
+struct CarnetDto: Codable {
+    let linkVista: String?
+    let linkDescarga: String?
+}
+
 
 struct InfoAsistenciaDto: Codable {
     let fecha: String?
@@ -115,7 +239,6 @@ struct InfoAsistenciaDto: Codable {
         )
     }
 }
-
 struct InfoAsistencia {
     let fecha: String
     let trimestre: String

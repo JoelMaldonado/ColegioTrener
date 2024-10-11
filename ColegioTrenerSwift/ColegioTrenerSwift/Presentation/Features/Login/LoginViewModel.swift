@@ -7,7 +7,6 @@
 
 import Foundation
 import SVProgressHUD
-import SwiftUIToast
 
 class LoginViewModel : ObservableObject {
     
@@ -30,29 +29,19 @@ class LoginViewModel : ObservableObject {
     
     
     func login(){
-        
-        if self.usuario.isEmpty {
-            SUIToast.show(messageItem: .init(
-                message: "Completar usuario",
-                bgColor: .colorS1,
-                messageColor: .white
-            ))
+        if usuario.isEmpty {
+            showToast(message: "Completar usuario")
             return
         }
         
-        if self.clave.isEmpty {
-            SUIToast.show(messageItem: .init(
-                message: "Completar contraseña",
-                bgColor: .colorS1,
-                messageColor: .white
-            ))
+        if clave.isEmpty {
+            showToast(message: "Completar contraseña")
             return
         }
-        
         SVProgressHUD.show()
         AuthServices.shared.login(
-            usuario: self.usuario,
-            clave: self.clave
+            usuario: usuario,
+            clave: clave
         ){ res in
             switch res {
             case .success( _):
@@ -64,6 +53,9 @@ class LoginViewModel : ObservableObject {
                 UserDefaults.standard.setValue(self.usuario, forKey: Keys.ctamae)
                 UserDefaults.standard.setValue(self.recuerdame, forKey: Keys.loginRecuerdame)
                 SVProgressHUD.dismiss()
+                self.usuario = ""
+                self.clave = ""
+                self.recuerdame = false
                 self.toMenu = true
             case .failure(let err):
                 self.error = err

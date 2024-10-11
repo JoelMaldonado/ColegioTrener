@@ -12,6 +12,18 @@ class TokenUsecase {
     
     static let shared = TokenUsecase()
     
+    func getTokenGlobal() async throws -> String {
+        if let token = UserDefaults.standard.string(forKey: "token") {
+            if isValidJWT(token) {
+                return token
+            } else {
+                return try await getTokenGlobal()
+            }
+        } else {
+            return try await getTokenGlobal()
+        }
+    }
+    
     func getToken(
         completion: @escaping (EResult<String>) -> Void
     ) {
@@ -38,6 +50,12 @@ class TokenUsecase {
                 }
             }
         }
+    }
+    
+    private func getTokenGlobalApi() async throws -> String {
+        let token =  try await AuthServices.shared.getGlobalToken()
+        UserDefaults.standard.setValue(token, forKey: "token")
+        return token
     }
     
     private func getTokenApi(
