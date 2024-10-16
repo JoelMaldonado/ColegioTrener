@@ -1,5 +1,7 @@
 package com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.CitaInforme
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,6 +24,8 @@ import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.DoorFront
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -36,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,15 +50,19 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.jjmf.colegiotrenerandroid.ui.components.SelectYear
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.CardPago
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.ItemPago
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Administrativos.Pagos.components.ItemPagoExtend
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorT1
+import com.jjmf.colegiotrenerandroid.util.show
 import java.time.LocalDate
 
 @Composable
 fun CitaInformeScreen(
     viewModel: CitaInformeViewModel = hiltViewModel()
 ) {
+
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -106,11 +116,31 @@ fun CitaInformeScreen(
                                     text = "${it.clase}",
                                     ic = Icons.Default.DoorFront
                                 )
-                                ItemPago(
-                                    label = "Observación",
-                                    text = "${it.observa?.ifEmpty { "--" }}",
-                                    ic = Icons.Default.Visibility
-                                )
+                                Row(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(bottom = 8.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    ItemPagoExtend(
+                                        label = "Observación",
+                                        text = "${it.observa?.ifEmpty { "--" }}",
+                                        ic = Icons.Default.Visibility,
+                                        citaInforme = it,
+                                        onClick = {
+                                            try{
+                                                it.linkInforme?.let {
+                                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+                                                    context.startActivity(intent)
+                                                }?:run {
+                                                    context.show("Informe no disponible")
+                                                }
+                                            }catch (ex:Exception){
+                                                context.show("No pudimos obtener el informe solicitado")
+                                            }
+                                        }
+                                    )
+                                }
+
                             }
                         )
                     }

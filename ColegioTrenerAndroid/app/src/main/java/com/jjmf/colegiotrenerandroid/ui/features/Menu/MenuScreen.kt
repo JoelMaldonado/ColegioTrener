@@ -14,7 +14,9 @@ import androidx.navigation.compose.rememberNavController
 import com.jjmf.colegiotrenerandroid.R
 import com.jjmf.colegiotrenerandroid.ui.components.TopBar
 import com.jjmf.colegiotrenerandroid.ui.features.Inicio.InicioScreen
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.Carnet.CarnetScreen
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.DiariaAcumulada.DiariaAcumuladaScreen
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Asistencia.Justificacion.JustificacionScreen
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Autorizaciones.AutorizacionesScreen
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.CitaInforme.CitaInformeScreen
 import com.jjmf.colegiotrenerandroid.ui.features.Menu.Features.Tareas.Incumplimientos.TareasIncumplimientosScreen
@@ -98,6 +100,20 @@ fun MenuScreen(
             ) {
                 viewModel.title = "Información Diaria y Acumulada"
                 DiariaAcumuladaScreen()
+            }
+
+            composable(
+                route = Rutas.Asistencia.Justificacion.route
+            ) {
+                viewModel.title = "Justificaciones"
+                JustificacionScreen()
+            }
+
+            composable(
+                route = Rutas.Asistencia.Carnet.route
+            ) {
+                viewModel.title = "Carnet Recojo"
+                CarnetScreen()
             }
 
             /**

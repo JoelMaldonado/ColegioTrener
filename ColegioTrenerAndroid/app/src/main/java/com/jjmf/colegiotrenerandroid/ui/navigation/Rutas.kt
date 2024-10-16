@@ -21,6 +21,8 @@ sealed class Rutas(val route: String) {
     }
     data object Asistencia {
         data object DiariaAcumulada : Rutas("asistencia/diaria_acumulada")
+        data object Carnet : Rutas("asistencia/carnet")
+        data object Justificacion : Rutas("asistencia/justificacion")
     }
     data object Tareas {
         data object Pendientes: Rutas("tareas/pendientes")

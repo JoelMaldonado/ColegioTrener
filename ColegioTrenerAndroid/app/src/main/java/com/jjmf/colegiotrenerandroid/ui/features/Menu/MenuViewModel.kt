@@ -16,4 +16,5 @@ class MenuViewModel @Inject constructor(
     var title by mutableStateOf("")
     var familia by mutableStateOf(prefs.getFamilia())
 
+
 }

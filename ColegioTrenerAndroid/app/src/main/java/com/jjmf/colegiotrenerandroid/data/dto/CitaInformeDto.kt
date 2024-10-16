@@ -8,7 +8,8 @@ data class CitaInformeDto(
     @SerializedName("clase") val clase: String?,
     @SerializedName("fechacita") val fechacita: String?,
     @SerializedName("horario") val horario: String?,
-    @SerializedName("observa") val observa: String?
+    @SerializedName("observa") val observa: String?,
+    @SerializedName("linkinforme") val linkInforme: String?
 ) {
     fun toDomain(): CitaInforme {
         return CitaInforme(
@@ -16,7 +17,8 @@ data class CitaInformeDto(
             clase = clase?.trim(),
             fechacita = fechacita?.trim(),
             horario = horario?.trim(),
-            observa = observa?.trim()
+            observa = observa?.trim(),
+            linkInforme = linkInforme?.trim(),
         )
     }
 }

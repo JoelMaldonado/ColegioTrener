@@ -25,9 +25,12 @@ class LoginViewModel @Inject constructor(
     var isLoading by mutableStateOf(false)
     var error by mutableStateOf<String?>(null)
 
+    var session by mutableStateOf(false)
+
     init {
         if (prefs.getRecuerdame()){
             usuario = prefs.getUsuario()
+            verifySession()
         } else {
             usuario = ""
             clave = ""
@@ -58,6 +61,14 @@ class LoginViewModel @Inject constructor(
                 isLoading = false
             }
 
+        }
+    }
+
+    fun verifySession() {
+        if (prefs.getCtamae().isNotEmpty()){
+            session = true
+        } else {
+            session = false
         }
     }
 

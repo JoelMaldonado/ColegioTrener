@@ -1,12 +1,15 @@
 package com.jjmf.colegiotrenerandroid.util
 
 import com.google.gson.Gson
+import com.google.gson.stream.JsonReader
+import java.io.StringReader
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
+
 
 fun String.capitalize(full: Boolean = false): String {
     return if (full){
@@ -38,6 +41,19 @@ inline fun <reified T> convertJson(data: String?): T {
     return try {
         Gson().fromJson(data, T::class.java)
     } catch (e: Exception) {
+        println(e.message)
+        throw IllegalArgumentException("No se pudo parsear")
+    }
+}
+
+inline fun <reified T> convertJson2(data: String?): T {
+    return try {
+        val gson = Gson()
+        val reader = JsonReader(StringReader(data))
+        reader.isLenient = true
+        gson.fromJson(data, T::class.java)
+    } catch (e: Exception) {
+        println(e.message)
         throw IllegalArgumentException("No se pudo parsear")
     }
 }

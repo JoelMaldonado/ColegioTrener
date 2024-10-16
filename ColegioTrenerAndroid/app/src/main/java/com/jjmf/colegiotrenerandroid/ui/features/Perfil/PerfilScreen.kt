@@ -23,14 +23,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.jjmf.colegiotrenerandroid.R
+import com.jjmf.colegiotrenerandroid.ui.features.Menu.MenuViewModel
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorP1
 import com.jjmf.colegiotrenerandroid.ui.theme.ColorS1
 
 @Composable
 fun PerfilScreen(
-    logout:()->Unit
+    logout:()->Unit,
+    viewModel: PerlfilViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     Column(
@@ -51,6 +54,7 @@ fun PerfilScreen(
                         }
                         setConfirmButton("Confirmar"){
                             dismissWithAnimation()
+                            viewModel.logOut()
                             logout()
                         }
                         show()

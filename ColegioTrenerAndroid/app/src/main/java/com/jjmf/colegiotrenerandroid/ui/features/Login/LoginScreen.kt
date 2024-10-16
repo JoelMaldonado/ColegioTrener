@@ -58,6 +58,14 @@ fun LoginScreen(
         }
     }
 
+    if(viewModel.session){
+        LaunchedEffect(key1 = Unit) {
+            viewModel.session = false
+            toMenu()
+        }
+    }
+
+
     viewModel.error?.let {
         context.show(it)
         viewModel.error = null

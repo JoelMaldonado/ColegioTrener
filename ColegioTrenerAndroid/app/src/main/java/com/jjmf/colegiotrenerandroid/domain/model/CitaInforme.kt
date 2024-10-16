@@ -5,5 +5,6 @@ data class CitaInforme(
     val clase: String?,
     val fechacita: String?,
     val horario: String?,
-    val observa: String?
+    val observa: String?,
+    val linkInforme: String?,
 )

@@ -88,14 +88,34 @@ fun InicioScreen(
         ){
             TextInicio(text = "Asistencia")
 
-            ItemInicio(
-                text = "Diaria y acumulada",
-                ic = R.drawable.ic_diaria_acumulada,
-                isVertical = false,
-                click = {
-                    navMenu.navigate(Rutas.Asistencia.DiariaAcumulada.route)
-                }
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                ItemInicio(
+                    text = "Diaria y acumulada",
+                    ic = R.drawable.ic_diaria_acumulada,
+                    click = {
+                        navMenu.navigate(Rutas.Asistencia.DiariaAcumulada.route)
+                    }
+                )
+                ItemInicio(
+                    text = "Justificaciones",
+                    ic = R.drawable.icon_justificaciones,
+                    click = {
+                        navMenu.navigate(Rutas.Asistencia.Justificacion.route)
+                    }
+                )
+                ItemInicio(
+                    text = "Carnet",
+                    ic = R.drawable.icon_carnet,
+                    click = {
+                        navMenu.navigate(Rutas.Asistencia.Carnet.route)
+                    }
+                )
+            }
         }
 
         /** Tareas **/
@@ -136,7 +156,7 @@ fun InicioScreen(
             TextInicio(text = "Resultados académicos")
 
             ItemInicio(
-                text = "Cita informe",
+                text = "Cita/informe",
                 ic = R.drawable.ic_cita_informe,
                 isVertical = false,
                 click = {
